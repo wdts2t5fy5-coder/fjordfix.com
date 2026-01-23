@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="FjordFix AS – Praktisk hjelp i hus og hage – på strilavis. Småjobber, montering, vedlikehold og hagearbeid for privatpersoner, utleiere og sameier." />
+  <title>FjordFix AS | Praktisk hjelp i hus og hage</title>
+  <style>
+    :root{
+      --orange:#ff6a00;
+      --orange2:#ff8a33;
+      --ink:#0f172a;
+      --muted:#475569;
+      --bg:#ffffff;
+      --card:#ffffff;
+      --line:rgba(15,23,42,.12);
+      --white:#0f172a;
+      --text-85:rgba(15,23,42,.85);
+      --text-82:rgba(15,23,42,.82);
+      --text-78:rgba(15,23,42,.78);
+      --text-72:rgba(15,23,42,.72);
+      --text-70:rgba(15,23,42,.70);
+      --text-68:rgba(15,23,42,.68);
+      --text-66:rgba(15,23,42,.66);
+      --text-45:rgba(15,23,42,.45);
+      --border-14:rgba(15,23,42,.14);
+      --surface-06:rgba(15,23,42,.06);
+      --surface-10:rgba(15,23,42,.10);
+      --surface-04:rgba(15,23,42,.04);
+      --card-hi:rgba(15,23,42,.08);
+      --card-lo:rgba(15,23,42,.05);
+      --nav-bg:rgba(255,255,255,.85);
+      --nav-link-hover:var(--ink);
+      --shadow:0 18px 60px rgba(15,23,42,.12);
+      --input-bg:#ffffff;
+      --input-text:var(--ink);
+    }
+    html[data-theme="dark"]{
+      color-scheme:dark;
+      --bg:#0b1220;
+      --card:#0f1b33;
+      --line:rgba(255,255,255,.12);
+      --white:#ffffff;
+      --text-85:rgba(255,255,255,.85);
+      --text-82:rgba(255,255,255,.82);
+      --text-78:rgba(255,255,255,.78);
+      --text-72:rgba(255,255,255,.72);
+      --text-70:rgba(255,255,255,.70);
+      --text-68:rgba(255,255,255,.68);
+      --text-66:rgba(255,255,255,.66);
+      --text-45:rgba(255,255,255,.45);
+      --border-14:rgba(255,255,255,.14);
+      --surface-06:rgba(255,255,255,.06);
+      --surface-10:rgba(255,255,255,.10);
+      --surface-04:rgba(0,0,0,.14);
+      --card-hi:rgba(255,255,255,.08);
+      --card-lo:rgba(255,255,255,.05);
+      --nav-bg:rgba(11,18,32,.75);
+      --nav-link-hover:#ffffff;
+      --shadow:0 18px 60px rgba(0,0,0,.28);
+      --input-bg:rgba(0,0,0,.18);
+      --input-text:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--white); background: radial-gradient(1200px 600px at 20% 0%, rgba(255,106,0,.22), transparent 60%), radial-gradient(900px 500px at 85% 10%, rgba(255,138,51,.14), transparent 55%), var(--bg);} 
+    a{color:inherit}
+    body{min-height:100vh;display:flex;flex-direction:column}
+    main{flex:1}
+
+    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+    .nav{position:sticky;top:0;z-index:10;background:#ffffff;border-bottom:1px solid rgba(15,23,42,.12)}
+    .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:14px 0;gap:14px}
+    .brand{display:grid;grid-template-columns:180px 1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
+    .brand-left{display:flex;align-items:center;gap:16px}
+    .brand-link{display:inline-flex;align-items:center;text-decoration:none}
+    .brand-title{display:flex;align-items:center;justify-content:center;height:110px}
+    .brand-title img{height:74px;width:auto;display:block}
+    .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
+    .nav-menu-stack{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .lang-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}
+    .lang-panel[hidden]{display:none}
+    .lang-panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .lang-panel a:hover{background:var(--surface-04)}
+    .lang-panel .flag-no{width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+    .lang-panel .flag-uk{display:block;width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+
+    .flag-uk{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('flag-uk.svg');}
+
+    .lang-button{padding:0;overflow:hidden}
+    .flag-no{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background:linear-gradient(90deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(180deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(90deg, transparent 38%, #ffffff 38% 62%, transparent 62%),linear-gradient(180deg, transparent 38%, #ffffff 38% 62%, transparent 62%),#ba0c2f;}
+    .menu-button{width:48px;height:48px;border-radius:12px;border:1px solid rgba(15,23,42,.12);background:#ffffff;display:grid;place-items:center;cursor:pointer}
+    .menu-button:hover{background:var(--surface-04)}
+    .menu-icon{position:relative;width:22px;height:14px}
+    .menu-icon::before,
+    .menu-icon::after,
+    .menu-icon span{content:"";position:absolute;left:0;width:100%;height:2px;background:#0f172a;border-radius:2px}
+    .menu-icon::before{top:0}
+    .menu-icon span{top:6px}
+    .menu-icon::after{bottom:0}
+    .menu-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:4px}
+    .menu-panel[hidden]{display:none}
+    .menu-panel a{padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .menu-panel a:hover{background:var(--surface-04)}
+    .services-actions{margin-top:18px;display:flex;justify-content:center}
+    .services-actions .btn{font-size:16px;font-family:inherit}
+    .services-grid .service-card[data-service-extra]{display:none}
+    .services-grid.is-expanded .service-card[data-service-extra]{display:block}
+    .brand .brand-tagline{display:block;margin-top:8px;color:#000000;font-weight:500;letter-spacing:.1px}
+    .mark{width:110px;height:110px;display:grid;place-items:center}
+    .mark img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+    .brand small{display:block;font-weight:600;letter-spacing:0}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--border-14);padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:800;background:transparent;color:inherit}
+    .btn-primary{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#0b1220;border:none}
+    .btn-primary:hover{filter:saturate(1.05) brightness(1.03)}
+    .btn-ghost{background:var(--surface-06)}
+    .btn-ghost:hover{background:var(--surface-10)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .theme-toggle{padding:10px 12px;border:none;border-radius:999px;min-width:48px;min-height:48px;background:transparent;color:#0f172a;transition:transform .2s ease}
+    .theme-toggle:hover{transform:translateY(-1px);background:transparent}
+    .theme-toggle .bulb-wrap{position:relative;width:38px;height:38px;transform:translateY(-12px)}
+    .theme-toggle svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s ease, transform .2s ease}
+    .theme-toggle .bulb-outline{stroke:var(--bulb-stroke);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-fill{fill:var(--bulb-fill)}
+    .theme-toggle .bulb-base{fill:var(--bulb-base)}
+    .theme-toggle .bulb-screw{fill:var(--bulb-base)}
+    .theme-toggle .bulb-tip{fill:var(--bulb-base)}
+    .theme-toggle .bulb-highlight{fill:none;stroke:rgba(255,255,255,.7);stroke-width:5;stroke-linecap:round}
+    .theme-toggle .filament{fill:none;stroke:var(--bulb-stroke);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-crack{fill:none;stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-shard{fill:var(--bulb-fill);stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle[data-state="on"]{--bulb-fill:#ffd400;--bulb-stroke:#0f172a;--bulb-base:#7b8aa6}
+    .theme-toggle[data-state="on"] svg{filter:none}
+    .theme-toggle[data-state="off"]{--bulb-fill:rgba(15,23,42,.08);--bulb-stroke:rgba(15,23,42,.55);--bulb-base:#6f7d96}
+    .theme-toggle[data-state="off"] .bulb-highlight{stroke:rgba(15,23,42,.2)}
+    .theme-toggle[data-state="off"] svg{transform:scale(.96)}
+    .theme-toggle .bulb-broken{opacity:0}
+    .theme-toggle[data-broken="true"] .bulb-full{opacity:0}
+    .theme-toggle[data-broken="true"] .bulb-broken{opacity:1;transform:translate(14px,22px) rotate(18deg)}
+
+    .hero{--hero-image-height:360px;--hero-title-height:120px;--hero-title-gap:40px;padding:160px 0 34px}
+    .hero-grid{display:grid;grid-template-columns: 1.3fr .9fr;gap:26px;align-items:start}
+    .hero-body{margin-top:0}
+    .hero-stack{position:relative;height:calc(var(--hero-title-height) + var(--hero-title-gap) + var(--hero-image-height))}
+    .hero-title-area{height:calc(var(--hero-title-height) + var(--hero-title-gap) + (var(--hero-image-height) * 0.5))}
+    .hero-title-sticky{position:relative;z-index:2}
+    .hero-title-sticky .wrap{padding:0 0 0 0.9cm}
+    h1{margin:0;font-size:46px;line-height:1.08;letter-spacing:-.6px}
+    .hero-media{position:absolute;top:calc(var(--hero-title-height) + var(--hero-title-gap));left:0;right:0;height:var(--hero-image-height);opacity:0;animation:fade-in 1.2s ease forwards}
+    .hero-media img{display:block;width:100%;height:100%;object-fit:cover}
+    @keyframes fade-in{to{opacity:1}}
+    body.scroll-lock{overflow:hidden;touch-action:none}
+    body.scroll-lock .hero-title-sticky{will-change:transform}
+    .lead{margin:28px 0 64px;color:var(--text-82);font-size:18px;line-height:1.55}
+    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .pill{border:1px solid var(--border-14);background:var(--surface-06);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--text-85);font-weight:700}
+    .cta{display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:22px;min-height:140px}
+    .cta-buttons{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+    .cta-buttons .btn{width:100%;justify-content:center;min-height:46px}
+    .cta-buttons .btn-fake{pointer-events:none;color:transparent}
+    .cta-buttons .btn-spacer{border:1px solid transparent;padding:12px 14px;border-radius:14px;visibility:hidden;min-height:46px;flex:1}
+    .cta-label{font-size:13px;font-weight:700;color:var(--text-66)}
+    .note{margin-top:12px;color:var(--text-66);font-size:13px}
+
+    .card{background:linear-gradient(180deg, var(--card-hi), var(--card-lo));border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px;font-size:16px}
+    .card p{margin:0;color:var(--text-78);line-height:1.5}
+
+    .kpi{display:grid;grid-template-columns: repeat(3,1fr);gap:10px;margin-top:12px}
+    .kpi .mini{padding:12px 12px;border-radius:18px;border:1px solid var(--line);background:var(--surface-04)}
+    .kpi strong{display:block;font-size:18px}
+    .kpi span{color:var(--text-70);font-size:12px;font-weight:700}
+
+    section{padding:26px 0}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}
+    .section-title h2{margin:0;font-size:24px;letter-spacing:-.2px}
+    .section-title p{margin:14px 0 10px;color:var(--text-68)}
+
+    .grid{display:grid;gap:14px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .services-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:stretch}
+    .service-card{display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);height:100%;position:relative;padding-bottom:180px}
+    .service-card .cta{position:absolute;left:16px;right:16px;bottom:16px;margin-top:0;padding-top:0}
+    .service-icon{font-size:26px}
+    .service-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+    .service-tag{display:inline-flex;align-items:center;border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--text-66);text-transform:uppercase;letter-spacing:.08em}
+    .service-lead{margin:0;color:var(--text-66)}
+
+    ul.clean{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+    ul.clean li{display:flex;gap:10px;align-items:flex-start;color:var(--text-78);line-height:1.45}
+    .tick{margin-top:2px;width:18px;height:18px;border-radius:6px;background:rgba(255,106,0,.18);display:grid;place-items:center;border:1px solid rgba(255,106,0,.35)}
+
+    .pricing{display:grid;grid-template-columns: 1.1fr .9fr;gap:14px}
+    .price{font-size:36px;margin:2px 0 4px;font-weight:900;letter-spacing:-.5px}
+    .muted{color:var(--text-68)}
+    .badge{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:999px;background:var(--surface-06);border:1px solid var(--line);font-weight:800;color:var(--text-85);font-size:13px}
+
+    .form{display:grid;gap:10px}
+    input,textarea,select{width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--border-14);background:var(--input-bg);color:var(--input-text);outline:none}
+    textarea{min-height:120px;resize:vertical}
+    input::placeholder,textarea::placeholder{color:var(--text-45)}
+
+    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66)}
+
+    @media (max-width: 920px){
+      h1{font-size:38px}
+      .hero-grid{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .cta-buttons{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- TOP NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand" aria-label="FjordFix">
+        <div class="brand-left">
+          <a class="brand-link" href="index.html" aria-label="Til forsiden">
+            <div class="mark" aria-hidden="true">
+              <img src="../Logo.png" alt="FjordFix logo" />
+            </div>
+          </a>
+        </div>
+        <div class="brand-title">
+          <a class="brand-link" href="index.html" aria-label="Til forsiden">
+            <img src="../Text_logo.png" alt="FjordFix" />
+          </a>
+        </div>
+        <div class="nav-menu">
+          <div class="nav-menu-stack">
+            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Bytt språk" title="Bytt språk"><span class="flag-no" aria-hidden="true"></span></button>
+            <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
+  <a href="../index.html" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Urban</span></a>
+  <a href="../nn/index.html" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Local</span></a>
+  <a href="index.html" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>English</span></a>
+</div>
+            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Åpne meny">
+            <span class="menu-icon"><span></span></span>
+          </button>
+          </div>
+          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Bytt til mørk modus" title="Bytt til mørk modus">
+            <span class="bulb-wrap" aria-hidden="true">
+              <svg class="bulb-full" viewBox="0 0 96 96" focusable="false">
+                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
+                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
+                <path class="filament" d="M36 50c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0M36 54c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0"/>
+                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
+                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
+                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
+              </svg>
+              <svg class="bulb-broken" viewBox="0 0 96 96" focusable="false">
+                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
+                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
+                <path class="bulb-crack" d="M46 30l-4 8 6 6-6 8 8 8"/>
+                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
+                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
+                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
+                <path class="bulb-shard" d="M52 86l8 6-10 2z"/>
+              </svg>
+            </span>
+            <span class="sr-only" data-theme-status>Lysstatus</span>
+          </button>
+          <div class="menu-panel" id="main-menu" data-menu-panel hidden>
+            <a href="om-fjordfix.html">About FjordFix</a>
+            <a href="tjenester.html">One&#8209;off&nbsp;jobs</a>
+        <a href="vedlikeholdsavtaler.html">Maintenance plans</a>
+          <a href="priser.html">Pricing</a>
+            <a href="kontakt.html">Contact</a>
+</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-stack">
+      <div class="hero-title-area">
+        <div class="hero-title-sticky">
+          <div class="wrap">
+            <h1>Practical help for home and garden<br>– <span style="color:var(--orange)">done the local way</span>.</h1>
+          </div>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="../Knarvik.png" alt="View over Knarvik and the fjord" />
+      </div>
+    </div>
+    <div class="wrap hero-body">
+      <p class="lead">FjordFix provides caretaking and practical help indoors and outdoors for homeowners, businesses, and associations. Fast response, tidy work, and clear pricing before we start.</p>
+
+      <div class="pill-row" aria-label="Highlights">
+        <div class="pill">One dedicated contact</div>
+        <div class="pill">Local and available</div>
+        <div class="pill">Fast response</div>
+        <div class="pill">Small jobs matter</div>
+        <div class="pill">Neat, reliable work</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="tjenester">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Our services and plans</h2>
+          <p>We offer flexible solutions tailored to your needs. Some services can be delivered as both maintenance plans and one‑off jobs, while others are best suited to defined tasks or projects.</p>
+        </div>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon">🔐</div>
+          <div class="service-top">
+            <h3>CareFix</h3>
+          </div>
+          <p class="service-lead">Proactive check‑ins and small fixes before issues become problems.</p>
+          <div class="cta">
+            <span class="cta-label">Details:</span>
+            <div class="cta-buttons">
+              <a class="btn btn-primary" href="tryggfix.html">Maintenance plan</a>
+              <span class="btn btn-ghost btn-fake" aria-hidden="true">&nbsp;</span>
+            </div>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">🛠️</div>
+          <div class="service-top">
+            <h3>HandyFix</h3>
+          </div>
+          <p class="service-lead">Practical help indoors and outdoors — small jobs that make a big difference once done.</p>
+          <div class="cta">
+            <span class="cta-label">Details:</span>
+            <div class="cta-buttons">
+              <span class="btn btn-primary btn-fake" aria-hidden="true">&nbsp;</span>
+              <a class="btn btn-ghost" href="smafix.html">One&#8209;off&nbsp;job</a>
+            </div>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">🌿</div>
+          <div class="service-top">
+            <h3>GardenFix</h3>
+          </div>
+          <p class="service-lead">We keep the garden in shape — from edging and pruning to clean‑ups. Available on demand or as a regular plan.</p>
+          <div class="cta">
+            <span class="cta-label">Details:</span>
+            <div class="cta-buttons">
+
+              <a class="btn btn-primary" href="hagefix.html">Season plan</a>
+
+              <a class="btn btn-ghost" href="hagefix-enkeltoppdrag.html">One&#8209;off&nbsp;job</a>
+            </div>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">🧼</div>
+          <div class="service-top">
+            <h3>CleanFix</h3>
+          </div>
+          <p class="service-lead">Steady order and light maintenance cleaning when the home needs a refresh. Practical help, done neatly.</p>
+          <div class="cta">
+            <span class="cta-label">Details:</span>
+            <div class="cta-buttons">
+
+              <a class="btn btn-primary" href="reinfix.html">Maintenance plan</a>
+
+              <a class="btn btn-ghost" href="reinfix-enkeltoppdrag.html">One&#8209;off&nbsp;job</a>
+            </div>
+          </div>
+        </article>
+        <article class="service-card" data-service-extra hidden>
+          <div class="service-icon">🌲</div>
+          <div class="service-top">
+            <h3>TreeFix</h3>
+          </div>
+          <p class="service-lead">Clearing brush and trees for better visibility and less overgrowth.</p>
+          <div class="cta">
+            <span class="cta-label">Details:</span>
+            <div class="cta-buttons">
+
+              <a class="btn btn-primary" href="skogfix.html">Maintenance plan</a>
+
+              <a class="btn btn-ghost" href="skogfix.html">One&#8209;off&nbsp;job</a>
+            </div>
+          </div>
+        </article>
+        <article class="service-card" data-service-extra hidden>
+          <div class="service-icon">🪨</div>
+          <div class="service-top">
+            <h3>StoneFix</h3>
+          </div>
+          <p class="service-lead">Gentle removal of large stones by controlled splitting into smaller pieces.</p>
+          <div class="cta">
+            <span class="cta-label">Details:</span>
+            <div class="cta-buttons">
+              <span class="btn btn-primary btn-fake" aria-hidden="true">&nbsp;</span>
+              <a class="btn btn-ghost" href="steinfix.html">One&#8209;off&nbsp;job</a>
+            </div>
+          </div>
+        </article>
+        <article class="service-card" data-service-extra hidden>
+          <div class="service-icon">❄️</div>
+          <div class="service-top">
+            <h3>SnowFix</h3>
+          </div>
+          <p class="service-lead">Predictable snow clearing through winter. Limited number of plans.</p>
+          <div class="cta">
+            <span class="cta-label">Details:</span>
+            <div class="cta-buttons">
+
+              <a class="btn btn-primary" href="snofix.html">Season plan</a>
+
+              <a class="btn btn-ghost" href="snofix-enkeltoppdrag.html">One&#8209;off&nbsp;job</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="services-actions">
+        <button class="btn btn-ghost" type="button" data-services-toggle>Show more services and plans</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Contact</h2>
+          <p>Send a short note and we’ll reply quickly.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Quick request</h3>
+          <p>Fill in the form and we’ll get in touch for a no‑obligation chat about your project.</p>
+          <div style="margin:18px 0;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn btn-primary" href="kontakt.html">Get a quote</a>
+            <a class="btn btn-ghost" href="tel:+4748265364">Call now</a>
+            <a class="btn btn-ghost" href="sms:+4748265364?&body=Hi%20FjordFix!%20I%20would%20like%20help%20with%20...%20Address:%20...%20Time:%20...">Send SMS</a>
+            <a class="btn btn-ghost" href="priser.html">See pricing</a>
+          </div>
+          <div class="note" style="margin-top:12px">⚠️ We don’t take work that requires certified trades (fixed electrical/plumbing/wet rooms). If the job requires specialists, we’ll let you know.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
+      <div>© <span id="y"></span> FjordFix AS · Practical help for home and garden</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="../for-ansatte.html">For ansatte</a>
+      </div>
+      <div style="width:100%;font-size:12px;opacity:.7">Crafted by Fjorden Breakwater AS</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const servicesToggle = document.querySelector('[data-services-toggle]');
+    const servicesGrid = document.querySelector('.services-grid');
+    if (servicesToggle && servicesGrid) {
+      const labelMore = 'Show more services and plans';
+      const labelLess = 'Show fewer services and plans';
+      servicesToggle.addEventListener('click', () => {
+        const isExpanded = servicesGrid.classList.toggle('is-expanded');
+        servicesToggle.textContent = isExpanded ? labelLess : labelMore;
+      });
+    }
+
+    const root = document.documentElement;
+    const toggle = document.querySelector('[data-theme-toggle]');
+    const storageKey = 'fjordfix-theme';
+    const storedTheme = localStorage.getItem(storageKey);
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+    const applyTheme = (theme) => {
+      if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+      if (toggle) {
+        const isDark = theme === 'dark';
+        toggle.setAttribute('aria-pressed', isDark);
+        toggle.setAttribute('data-state', isDark ? 'off' : 'on');
+        const isBroken = toggle.getAttribute('data-broken') === 'true';
+        const label = isDark ? 'Fiks pæren og slå på lys' : 'Bytt til mørk modus';
+        toggle.setAttribute('aria-label', label);
+        toggle.setAttribute('title', label);
+        const status = toggle.querySelector('[data-theme-status]');
+        if (status) {
+          status.textContent = isDark ? (isBroken ? 'Pære knust' : 'Lys av') : 'Lys på';
+        }
+        if (isDark && !isBroken) {
+          toggle.setAttribute('data-broken', 'true');
+          if (status) {
+            status.textContent = 'Pære knust';
+          }
+        }
+        if (!isDark) {
+          toggle.removeAttribute('data-broken');
+        }
+      }
+      localStorage.setItem(storageKey, theme);
+    };
+
+    applyTheme(initialTheme);
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+      });
+    }
+
+    const menuButton = document.querySelector('[data-menu-toggle]');
+    const menuPanel = document.querySelector('[data-menu-panel]');
+    const closeMenu = () => {
+      if (!menuButton || !menuPanel) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuPanel.hidden = true;
+    };
+    if (menuButton && menuPanel) {
+      menuButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (langPanel && langToggle) {
+          langToggle.setAttribute('aria-expanded', 'false');
+          langPanel.hidden = true;
+        }
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+        menuPanel.hidden = isOpen;
+      });
+      document.addEventListener('click', (event) => {
+        if (menuPanel.contains(event.target) || menuButton.contains(event.target)) return;
+        closeMenu();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+      menuPanel.addEventListener('click', (event) => {
+        if (event.target && event.target.tagName === 'A') closeMenu();
+      });
+    }
+
+    const hero = document.querySelector('.hero');
+    const heroTitle = document.querySelector('.hero-title-sticky');
+    const heroMedia = document.querySelector('.hero-media');
+    let lockDistance = 0;
+    let lockOffset = 0;
+    let scrollLocked = false;
+
+    const setScrollLocked = (nextLocked) => {
+      scrollLocked = nextLocked;
+      document.body.classList.toggle('scroll-lock', scrollLocked);
+    };
+
+    const setLockOffset = (nextOffset) => {
+      if (!heroTitle) return;
+      lockOffset = Math.max(0, Math.min(lockDistance, nextOffset));
+      heroTitle.style.transform = `translateY(${lockOffset}px)`;
+      if (lockOffset >= lockDistance && scrollLocked) {
+        setScrollLocked(false);
+      }
+    };
+
+    const updateHeroLayout = () => {
+      if (!hero || !heroTitle || !heroMedia) return;
+      hero.style.setProperty('--hero-title-height', `${heroTitle.offsetHeight}px`);
+      const titleRect = heroTitle.getBoundingClientRect();
+      const mediaRect = heroMedia.getBoundingClientRect();
+      const baseDistance = (mediaRect.top + (mediaRect.height * 0.46)) - titleRect.bottom;
+      const maxDistance = mediaRect.bottom - titleRect.bottom;
+      lockDistance = Math.max(0, Math.round(Math.min(baseDistance * 1.55, maxDistance)));
+      if (lockOffset > lockDistance) {
+        setLockOffset(lockDistance);
+      }
+      if (window.scrollY === 0 && lockDistance > 0) {
+        setScrollLocked(true);
+      }
+    };
+
+    const onWheel = (event) => {
+      if (!scrollLocked) return;
+      event.preventDefault();
+      setLockOffset(lockOffset + event.deltaY);
+    };
+
+    let touchStartY = null;
+    const onTouchStart = (event) => {
+      if (!scrollLocked || !event.touches || !event.touches.length) return;
+      touchStartY = event.touches[0].clientY;
+    };
+    const onTouchMove = (event) => {
+      if (!scrollLocked || touchStartY === null) return;
+      const currentY = event.touches[0].clientY;
+      const delta = touchStartY - currentY;
+      touchStartY = currentY;
+      event.preventDefault();
+      setLockOffset(lockOffset + delta);
+    };
+    const onTouchEnd = () => {
+      touchStartY = null;
+    };
+
+    const onKeyDown = (event) => {
+      if (!scrollLocked) return;
+      let delta = 0;
+      if (event.key === 'ArrowDown') delta = 40;
+      if (event.key === 'ArrowUp') delta = -40;
+      if (event.key === 'PageDown') delta = 300;
+      if (event.key === 'PageUp') delta = -300;
+      if (event.key === ' ') delta = event.shiftKey ? -300 : 300;
+      if (!delta) return;
+      event.preventDefault();
+      setLockOffset(lockOffset + delta);
+    };
+
+    const onScroll = () => {
+      if (scrollLocked) return;
+      if (window.scrollY === 0 && lockDistance > 0) {
+        setScrollLocked(true);
+      }
+    };
+
+    updateHeroLayout();
+    if (window.scrollY === 0 && lockDistance > 0) {
+      setScrollLocked(true);
+    }
+    window.addEventListener('load', updateHeroLayout);
+    window.addEventListener('resize', () => {
+      window.requestAnimationFrame(updateHeroLayout);
+    });
+    document.addEventListener('wheel', onWheel, { passive: false });
+    document.addEventListener('touchstart', onTouchStart, { passive: true });
+    document.addEventListener('touchmove', onTouchMove, { passive: false });
+    document.addEventListener('touchend', onTouchEnd);
+    document.addEventListener('keydown', onKeyDown);
+    window.addEventListener('scroll', onScroll);
+
+    const langToggle = document.querySelector('[data-lang-toggle]');
+    const langPanel = document.querySelector('[data-lang-panel]');
+    const langKey = 'fjordfix-lang';
+    const currentPath = window.location.pathname;
+    const normalizePath = (path) => {
+      if (!path || path === '/') return '/index.html';
+      if (path == '/nn' || path == '/nn/') return '/nn/index.html';
+      if (path == '/en' || path == '/en/') return '/en/index.html';
+      if (path.endsWith('/')) return `${path.slice(0, -1)}.html`;
+      if (!path.endsWith('.html')) return `${path}.html`;
+      return path;
+    };
+    const basePath = normalizePath(currentPath);
+    const isFile = window.location.protocol === 'file:';
+    const isNn = isFile ? basePath.includes('/nn/') : basePath.startsWith('/nn/');
+    const isEn = isFile ? basePath.includes('/en/') : basePath.startsWith('/en/');
+
+    const langIcon = langToggle ? langToggle.querySelector('span') : null;
+    if (langIcon) {
+      langIcon.classList.remove('flag-no', 'flag-uk');
+      langIcon.classList.add(isEn ? 'flag-uk' : 'flag-no');
+    }
+
+    const withoutLang = (path) => {
+      const normalized = normalizePath(path);
+      const stripped = normalized.replace(/^\/(nn|en)(?=\/)/, '');
+      return stripped || '/index.html';
+    };
+    const withLang = (path, lang) => {
+      const normalized = normalizePath(path);
+      if (lang === 'nb') return withoutLang(normalized);
+      const prefix = `/${lang}`;
+      if (normalized.startsWith(`${prefix}/`)) return normalized;
+      const stripped = withoutLang(normalized);
+      return stripped === '/index.html' ? `${prefix}/index.html` : `${prefix}${stripped}`;
+    };
+    const choiceHref = (choice) => {
+      if (!langPanel) return null;
+      const link = langPanel.querySelector(`[data-lang-choice="${choice}"]`);
+      if (!link) return null;
+      const href = link.getAttribute('href');
+      return href ? new URL(href, window.location.href).href : null;
+    };
+    const targetForLang = (choice) => {
+      if (isFile) return choiceHref(choice);
+      return withLang(basePath, choice);
+    };
+    const storedLang = localStorage.getItem(langKey);
+    if (storedLang === 'nn' && !isNn) {
+      const target = targetForLang('nn');
+      if (target) window.location.href = target;
+    }
+    if (storedLang === 'en' && !isEn) {
+      const target = targetForLang('en');
+      if (target) window.location.href = target;
+    }
+    if (storedLang === 'nb' && (isNn || isEn)) {
+      const target = targetForLang('nb');
+      if (target) window.location.href = target;
+    }
+    const closeLang = () => {
+      if (!langToggle || !langPanel) return;
+      langToggle.setAttribute('aria-expanded', 'false');
+      langPanel.hidden = true;
+    };
+    if (langToggle && langPanel) {
+      langToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (menuButton && menuPanel) {
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuPanel.hidden = true;
+        }
+        const isOpen = langToggle.getAttribute('aria-expanded') === 'true';
+        langToggle.setAttribute('aria-expanded', String(!isOpen));
+        langPanel.hidden = isOpen;
+      });
+      langPanel.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-lang-choice]');
+        if (!link) return;
+        event.preventDefault();
+        const choice = link.getAttribute('data-lang-choice');
+        localStorage.setItem(langKey, choice);
+        const target = targetForLang(choice);
+        if (target) window.location.href = target;
+      });
+      document.addEventListener('click', (event) => {
+        if (langPanel.contains(event.target) || langToggle.contains(event.target)) return;
+        closeLang();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeLang();
+      });
+    }
+
+
+  </script>
+</body>
+</html>

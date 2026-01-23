@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="nn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FjordFix | Kontakt</title>
+  <style>
+    :root{--orange:#ff6a00;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff;--panel:#ffffff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background: radial-gradient(1200px 600px at 20% 0%, rgba(255,106,0,.22), transparent 60%), radial-gradient(900px 500px at 85% 10%, rgba(255,138,51,.14), transparent 55%), var(--bg)}
+    html[data-theme="dark"]{color-scheme:dark;--bg:#0b1220;--card:#0f1b33;--panel:#0f1b33;--ink:#ffffff;--muted:rgba(255,255,255,.72);--line:rgba(255,255,255,.12);--surface-04:rgba(255,255,255,.06);--shadow:0 18px 60px rgba(0,0,0,.28)}
+    a{color:inherit}
+    body{min-height:100vh;display:flex;flex-direction:column}
+    main{flex:1}
+
+    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+    .nav{position:sticky;top:0;z-index:10;background:#ffffff;border-bottom:1px solid rgba(15,23,42,.12)}
+    .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:14px 0;gap:14px}
+    .brand{display:grid;grid-template-columns:180px 1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
+    .brand-left{display:flex;align-items:center;gap:16px}
+    .brand-link{display:inline-flex;align-items:center;text-decoration:none}
+    .brand-title{display:flex;align-items:center;justify-content:center;height:110px}
+    .brand-title img{height:74px;width:auto;display:block}
+    .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
+    .nav-menu-stack{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .lang-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}
+    .lang-panel[hidden]{display:none}
+    .lang-panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .lang-panel a:hover{background:var(--surface-04)}
+    .lang-panel .flag-no{width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+    .lang-panel .flag-uk{display:block;width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+
+    .flag-uk{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('flag-uk.svg');}
+
+    .lang-button{padding:0;overflow:hidden}
+    .flag-no{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background:linear-gradient(90deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(180deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(90deg, transparent 38%, #ffffff 38% 62%, transparent 62%),linear-gradient(180deg, transparent 38%, #ffffff 38% 62%, transparent 62%),#ba0c2f;}
+    .menu-button{width:48px;height:48px;border-radius:12px;border:1px solid rgba(15,23,42,.12);background:#ffffff;display:grid;place-items:center;cursor:pointer}
+    .menu-button:hover{background:var(--surface-04)}
+    .menu-icon{position:relative;width:22px;height:14px}
+    .menu-icon::before,
+    .menu-icon::after,
+    .menu-icon span{content:"";position:absolute;left:0;width:100%;height:2px;background:#0f172a;border-radius:2px}
+    .menu-icon::before{top:0}
+    .menu-icon span{top:6px}
+    .menu-icon::after{bottom:0}
+    .menu-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:4px}
+    .menu-panel[hidden]{display:none}
+    .menu-panel a{padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .menu-panel a:hover{background:var(--surface-04)}
+    .mark{width:110px;height:110px;display:grid;place-items:center}
+    .mark img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(15,23,42,.12);padding:14px 16px;border-radius:14px;text-decoration:none;font-weight:800;background:transparent;color:inherit;font-size:16px;font-family:inherit}
+    .btn-primary{background:linear-gradient(135deg,var(--orange),#ff8a33);color:#0b1220;border:none}
+    .btn-primary:hover{filter:saturate(1.05) brightness(1.03)}
+    .btn-ghost{background:var(--surface-04)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .theme-toggle{padding:10px 12px;border:none;border-radius:999px;min-width:48px;min-height:48px;background:transparent;color:#0f172a;transition:transform .2s ease}
+    .theme-toggle:hover{transform:translateY(-1px);background:transparent}
+    .theme-toggle .bulb-wrap{position:relative;width:38px;height:38px;transform:translateY(-12px)}
+    .theme-toggle svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s ease, transform .2s ease}
+    .theme-toggle .bulb-outline{stroke:var(--bulb-stroke);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-fill{fill:var(--bulb-fill)}
+    .theme-toggle .bulb-base{fill:var(--bulb-base)}
+    .theme-toggle .bulb-screw{fill:var(--bulb-base)}
+    .theme-toggle .bulb-tip{fill:var(--bulb-base)}
+    .theme-toggle .bulb-highlight{fill:none;stroke:rgba(255,255,255,.7);stroke-width:5;stroke-linecap:round}
+    .theme-toggle .filament{fill:none;stroke:var(--bulb-stroke);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-crack{fill:none;stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-shard{fill:var(--bulb-fill);stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle[data-state="on"]{--bulb-fill:#ffd400;--bulb-stroke:#0f172a;--bulb-base:#7b8aa6}
+    .theme-toggle[data-state="on"] svg{filter:none}
+    .theme-toggle[data-state="off"]{--bulb-fill:rgba(15,23,42,.08);--bulb-stroke:rgba(15,23,42,.55);--bulb-base:#6f7d96}
+    .theme-toggle[data-state="off"] .bulb-highlight{stroke:rgba(15,23,42,.2)}
+    .theme-toggle[data-state="off"] svg{transform:scale(.96)}
+    .theme-toggle .bulb-broken{opacity:0}
+    .theme-toggle[data-broken="true"] .bulb-full{opacity:0}
+    .theme-toggle[data-broken="true"] .bulb-broken{opacity:1;transform:translate(14px,22px) rotate(18deg)}
+    h1{margin:28px 0 8px;font-size:34px}
+    p{margin:0 0 16px;color:var(--muted);line-height:1.6}
+    .back{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-weight:700;color:var(--orange);text-decoration:none}
+    .section{padding:24px 0}
+    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
+    .contact-cards{display:grid;gap:12px;margin-top:20px}
+    .contact-card{border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:var(--card);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
+    .contact-card strong{color:var(--ink)}
+    .contact-heading{margin:96px 0 6px}
+    .contact-label{font-weight:700;color:var(--ink);margin:0 0 6px}
+    @media (min-width:720px){
+      .contact-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    .form{display:grid;gap:10px;margin-top:18px}
+    .form-row{display:grid;gap:10px}
+    .form-row.form-row-equal{grid-template-columns:1fr 1fr}
+    @media (min-width:720px){
+      .form-row{grid-template-columns:1.6fr 1fr}
+    }
+    input,textarea,select{width:100%;padding:12px 12px;border-radius:14px;border:1px solid rgba(15,23,42,.14);background:#ffffff;color:var(--ink);outline:none;font-size:16px;line-height:1.5}
+    .form select{font-size:16px;line-height:1.5;padding:14px 16px;min-height:48px;background:#ffffff;color:var(--ink);appearance:none;-webkit-appearance:none;color-scheme:light}
+    .form select option{background:#ffffff;color:var(--ink)}
+    textarea{min-height:120px;max-height:600px;resize:vertical}
+    input::placeholder,textarea::placeholder{color:rgba(15,23,42,.55)}
+    .muted{color:var(--muted)}
+    .job-block{display:grid;gap:10px}
+    .job-section{display:grid;gap:10px}
+    .textarea-wrap{position:relative}
+    .textarea-wrap textarea{padding-left:66px;padding-bottom:88px}
+    .attachment-label{position:absolute;left:10px;bottom:10px;width:48px;height:48px;border-radius:12px;border:1px solid rgba(15,23,42,.2);background:#e5e7eb;display:grid;place-items:center;cursor:pointer}
+    .attachment-label input{position:absolute;left:-9999px}
+    .attachment-label svg{width:28px;height:28px;stroke:#6b7280;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .attachment-preview{position:absolute;left:66px;bottom:6px;display:flex;align-items:center;gap:8px;max-width:320px;flex-wrap:wrap}
+    .attachment-item{position:relative}
+    .attachment-preview img{width:48px;height:48px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+    .attachment-clear{position:absolute;top:-8px;right:-6px;border:none;background:#ffffff;color:var(--muted);font-size:14px;line-height:1;cursor:pointer;padding:0;border-radius:999px;width:16px;height:16px;display:grid;place-items:center;box-shadow:0 6px 16px rgba(15,23,42,.18)}
+    .job-controls{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:10px;text-align:center}
+    .job-btn{width:36px;height:36px;border-radius:10px;border:1px solid rgba(15,23,42,.18);background:#ffffff;color:var(--ink);font-size:20px;font-weight:700;line-height:1;cursor:pointer}
+    .job-btn:disabled{opacity:.4;cursor:not-allowed}
+    .fix-label{display:block;margin:0 0 6px;font-size:0.95em;color:var(--ink);font-weight:700}
+  </style>
+</head>
+<body>
+  <!-- TOP NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand" aria-label="FjordFix">
+        <div class="brand-left">
+          <a class="brand-link" href="index.html" aria-label="Til forsiden">
+            <div class="mark" aria-hidden="true">
+              <img src="../Logo.png" alt="FjordFix logo" />
+            </div>
+          </a>
+        </div>
+        <div class="brand-title">
+          <a class="brand-link" href="index.html" aria-label="Til forsiden">
+            <img src="../Text_logo.png" alt="FjordFix" />
+          </a>
+        </div>
+        <div class="nav-menu">
+          <div class="nav-menu-stack">
+            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Bytt språk" title="Bytt språk"><span class="flag-no" aria-hidden="true"></span></button>
+            <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
+  <a href="../kontakt.html" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a>
+  <a href="kontakt.html" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a>
+  <a href="../en/kontakt.html" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Utenlandsk</span></a>
+</div>
+            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Åpne meny">
+            <span class="menu-icon"><span></span></span>
+          </button>
+          </div>
+          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Bytt til mørk modus" title="Bytt til mørk modus">
+            <span class="bulb-wrap" aria-hidden="true">
+              <svg class="bulb-full" viewBox="0 0 96 96" focusable="false">
+                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
+                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
+                <path class="filament" d="M36 50c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0M36 54c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0"/>
+                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
+                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
+                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
+              </svg>
+              <svg class="bulb-broken" viewBox="0 0 96 96" focusable="false">
+                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
+                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
+                <path class="bulb-crack" d="M46 30l-4 8 6 6-6 8 8 8"/>
+                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
+                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
+                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
+                <path class="bulb-shard" d="M52 86l8 6-10 2z"/>
+              </svg>
+            </span>
+            <span class="sr-only" data-theme-status>Lysstatus</span>
+          </button>
+          <div class="menu-panel" id="main-menu" data-menu-panel hidden>
+            <a href="om-fjordfix.html">Om FjordFix</a>
+            <a href="tjenester.html">Enkeltoppdrag</a>
+        <a href="vedlikeholdsavtaler.html">Vedlikehaldsavtalar</a>
+            <a href="priser.html">Prisoversikt</a>
+            <a href="kontakt.html">Kontakt</a>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main class="wrap">
+    <div class="section">
+      <h1>Kontakt</h1>
+      <p>Ta kontakt for spørsmål eller bestilling. Vi svarar raskt.</p>
+      <div style="margin-top:22px">
+        <form class="form" name="foresporsel" method="post" data-netlify="true" netlify-honeypot="bot-field" action="/nn/takk.html" enctype="multipart/form-data">
+          <input type="hidden" name="form-name" value="foresporsel" />
+          <p class="sr-only">
+            <label>Ikkje fyll ut dette feltet: <input name="bot-field" /></label>
+          </p>
+          <h3>Hvem bestiller?</h3>
+          <div class="form-row form-row-equal">
+            <input name="Fornamn" placeholder="Fornamn" />
+            <input name="Etternamn" placeholder="Etternamn" />
+          </div>
+          <div class="form-row form-row-equal">
+            <input name="Telefon" placeholder="Telefon" />
+            <input name="email" placeholder="E-post" type="email" autocomplete="email" />
+          </div>
+          <h3>Hvor skal det fikses?</h3>
+          <div class="form-row form-row-equal">
+            <input name="Gateadresse" placeholder="Gateadresse" />
+            <div aria-hidden="true"></div>
+          </div>
+          <div class="form-row form-row-equal">
+            <input name="Postkode" placeholder="Postkode" inputmode="numeric" autocomplete="postal-code" />
+            <input name="Sted" placeholder="" readonly />
+          </div>
+          <div class="job-block" data-job-block>
+            <div class="job-section" data-job-section>
+              <h3 data-job-heading>Hva skal fikses?</h3>
+              <div class="form-row form-row-equal" data-job-row>
+                <select name="Teneste">
+                  <option value="" disabled selected>Vel oppdrag</option>
+                <option value="tryggfix">🔐 TryggFix</option>
+                <option value="smafix">🛠️ SmåFix</option>
+                <option value="hagefix">🌿 HageFix</option>
+                <option value="reinfix">🧼 ReinFix</option>
+                <option value="skogfix">🌲 SkogFix</option>
+                <option value="steinfix">🪨 SteinFix</option>
+                <option value="snofix">❄️ SnøFix</option>
+                  <option value="annet">Anna</option>
+                </select>
+                <select name="Oppdragstype">
+                  <option value="" disabled selected>Vel type oppdrag</option>
+                  <option value="enkeltoppdrag">Enkeltoppdrag</option>
+                  <option value="vedlikeholdsavtale">Vedlikehaldsavtale</option>
+                </select>
+              </div>
+              <div class="textarea-wrap">
+                <textarea name="Beskriving" placeholder="Kort beskriving. Legg gjerne til bilete eller vedlegg også." data-word-limit="300"></textarea>
+                <label class="attachment-label" aria-label="Legg ved filer">
+                  <input type="file" name="Vedlegg" multiple />
+                  <svg viewBox="-2 0 26 24" aria-hidden="true">
+                    <path d="M8 12.5l6.6-6.6a3.5 3.5 0 015 5L10 20.5a6 6 0 01-8.5-8.5L12 1.5"/>
+                  </svg>
+                </label>
+                <div class="attachment-preview" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+      </div>
+      <h3 class="contact-heading">Kontaktinfo</h3>
+      <div class="contact-cards">
+        <div>
+          <div class="contact-label">Telefon</div>
+          <div class="contact-card">
+            <a href="tel:+4748265364">48 26 53 64</a>
+          </div>
+        </div>
+        <div>
+          <div class="contact-label">E-post</div>
+          <div class="contact-card">
+            <a href="mailto:krister.dyrkolbotn@icloud.com">krister.dyrkolbotn@icloud.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
+      <div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="../for-ansatte.html">For ansatte</a>
+      </div>
+      <div style="width:100%;font-size:12px;opacity:.7">Crafted by Fjorden Breakwater AS</div>
+    </div>
+  </footer>
+
+
+  <script>
+    const yearTarget = document.getElementById('y');
+    if (yearTarget) {
+      yearTarget.textContent = new Date().getFullYear();
+    }
+
+    const root = document.documentElement;
+    const toggle = document.querySelector('[data-theme-toggle]');
+    const storageKey = 'fjordfix-theme';
+    const storedTheme = localStorage.getItem(storageKey);
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+    const applyTheme = (theme) => {
+      if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+      if (toggle) {
+        const isDark = theme === 'dark';
+        toggle.setAttribute('aria-pressed', isDark);
+        toggle.setAttribute('data-state', isDark ? 'off' : 'on');
+        const isBroken = toggle.getAttribute('data-broken') === 'true';
+        const label = isDark ? 'Fiks pæren og slå på lys' : 'Bytt til mørk modus';
+        toggle.setAttribute('aria-label', label);
+        toggle.setAttribute('title', label);
+        const status = toggle.querySelector('[data-theme-status]');
+        if (status) {
+          status.textContent = isDark ? (isBroken ? 'Pære knust' : 'Lys av') : 'Lys på';
+        }
+        if (isDark && !isBroken) {
+          toggle.setAttribute('data-broken', 'true');
+          if (status) {
+            status.textContent = 'Pære knust';
+          }
+        }
+        if (!isDark) {
+          toggle.removeAttribute('data-broken');
+        }
+      }
+      localStorage.setItem(storageKey, theme);
+    };
+
+    applyTheme(initialTheme);
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+      });
+    }
+
+    const menuButton = document.querySelector('[data-menu-toggle]');
+    const menuPanel = document.querySelector('[data-menu-panel]');
+    const closeMenu = () => {
+      if (!menuButton || !menuPanel) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuPanel.hidden = true;
+    };
+    if (menuButton && menuPanel) {
+      menuButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (langPanel && langToggle) {
+          langToggle.setAttribute('aria-expanded', 'false');
+          langPanel.hidden = true;
+        }
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+        menuPanel.hidden = isOpen;
+      });
+      document.addEventListener('click', (event) => {
+        if (menuPanel.contains(event.target) || menuButton.contains(event.target)) return;
+        closeMenu();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+      menuPanel.addEventListener('click', (event) => {
+        if (event.target && event.target.tagName === 'A') closeMenu();
+      });
+    }
+
+    const langToggle = document.querySelector('[data-lang-toggle]');
+    const langPanel = document.querySelector('[data-lang-panel]');
+    const langKey = 'fjordfix-lang';
+    const currentPath = window.location.pathname;
+    const normalizePath = (path) => {
+      if (!path || path === '/') return '/index.html';
+      if (path == '/nn' || path == '/nn/') return '/nn/index.html';
+      if (path == '/en' || path == '/en/') return '/en/index.html';
+      if (path.endsWith('/')) return `${path.slice(0, -1)}.html`;
+      if (!path.endsWith('.html')) return `${path}.html`;
+      return path;
+    };
+    const basePath = normalizePath(currentPath);
+    const isFile = window.location.protocol === 'file:';
+    const isNn = isFile ? basePath.includes('/nn/') : basePath.startsWith('/nn/');
+    const isEn = isFile ? basePath.includes('/en/') : basePath.startsWith('/en/');
+
+    const langIcon = langToggle ? langToggle.querySelector('span') : null;
+    if (langIcon) {
+      langIcon.classList.remove('flag-no', 'flag-uk');
+      langIcon.classList.add(isEn ? 'flag-uk' : 'flag-no');
+    }
+
+    const withoutLang = (path) => {
+      const normalized = normalizePath(path);
+      const stripped = normalized.replace(/^\/(nn|en)(?=\/)/, '');
+      return stripped || '/index.html';
+    };
+    const withLang = (path, lang) => {
+      const normalized = normalizePath(path);
+      if (lang === 'nb') return withoutLang(normalized);
+      const prefix = `/${lang}`;
+      if (normalized.startsWith(`${prefix}/`)) return normalized;
+      const stripped = withoutLang(normalized);
+      return stripped === '/index.html' ? `${prefix}/index.html` : `${prefix}${stripped}`;
+    };
+    const choiceHref = (choice) => {
+      if (!langPanel) return null;
+      const link = langPanel.querySelector(`[data-lang-choice="${choice}"]`);
+      if (!link) return null;
+      const href = link.getAttribute('href');
+      return href ? new URL(href, window.location.href).href : null;
+    };
+    const targetForLang = (choice) => {
+      if (isFile) return choiceHref(choice);
+      return withLang(basePath, choice);
+    };
+    const storedLang = localStorage.getItem(langKey);
+    if (storedLang === 'nn' && !isNn) {
+      const target = targetForLang('nn');
+      if (target) window.location.href = target;
+    }
+    if (storedLang === 'en' && !isEn) {
+      const target = targetForLang('en');
+      if (target) window.location.href = target;
+    }
+    if (storedLang === 'nb' && (isNn || isEn)) {
+      const target = targetForLang('nb');
+      if (target) window.location.href = target;
+    }
+    const closeLang = () => {
+      if (!langToggle || !langPanel) return;
+      langToggle.setAttribute('aria-expanded', 'false');
+      langPanel.hidden = true;
+    };
+    if (langToggle && langPanel) {
+      langToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (menuButton && menuPanel) {
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuPanel.hidden = true;
+        }
+        const isOpen = langToggle.getAttribute('aria-expanded') === 'true';
+        langToggle.setAttribute('aria-expanded', String(!isOpen));
+        langPanel.hidden = isOpen;
+      });
+      langPanel.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-lang-choice]');
+        if (!link) return;
+        event.preventDefault();
+        const choice = link.getAttribute('data-lang-choice');
+        localStorage.setItem(langKey, choice);
+        const target = targetForLang(choice);
+        if (target) window.location.href = target;
+      });
+      document.addEventListener('click', (event) => {
+        if (langPanel.contains(event.target) || langToggle.contains(event.target)) return;
+        closeLang();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeLang();
+      });
+    }
+
+    const allowedTypes = {
+      smafix: ['enkeltoppdrag'],
+      hagefix: ['enkeltoppdrag', 'vedlikeholdsavtale'],
+      tryggfix: ['vedlikeholdsavtale'],
+      reinfix: ['enkeltoppdrag', 'vedlikeholdsavtale'],
+      snofix: ['enkeltoppdrag', 'vedlikeholdsavtale'],
+      skogfix: ['enkeltoppdrag', 'vedlikeholdsavtale'],
+      steinfix: ['enkeltoppdrag'],
+      annet: ['enkeltoppdrag', 'vedlikeholdsavtale'],
+    };
+    const bindJobRow = (section) => {
+      const row = section.querySelector('[data-job-row]');
+      if (!row) return;
+      const serviceSelect = row.querySelector('select[name="Teneste"]');
+      const typeSelect = row.querySelector('select[name="Oppdragstype"]');
+      if (!serviceSelect || !typeSelect) return;
+      const updateTypeOptions = () => {
+        const service = serviceSelect.value;
+        const allowed = allowedTypes[service] || [];
+        Array.from(typeSelect.options).forEach((option) => {
+          if (!option.value) return;
+          option.disabled = !allowed.includes(option.value);
+        });
+        if (typeSelect.value && !allowed.includes(typeSelect.value)) {
+          typeSelect.value = '';
+        }
+      };
+      serviceSelect.addEventListener('change', updateTypeOptions);
+      updateTypeOptions();
+    };
+    document.querySelectorAll('[data-job-section]').forEach(bindJobRow);
+    const jobBlock = document.querySelector('[data-job-block]');
+    if (jobBlock) {
+      const sections = jobBlock.querySelectorAll('[data-job-section]');
+      const heading = sections[0]?.querySelector('[data-job-heading]');
+      if (heading) heading.textContent = 'Hva skal fikses?';
+    }
+
+    const requestForm = document.querySelector('form[name="foresporsel"]');
+    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbxgT4003G2LDXx833XM6TflgXNTvTF78fmY1kZyWh2Q41XKLO9dEPJ2FEJ9rCuRVEA/exec';
+    if (requestForm) {
+      requestForm.addEventListener('submit', () => {
+        const data = new FormData(requestForm);
+        const first = data.get('Fornamn') || '';
+        const last = data.get('Etternamn') || '';
+        const navn = `${first} ${last}`.trim();
+        const gateadresse = data.get('Gateadresse') || '';
+        const postkode = data.get('Postkode') || '';
+        const sted = data.get('Sted') || '';
+        const adresse = [gateadresse, postkode, sted].filter(Boolean).join(', ');
+        const telefon = data.get('Telefon') || '';
+        const email = data.get('email') || '';
+        const serviceSelect = requestForm.querySelector('select[name="Teneste"]');
+        const typeSelect = requestForm.querySelector('select[name="Oppdragstype"]');
+        const tjeneste = serviceSelect ? serviceSelect.options[serviceSelect.selectedIndex]?.text : '';
+        const type = typeSelect ? typeSelect.options[typeSelect.selectedIndex]?.text : '';
+        const beskrivelse = data.get('Beskriving') || '';
+        const id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
+        const record = {
+          id,
+          navn,
+          fornavn: first,
+          etternavn: last,
+          telefon,
+          email,
+          gateadresse,
+          postkode,
+          sted,
+          adresse,
+          tjeneste,
+          type,
+          beskrivelse,
+          kommentar: beskrivelse,
+          status: 'ny',
+          created: new Date().toISOString(),
+        };
+        const existing = JSON.parse(localStorage.getItem('fjordfix-requests') || '[]');
+        existing.unshift(record);
+        localStorage.setItem('fjordfix-requests', JSON.stringify(existing));
+        const payload = new URLSearchParams({
+          action: 'create',
+          id,
+          fornavn: first,
+          etternavn: last,
+          telefon,
+          email,
+          gateadresse,
+          postkode,
+          sted,
+          navn,
+          adresse,
+          tjeneste,
+          type,
+          beskrivelse,
+          kommentar: beskrivelse,
+          status: 'ny',
+          created: record.created,
+        });
+        fetch(sheetsEndpoint, { method: 'POST', body: payload, mode: 'no-cors', keepalive: true });
+      });
+    }
+
+    const attachmentInputs = document.querySelectorAll('.attachment-label input[type="file"]');
+    const renderAttachments = (input) => {
+      const preview = input.closest('.textarea-wrap')?.querySelector('.attachment-preview');
+      if (!preview) return;
+      preview.textContent = '';
+      const files = input._files || [];
+      if (!files.length) return;
+      files.forEach((file, index) => {
+        const item = document.createElement('div');
+        item.className = 'attachment-item';
+        const img = document.createElement('img');
+        if (file.type && file.type.startsWith('image/')) {
+          img.src = URL.createObjectURL(file);
+          img.onload = () => URL.revokeObjectURL(img.src);
+        } else {
+          img.alt = '';
+          img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/><path d="M8 8h8M8 12h8M8 16h6" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/></svg>');
+        }
+        item.appendChild(img);
+        const clear = document.createElement('button');
+        clear.type = 'button';
+        clear.className = 'attachment-clear';
+        clear.setAttribute('aria-label', 'Fjern vedlegg');
+        clear.textContent = '×';
+        clear.addEventListener('click', () => {
+          input._files = input._files.filter((_, i) => i !== index);
+          const data = new DataTransfer();
+          input._files.forEach((f) => data.items.add(f));
+          input.files = data.files;
+          renderAttachments(input);
+        });
+        item.appendChild(clear);
+        preview.appendChild(item);
+      });
+    };
+    attachmentInputs.forEach((input) => {
+      input._files = [];
+      input.addEventListener('change', () => {
+        const incoming = Array.from(input.files || []);
+        if (!incoming.length) return;
+        const merged = [...input._files, ...incoming];
+        input._files = merged.slice(0, 10);
+        const data = new DataTransfer();
+        input._files.forEach((file) => data.items.add(file));
+        input.files = data.files;
+        renderAttachments(input);
+      });
+    });
+
+    const autoGrow = (textarea) => {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    };
+    document.querySelectorAll('textarea').forEach((textarea) => {
+      autoGrow(textarea);
+    });
+    document.addEventListener('input', (event) => {
+      if (event.target && event.target.tagName === 'TEXTAREA') {
+        const limit = parseInt(event.target.getAttribute('data-word-limit'), 10);
+        if (limit) {
+          const words = event.target.value.trim().split(/\s+/).filter(Boolean);
+          if (words.length > limit) {
+            event.target.value = words.slice(0, limit).join(' ');
+          }
+        }
+        autoGrow(event.target);
+      }
+    });
+
+    const postalInput = document.querySelector('input[name="Postkode"]');
+    const cityInput = document.querySelector('input[name="Sted"]');
+    if (postalInput && cityInput) {
+      let postalTimer = null;
+      const fetchCity = async (postalCode) => {
+        try {
+          const response = await fetch(`https://api.bring.com/shippingguide/api/postalCode.json?pn=${postalCode}`);
+          if (!response.ok) {
+            cityInput.readOnly = false;
+            return;
+          }
+          const data = await response.json();
+          const result = data && data.postalCode && data.postalCode.postalCode;
+          if (result && result.postalCode === postalCode) {
+            cityInput.value = result.city || '';
+            cityInput.readOnly = true;
+          } else {
+            cityInput.readOnly = false;
+          }
+        } catch (error) {
+          cityInput.readOnly = false;
+        }
+      };
+      postalInput.addEventListener('input', () => {
+        const postalCode = postalInput.value.replace(/\D/g, '').slice(0, 4);
+        if (postalInput.value !== postalCode) {
+          postalInput.value = postalCode;
+        }
+        if (postalTimer) window.clearTimeout(postalTimer);
+        if (postalCode.length !== 4) {
+          cityInput.value = '';
+          cityInput.readOnly = true;
+          return;
+        }
+        postalTimer = window.setTimeout(() => {
+          fetchCity(postalCode);
+        }, 250);
+      });
+    }
+
+
+  </script>
+
+</body>
+</html>

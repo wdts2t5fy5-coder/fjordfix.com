@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FjordFix | For ansatte</title>
+  <style>
+    :root{--orange:#ff6a00;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff;--panel:#ffffff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background: radial-gradient(1200px 600px at 20% 0%, rgba(255,106,0,.22), transparent 60%), radial-gradient(900px 500px at 85% 10%, rgba(255,138,51,.14), transparent 55%), var(--bg)}
+    html[data-theme="dark"]{color-scheme:dark;--bg:#0b1220;--card:#0f1b33;--panel:#0f1b33;--ink:#ffffff;--muted:rgba(255,255,255,.72);--line:rgba(255,255,255,.12);--surface-04:rgba(255,255,255,.06);--shadow:0 18px 60px rgba(0,0,0,.28)}
+    a{color:inherit}
+    body{min-height:100vh;display:flex;flex-direction:column}
+    main{flex:1}
+
+    .wrap{max-width:1400px;margin:0 auto;padding:0 20px}
+
+    .nav{position:sticky;top:0;z-index:10;background:#ffffff;border-bottom:1px solid rgba(15,23,42,.12)}
+    .nav .wrap{max-width:1120px}
+    .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:14px 0;gap:14px}
+    .brand{display:grid;grid-template-columns:180px 1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
+    .brand-left{display:flex;align-items:center;gap:16px}
+    .brand-link{display:inline-flex;align-items:center;text-decoration:none}
+    .brand-title{display:flex;align-items:center;justify-content:center;height:110px}
+    .brand-title img{height:74px;width:auto;display:block}
+    .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
+    .nav-menu-stack{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .lang-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}
+    .lang-panel[hidden]{display:none}
+    .lang-panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .lang-panel a:hover{background:var(--surface-04)}
+    .lang-panel .flag-no{width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+    .lang-panel .flag-uk{display:block;width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+
+    .flag-uk{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('../flag-uk.svg');}
+
+    .lang-button{padding:0;overflow:hidden}
+    .flag-no{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background:linear-gradient(90deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(180deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(90deg, transparent 38%, #ffffff 38% 62%, transparent 62%),linear-gradient(180deg, transparent 38%, #ffffff 38% 62%, transparent 62%),#ba0c2f;}
+    .menu-button{width:48px;height:48px;border-radius:12px;border:1px solid rgba(15,23,42,.12);background:#ffffff;display:grid;place-items:center;cursor:pointer}
+    .menu-button:hover{background:var(--surface-04)}
+    .menu-icon{position:relative;width:22px;height:14px}
+    .menu-icon::before,
+    .menu-icon::after,
+    .menu-icon span{content:"";position:absolute;left:0;width:100%;height:2px;background:#0f172a;border-radius:2px}
+    .menu-icon::before{top:0}
+    .menu-icon span{top:6px}
+    .menu-icon::after{bottom:0}
+    .menu-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:4px}
+    .menu-panel[hidden]{display:none}
+    .menu-panel a{padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .menu-panel a:hover{background:var(--surface-04)}
+    .mark{width:110px;height:110px;display:grid;place-items:center}
+    .mark img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(15,23,42,.12);padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:800;background:transparent;color:inherit}
+    .btn-ghost{background:var(--surface-04)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .theme-toggle{padding:10px 12px;border:none;border-radius:999px;min-width:48px;min-height:48px;background:transparent;color:#0f172a;transition:transform .2s ease}
+    .theme-toggle:hover{transform:translateY(-1px);background:transparent}
+    .theme-toggle .bulb-wrap{position:relative;width:38px;height:38px;transform:translateY(-12px)}
+    .theme-toggle svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s ease, transform .2s ease}
+    .theme-toggle .bulb-outline{stroke:var(--bulb-stroke);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-fill{fill:var(--bulb-fill)}
+    .theme-toggle .bulb-base{fill:var(--bulb-base)}
+    .theme-toggle .bulb-screw{fill:var(--bulb-base)}
+    .theme-toggle .bulb-tip{fill:var(--bulb-base)}
+    .theme-toggle .bulb-highlight{fill:none;stroke:rgba(255,255,255,.7);stroke-width:5;stroke-linecap:round}
+    .theme-toggle .filament{fill:none;stroke:var(--bulb-stroke);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-crack{fill:none;stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-shard{fill:var(--bulb-fill);stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle[data-state="on"]{--bulb-fill:#ffd400;--bulb-stroke:#0f172a;--bulb-base:#7b8aa6}
+    .theme-toggle[data-state="on"] svg{filter:none}
+    .theme-toggle[data-state="off"]{--bulb-fill:rgba(15,23,42,.08);--bulb-stroke:rgba(15,23,42,.55);--bulb-base:#6f7d96}
+    .theme-toggle[data-state="off"] .bulb-highlight{stroke:rgba(15,23,42,.2)}
+    .theme-toggle[data-state="off"] svg{transform:scale(.96)}
+    .theme-toggle .bulb-broken{opacity:0}
+    .theme-toggle[data-broken="true"] .bulb-full{opacity:0}
+    .theme-toggle[data-broken="true"] .bulb-broken{opacity:1;transform:translate(14px,22px) rotate(18deg)}
+
+    h1{margin:28px 0 8px;font-size:34px}
+    p{margin:0 0 16px;color:var(--muted);line-height:1.6}
+    .section{padding:24px 0}
+    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
+
+    .card{border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--card);box-shadow:0 12px 32px rgba(15,23,42,.08);width:100%}
+    .netlify-link{color:var(--orange);font-weight:700;text-decoration:none}
+    .netlify-link:hover{text-decoration:underline}
+    .table-wrap{overflow:auto}
+    table{width:100%;min-width:1200px}
+    table{width:100%;border-collapse:collapse;min-width:900px}
+    th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    select.status{padding:12px 14px;border-radius:14px;border:1px solid rgba(15,23,42,.14);background:#ffffff;color:var(--ink);font-weight:700;font-size:14px;line-height:1.35;min-height:48px;appearance:none;-webkit-appearance:none;color-scheme:light}
+    .edit-select{padding:12px 14px;border-radius:14px;border:1px solid rgba(15,23,42,.14);background:#ffffff;color:var(--ink);font-weight:700;font-size:14px;line-height:1.35;min-height:48px;appearance:none;-webkit-appearance:none;color-scheme:light;width:100%}
+    .delete-btn{padding:8px 10px;border-radius:10px;border:1px solid #dc2626;background:#fee2e2;color:#991b1b;font-weight:800;cursor:pointer}
+    .comment-btn{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface-04);color:var(--ink);font-weight:700;cursor:pointer}
+    .info-btn{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface-04);color:var(--ink);font-weight:700;cursor:pointer}
+    .detail-row td{padding:16px;border-top:none}
+    .detail-card{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface-04);display:grid;gap:6px}
+    .detail-card strong{display:inline-block;min-width:150px}
+    .note-label{font-weight:700;margin-top:6px}
+    .note-input{width:100%;min-height:90px;border-radius:12px;border:1px solid var(--line);padding:10px 12px;font-size:14px;line-height:1.5;background:#ffffff;color:var(--ink);resize:vertical}
+    .modal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;align-items:center;justify-content:center;z-index:40;padding:20px}
+    .modal.is-open{display:flex}
+    .modal-card{max-width:520px;width:100%;background:var(--card);border-radius:18px;padding:20px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .modal-card h3{margin:0 0 10px}
+    .modal-card p{white-space:pre-wrap;margin:0 0 18px}
+    .date-input,.time-input{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#ffffff;color:var(--ink)}
+    .warn{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#dc2626;color:#ffffff;font-size:12px;font-weight:800;margin-left:6px;opacity:0}
+    .warn.is-visible{opacity:1}
+    .empty{padding:18px;border-radius:14px;background:var(--surface-04);color:var(--muted);text-align:center}
+    .schedule-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+    .schedule-nav{display:flex;align-items:center;gap:8px}
+    .schedule-nav button{border:1px solid var(--line);background:var(--surface-04);border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+    .schedule-axis{display:grid;grid-template-columns:260px 1fr;gap:12px;margin:12px 0}
+    .schedule-axis-days{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+    .schedule-axis-days span{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:center}
+    .schedule-row{display:grid;grid-template-columns:260px 1fr;gap:12px;align-items:center;margin-bottom:10px}
+    .schedule-meta{font-size:14px}
+    .schedule-meta strong{display:block;font-size:15px}
+    .schedule-meta small{color:var(--muted)}
+    .schedule-timeline{position:relative;height:40px;border:1px solid var(--line);border-radius:12px;background-image:linear-gradient(to right, rgba(15,23,42,.08) 0, rgba(15,23,42,.08) 1px, transparent 1px);background-size:calc(100% / 7) 100%}
+    .schedule-bar{position:absolute;top:7px;height:26px;border-radius:999px;background:var(--orange);color:#0b1220;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .schedule-empty{padding:14px;border-radius:12px;background:var(--surface-04);color:var(--muted)}
+  </style>
+</head>
+<body>
+  <!-- TOP NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand" aria-label="FjordFix">
+        <div class="brand-left">
+          <a class="brand-link" href="../for-ansatte.html" aria-label="Til forsiden">
+            <div class="mark" aria-hidden="true">
+              <img src="../Logo.png" alt="FjordFix logo" />
+            </div>
+          </a>
+        </div>
+        <div class="brand-title">
+          <a class="brand-link" href="../for-ansatte.html" aria-label="Til forsiden">
+            <img src="../Text_logo.png" alt="FjordFix" />
+          </a>
+        </div>
+        <div class="nav-menu">
+          <div class="nav-menu-stack">
+            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Bytt språk" title="Bytt språk"><span class="flag-no" aria-hidden="true"></span></button>
+            <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
+  <a href="../ansatte.html" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a>
+  <a href="ansatte.html" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a>
+  <a href="../en/ansatte.html" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Utenlandsk</span></a>
+</div>
+            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Åpne meny">
+            <span class="menu-icon"><span></span></span>
+          </button>
+          </div>
+          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Bytt til mørk modus" title="Bytt til mørk modus">
+            <span class="bulb-wrap" aria-hidden="true">
+              <svg class="bulb-full" viewBox="0 0 96 96" focusable="false">
+                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
+                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
+                <path class="filament" d="M36 50c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0M36 54c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0"/>
+                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
+                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
+                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
+              </svg>
+              <svg class="bulb-broken" viewBox="0 0 96 96" focusable="false">
+                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
+                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
+                <path class="bulb-crack" d="M46 30l-4 8 6 6-6 8 8 8"/>
+                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
+                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
+                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
+                <path class="bulb-shard" d="M52 86l8 6-10 2z"/>
+              </svg>
+            </span>
+            <span class="sr-only" data-theme-status>Lysstatus</span>
+          </button>
+          <div class="menu-panel" id="main-menu" data-menu-panel hidden>
+            <a href="ansatte.html">Back office</a>
+            <a href="tidsplan.html">Tidsplan</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="section">
+      <h1>Back office</h1>
+      <p>Oversikt over innsendte forespørsler.</p>
+      <div class="card">
+        <div class="table-wrap">
+          <table aria-label="Forespørsler">
+            <thead>
+              <tr>
+                <th>Meir info</th>
+                <th>Navn</th>
+                <th>Adresse</th>
+                <th>Tjeneste</th>
+                <th>Type</th>
+                <th>Startdato</th>
+                <th>Start</th>
+                <th>Sluttdato</th>
+                <th>Slutt</th>
+                <th>Status</th>
+                <th>Handling</th>
+              </tr>
+            </thead>
+            <tbody data-requests>
+              <tr>
+                <td colspan="10">
+                  <div class="empty">Ingen forespørsler ennå.</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <div class="modal" data-comment-modal>
+    <div class="modal-card">
+      <h3>Kommentar</h3>
+      <p data-comment-text></p>
+      <div style="display:flex;justify-content:flex-end">
+        <button class="btn btn-ghost" type="button" data-comment-close>Lukk</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
+      <div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="../for-ansatte.html">For ansatte</a>
+      </div>
+      <div style="width:100%;font-size:12px;opacity:.7">Crafted by Fjorden Breakwater AS</div>
+    </div>
+  </footer>
+
+  <script>
+    const yearTarget = document.getElementById('y');
+    if (yearTarget) {
+      yearTarget.textContent = new Date().getFullYear();
+    }
+
+    const root = document.documentElement;
+    const toggle = document.querySelector('[data-theme-toggle]');
+    const storageKey = 'fjordfix-theme';
+    const storedTheme = localStorage.getItem(storageKey);
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+    const applyTheme = (theme) => {
+      if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+      if (toggle) {
+        const isDark = theme === 'dark';
+        toggle.setAttribute('aria-pressed', isDark);
+        toggle.setAttribute('data-state', isDark ? 'off' : 'on');
+        const label = isDark ? 'Fiks pæren og slå på lys' : 'Bytt til mørk modus';
+        toggle.setAttribute('aria-label', label);
+        toggle.setAttribute('title', label);
+        const isBroken = toggle.getAttribute('data-broken') === 'true';
+        const status = toggle.querySelector('[data-theme-status]');
+        if (status) {
+          status.textContent = isDark ? (isBroken ? 'Pære knust' : 'Lys av') : 'Lys på';
+        }
+        if (isDark && !isBroken) {
+          toggle.setAttribute('data-broken', 'true');
+          if (status) {
+            status.textContent = 'Pære knust';
+          }
+        }
+        if (!isDark) {
+          toggle.removeAttribute('data-broken');
+        }
+      }
+    };
+
+    applyTheme(initialTheme);
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+      });
+    }
+
+    const langToggle = document.querySelector('[data-lang-toggle]');
+    const langPanel = document.querySelector('[data-lang-panel]');
+    const langKey = 'fjordfix-lang';
+    const currentPath = window.location.pathname;
+    const normalizePath = (path) => {
+      if (!path || path === '/') return '/index.html';
+      if (path == '/nn' || path == '/nn/') return '/nn/index.html';
+      if (path == '/en' || path == '/en/') return '/en/index.html';
+      if (path.endsWith('/')) return `${path.slice(0, -1)}.html`;
+      if (!path.endsWith('.html')) return `${path}.html`;
+      return path;
+    };
+    const basePath = normalizePath(currentPath);
+    const isFile = window.location.protocol === 'file:';
+    const isNn = isFile ? basePath.includes('/nn/') : basePath.startsWith('/nn/');
+    const isEn = isFile ? basePath.includes('/en/') : basePath.startsWith('/en/');
+
+    const langIcon = langToggle ? langToggle.querySelector('span') : null;
+    if (langIcon) {
+      langIcon.classList.remove('flag-no', 'flag-uk');
+      langIcon.classList.add(isEn ? 'flag-uk' : 'flag-no');
+    }
+
+    const withoutLang = (path) => {
+      const normalized = normalizePath(path);
+      const stripped = normalized.replace(/^\/(nn|en)(?=\/)/, '');
+      return stripped || '/index.html';
+    };
+    const withLang = (path, lang) => {
+      const normalized = normalizePath(path);
+      if (lang === 'nb') return withoutLang(normalized);
+      const prefix = `/${lang}`;
+      if (normalized.startsWith(`${prefix}/`)) return normalized;
+      const stripped = withoutLang(normalized);
+      return stripped === '/index.html' ? `${prefix}/index.html` : `${prefix}${stripped}`;
+    };
+    const choiceHref = (choice) => {
+      if (!langPanel) return null;
+      const link = langPanel.querySelector(`[data-lang-choice="${choice}"]`);
+      if (!link) return null;
+      const href = link.getAttribute('href');
+      return href ? new URL(href, window.location.href).href : null;
+    };
+    const targetForLang = (choice) => {
+      if (isFile) return choiceHref(choice);
+      return withLang(basePath, choice);
+    };
+    const storedLang = localStorage.getItem(langKey);
+    if (storedLang === 'nn' && !isNn) {
+      const target = targetForLang('nn');
+      if (target) window.location.href = target;
+    }
+    if (storedLang === 'en' && !isEn) {
+      const target = targetForLang('en');
+      if (target) window.location.href = target;
+    }
+    if (storedLang === 'nb' && (isNn || isEn)) {
+      const target = targetForLang('nb');
+      if (target) window.location.href = target;
+    }
+    const closeLang = () => {
+      if (!langToggle || !langPanel) return;
+      langToggle.setAttribute('aria-expanded', 'false');
+      langPanel.hidden = true;
+    };
+    if (langToggle && langPanel) {
+      langToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (menuButton && menuPanel) {
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuPanel.hidden = true;
+        }
+        const isOpen = langToggle.getAttribute('aria-expanded') === 'true';
+        langToggle.setAttribute('aria-expanded', String(!isOpen));
+        langPanel.hidden = isOpen;
+      });
+      langPanel.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-lang-choice]');
+        if (!link) return;
+        event.preventDefault();
+        const choice = link.getAttribute('data-lang-choice');
+        localStorage.setItem(langKey, choice);
+        const target = targetForLang(choice);
+        if (target) window.location.href = target;
+      });
+      document.addEventListener('click', (event) => {
+        if (langPanel.contains(event.target) || langToggle.contains(event.target)) return;
+        closeLang();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeLang();
+      });
+    }
+
+    const menuButton = document.querySelector('[data-menu-toggle]');
+    const menuPanel = document.querySelector('[data-menu-panel]');
+    const closeMenu = () => {
+      if (!menuButton || !menuPanel) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuPanel.hidden = true;
+    };
+    if (menuButton && menuPanel) {
+      menuButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (langPanel && langToggle) {
+          langToggle.setAttribute('aria-expanded', 'false');
+          langPanel.hidden = true;
+        }
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+        menuPanel.hidden = isOpen;
+      });
+      document.addEventListener('click', (event) => {
+        if (menuPanel.contains(event.target) || menuButton.contains(event.target)) return;
+        closeMenu();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+      menuPanel.addEventListener('click', (event) => {
+        if (event.target && event.target.tagName === 'A') closeMenu();
+      });
+    }
+
+    const tbody = document.querySelector('[data-requests]');
+    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbxgT4003G2LDXx833XM6TflgXNTvTF78fmY1kZyWh2Q41XKLO9dEPJ2FEJ9rCuRVEA/exec';
+
+    const loadRequests = async () => {
+      try {
+        const res = await fetch(sheetsEndpoint);
+        if (!res.ok) throw new Error('Bad response');
+        const data = await res.json();
+        const records = Array.isArray(data) ? data : (data.records || []);
+        localStorage.setItem('fjordfix-requests', JSON.stringify(records));
+        return records;
+      } catch (err) {
+        const stored = localStorage.getItem('fjordfix-requests');
+        return stored ? JSON.parse(stored) : [];
+      }
+    };
+    let requests = [];
+
+    const startOfWeek = (date) => {
+      const d = new Date(date);
+      const day = (d.getDay() + 6) % 7;
+      d.setHours(0, 0, 0, 0);
+      d.setDate(d.getDate() - day);
+      return d;
+    };
+    let currentWeek = startOfWeek(new Date());
+
+    const formatRange = (date) => {
+      const start = new Date(date);
+      const end = new Date(date);
+      end.setDate(end.getDate() + 6);
+      const opts = { day: '2-digit', month: 'short' };
+      return `${start.toLocaleDateString('no-NO', opts)} – ${end.toLocaleDateString('no-NO', opts)}`;
+    };
+
+
+    const shortType = (value) => {
+      if (!value) return '';
+      const raw = String(value).trim();
+      if (raw === 'A' || raw === 'O') return raw;
+      const lower = raw.toLowerCase();
+      if (lower.includes('vedlikehaldsavtale')) return 'A';
+      if (lower.includes('vedlikeholdsavtale')) return 'A';
+      if (lower.includes('enkeltoppdrag')) return 'O';
+      if (lower.includes('maintenance')) return 'A';
+      if (lower.includes('one')) return 'O';
+      if (lower.includes('avtale')) return 'A';
+      if (lower.includes('oppdrag')) return 'O';
+      return raw;
+    };
+    const cleanDate = (value) => (value && /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : '');
+    const cleanTime = (value) => (value && /^\d{2}:\d{2}$/.test(value) ? value : '');
+
+    const serviceOptions = [
+      '🔐 TryggFix',
+      '🛠️ SmåFix',
+      '🌿 HageFix',
+      '🧼 ReinFix',
+      '❄️ SnøFix',
+      '🌲 SkogFix',
+      '🪨 SteinFix',
+      'Annet',
+    ];
+    const typeOptions = ['A', 'O'];
+    const escapeHtml = (value) => String(value || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const buildOptions = (current, options) => {
+      const unique = Array.from(new Set(options));
+      const currentValue = current || '';
+      if (currentValue && !unique.includes(currentValue)) unique.unshift(currentValue);
+      return unique.map((option) => {
+        const selected = option === currentValue ? ' selected' : '';
+        return `<option value="${escapeHtml(option)}"${selected}>${escapeHtml(option)}</option>`;
+      }).join('');
+    };
+
+    const renderTable = () => {
+      if (!tbody) return;
+      if (!requests.length) return;
+      tbody.innerHTML = '';
+      requests.forEach((item, idx) => {
+        const missing = !(item.startdato || item.dato) || !item.start || !item.slutt;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><button class="info-btn" type="button" data-info-index="${idx}">Meir info</button></td>
+          <td>${item.navn || ''}</td>
+          <td>${item.adresse || ''}</td>
+          <td>
+            <select class="edit-select" data-index="${idx}" data-field="tjeneste" data-prev="${escapeHtml(item.tjeneste || '')}">
+              ${buildOptions(item.tjeneste || '', serviceOptions)}
+            </select>
+          </td>
+          <td>
+            <select class="edit-select" data-index="${idx}" data-field="type" data-prev="${escapeHtml(shortType(item.type) || '')}">
+              ${buildOptions(shortType(item.type) || '', typeOptions)}
+            </select>
+          </td>
+          <td>
+            <input class="date-input" type="date" data-index="${idx}" data-field="startdato" value="${cleanDate(item.startdato || item.dato)}" autocomplete="off">
+          </td>
+          <td>
+            <input class="time-input" type="time" data-index="${idx}" data-field="start" value="${cleanTime(item.start)}" autocomplete="off">
+          </td>
+          <td>
+            <input class="date-input" type="date" data-index="${idx}" data-field="sluttdato" value="${cleanDate(item.sluttdato)}" autocomplete="off">
+          </td>
+          <td>
+            <input class="time-input" type="time" data-index="${idx}" data-field="slutt" value="${cleanTime(item.slutt)}" autocomplete="off">
+            <span class="warn ${missing ? 'is-visible' : ''}" title="Mangler tid">!</span>
+          </td>
+          <td>
+            <select class="status" data-index="${idx}">
+              <option value="ny">Ny</option>
+              <option value="kontaktet">Kontaktet</option>
+              <option value="avtalt">Avtalt</option>
+              <option value="fakturert">Fakturert</option>
+              <option value="utfort">Utført</option>
+            </select>
+            <span class="warn ${String(item.status || '').toLowerCase() === 'ny' ? 'is-visible' : ''}" title="Påminning: kontakt kunden">!</span>
+          </td>
+          <td>
+            ${item.status === 'utfort' ? '<button class="delete-btn" type="button" data-delete-id="' + (item.id || '') + '">Slett</button>' : ''}
+          </td>
+        `;
+        const statusSelect = row.querySelector('select.status');
+        if (statusSelect) statusSelect.value = (item.status || 'ny').toLowerCase();
+        tbody.appendChild(row);
+
+        const detailRow = document.createElement('tr');
+        detailRow.className = 'detail-row';
+        detailRow.hidden = true;
+        detailRow.innerHTML = `
+          <td colspan="11">
+            <div class="detail-card">
+              <div><strong>Fornamn:</strong> ${escapeHtml(item.fornavn || '')}</div>
+              <div><strong>Etternamn:</strong> ${escapeHtml(item.etternavn || '')}</div>
+              <div><strong>Telefon:</strong> ${escapeHtml(item.telefon || '')}</div>
+              <div><strong>E-post:</strong> ${escapeHtml(item.email || '')}</div>
+              <div><strong>Gateadresse:</strong> ${escapeHtml(item.gateadresse || '')}</div>
+              <div><strong>Postkode:</strong> ${escapeHtml(item.postkode || '')}</div>
+              <div><strong>Stad:</strong> ${escapeHtml(item.sted || '')}</div>
+              <div><strong>Kort skildring:</strong> ${escapeHtml(item.beskrivelse || item.kommentar || '')}</div>
+              <div class="note-label">Kundenotat</div>
+              <textarea class="note-input" data-index="${idx}" data-field="kundenotat" placeholder="Skriv notat her...">${escapeHtml(item.kundenotat || '')}</textarea>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(detailRow);
+      });
+    };
+
+
+    const syncUpdate = (payload) => {
+      if (!payload.id) return;
+      const body = new URLSearchParams({ action: 'update', ...payload });
+      fetch(sheetsEndpoint, { method: 'POST', body });
+    };
+    const syncDelete = (id) => {
+      if (!id) return;
+      const body = new URLSearchParams({ action: 'delete', id });
+      fetch(sheetsEndpoint, { method: 'POST', body });
+    };
+
+    const init = async () => {
+      requests = await loadRequests();
+      renderTable();
+    };
+    init();
+
+    if (tbody) {
+      tbody.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!target) return;
+        const infoIndex = target.getAttribute('data-info-index');
+        if (infoIndex !== null) {
+          const row = target.closest('tr');
+          const detailRow = row ? row.nextElementSibling : null;
+          if (detailRow && detailRow.classList.contains('detail-row')) {
+            detailRow.hidden = !detailRow.hidden;
+          }
+        }
+      });
+      tbody.addEventListener('change', (event) => {
+        const target = event.target;
+        if (!target) return;
+        const index = Number(target.getAttribute('data-index'));
+        if (Number.isNaN(index)) return;
+        requests = requests.length ? requests : [];
+        if (target.classList.contains('status')) {
+          requests[index].status = target.value;
+          syncUpdate({ id: requests[index].id, status: target.value });
+        } else if (target.dataset.field) {
+          if (target.dataset.field === 'tjeneste' || target.dataset.field === 'type') {
+            const fieldLabel = target.dataset.field === 'tjeneste' ? 'teneste' : 'type';
+            const ok = window.confirm(`Du er i ferd med å endre ${fieldLabel} for vald kunde. Ønskjer du å bekrefte handlinga?`);
+            if (!ok) {
+              target.value = target.dataset.prev || '';
+              return;
+            }
+            target.dataset.prev = target.value;
+          }
+          requests[index][target.dataset.field] = target.value;
+          syncUpdate({ id: requests[index].id, [target.dataset.field]: target.value });
+        }
+        localStorage.setItem('fjordfix-requests', JSON.stringify(requests));
+        renderTable();
+      });
+      tbody.addEventListener('click', (event) => {
+        const btn = event.target.closest('.delete-btn');
+        if (!btn) return;
+        event.preventDefault();
+        const id = btn.getAttribute('data-delete-id');
+        const ok = window.confirm('Du er i ferd med å slette denne forespørselen og kundedata vil gå tapt. Er du sikker på at du ønsker å gå videre med sletting?');
+        if (!ok) return;
+        requests = requests.filter((item) => item.id !== id);
+        localStorage.setItem('fjordfix-requests', JSON.stringify(requests));
+        syncDelete(id);
+        renderTable();
+      });
+    }
+
+    const commentModal = document.querySelector('[data-comment-modal]');
+    const commentText = document.querySelector('[data-comment-text]');
+    const commentClose = document.querySelector('[data-comment-close]');
+    if (commentModal && commentText && commentClose && tbody) {
+      tbody.addEventListener('click', (event) => {
+        const btn = event.target.closest('.comment-btn');
+        if (!btn) return;
+        event.preventDefault();
+        const text = btn.getAttribute('data-comment') || '';
+        commentText.textContent = text;
+        commentModal.classList.add('is-open');
+      });
+      commentClose.addEventListener('click', () => {
+        commentModal.classList.remove('is-open');
+      });
+      commentModal.addEventListener('click', (event) => {
+        if (event.target === commentModal) commentModal.classList.remove('is-open');
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') commentModal.classList.remove('is-open');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FjordFix | SkogFix</title>
+  <style>
+    :root{--orange:#ff6a00;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff;--panel:#ffffff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background: radial-gradient(1200px 600px at 20% 0%, rgba(255,106,0,.22), transparent 60%), radial-gradient(900px 500px at 85% 10%, rgba(255,138,51,.14), transparent 55%), var(--bg)}
+    html[data-theme="dark"]{color-scheme:dark;--bg:#0b1220;--card:#0f1b33;--panel:#0f1b33;--ink:#ffffff;--muted:rgba(255,255,255,.72);--line:rgba(255,255,255,.12);--surface-04:rgba(255,255,255,.06);--shadow:0 18px 60px rgba(0,0,0,.28)}
+    a{color:inherit}
+    body{min-height:100vh;display:flex;flex-direction:column}
+    main{flex:1}
+
+    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+    .nav{position:sticky;top:0;z-index:10;background:#ffffff;border-bottom:1px solid rgba(15,23,42,.12)}
+    .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:14px 0;gap:14px}
+    .brand{display:grid;grid-template-columns:180px 1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
+    .brand-left{display:flex;align-items:center;gap:16px}
+    .brand-link{display:inline-flex;align-items:center;text-decoration:none}
+    .brand-title{display:flex;align-items:center;justify-content:center;height:110px}
+    .brand-title img{height:74px;width:auto;display:block}
+    .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
+    .nav-menu-stack{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .lang-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}
+    .lang-panel[hidden]{display:none}
+    .lang-panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .lang-panel a:hover{background:var(--surface-04)}
+    .lang-panel .flag-no{width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+    .lang-panel .flag-uk{display:block;width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+
+    .flag-uk{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('flag-uk.svg');}
+
+    .lang-button{padding:0;overflow:hidden}
+    .flag-no{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background:linear-gradient(90deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(180deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(90deg, transparent 38%, #ffffff 38% 62%, transparent 62%),linear-gradient(180deg, transparent 38%, #ffffff 38% 62%, transparent 62%),#ba0c2f;}
+    .menu-button{width:48px;height:48px;border-radius:12px;border:1px solid rgba(15,23,42,.12);background:#ffffff;display:grid;place-items:center;cursor:pointer}
+    .menu-button:hover{background:var(--surface-04)}
+    .menu-icon{position:relative;width:22px;height:14px}
+    .menu-icon::before,
+    .menu-icon::after,
+    .menu-icon span{content:"";position:absolute;left:0;width:100%;height:2px;background:#0f172a;border-radius:2px}
+    .menu-icon::before{top:0}
+    .menu-icon span{top:6px}
+    .menu-icon::after{bottom:0}
+    .menu-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:4px}
+    .menu-panel[hidden]{display:none}
+    .menu-panel a{padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .menu-panel a:hover{background:var(--surface-04)}
+    .mark{width:110px;height:110px;display:grid;place-items:center}
+    .mark img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(15,23,42,.12);padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:800;background:transparent;color:inherit}
+    .btn-ghost{background:var(--surface-04)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .theme-toggle{padding:10px 12px;border:none;border-radius:999px;min-width:48px;min-height:48px;background:transparent;color:#0f172a;transition:transform .2s ease}
+    .theme-toggle:hover{transform:translateY(-1px);background:transparent}
+    .theme-toggle .bulb-wrap{position:relative;width:38px;height:38px;transform:translateY(-12px)}
+    .theme-toggle svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s ease, transform .2s ease}
+    .theme-toggle .bulb-outline{stroke:var(--bulb-stroke);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-fill{fill:var(--bulb-fill)}
+    .theme-toggle .bulb-base{fill:var(--bulb-base)}
+    .theme-toggle .bulb-screw{fill:var(--bulb-base)}
+    .theme-toggle .bulb-tip{fill:var(--bulb-base)}
+    .theme-toggle .bulb-highlight{fill:none;stroke:rgba(255,255,255,.7);stroke-width:5;stroke-linecap:round}
+    .theme-toggle .filament{fill:none;stroke:var(--bulb-stroke);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-crack{fill:none;stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .bulb-shard{fill:var(--bulb-fill);stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle[data-state="on"]{--bulb-fill:#ffd400;--bulb-stroke:#0f172a;--bulb-base:#7b8aa6}
+    .theme-toggle[data-state="on"] svg{filter:none}
+    .theme-toggle[data-state="off"]{--bulb-fill:rgba(15,23,42,.08);--bulb-stroke:rgba(15,23,42,.55);--bulb-base:#6f7d96}
+    .theme-toggle[data-state="off"] .bulb-highlight{stroke:rgba(15,23,42,.2)}
+    .theme-toggle[data-state="off"] svg{transform:scale(.96)}
+    .theme-toggle .bulb-broken{opacity:0}
+    .theme-toggle[data-broken="true"] .bulb-full{opacity:0}
+    .theme-toggle[data-broken="true"] .bulb-broken{opacity:1;transform:translate(14px,22px) rotate(18deg)}
+
+    h1{margin:28px 0 8px;font-size:34px}
+    p{margin:0 0 16px;color:var(--muted);line-height:1.6}
+    ul{margin:0 0 12px;padding-left:18px;color:var(--ink)}
+    li{margin:6px 0}
+    .section{padding:24px 0}
+    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
+    .meta{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+  </style>
+</head>
+<body>
+  <!-- TOP NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand" aria-label="FjordFix">
+        <div class="brand-left">
+          <a class="brand-link" href="index.html" aria-label="Til forsiden">
+            <div class="mark" aria-hidden="true">
+              <img src="Logo.png" alt="FjordFix logo" />
+            </div>
+          </a>
+        </div>
+        <div class="brand-title">
+          <a class="brand-link" href="index.html" aria-label="Til forsiden">
+            <img src="Text_logo.png" alt="FjordFix" />
+          </a>
+        </div>
+        <div class="nav-menu">
+          <div class="nav-menu-stack">
+            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Bytt språk" title="Bytt språk"><span class="flag-no" aria-hidden="true"></span></button>
+            <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
+  <a href="skogfix.html" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a>
+  <a href="nn/skogfix.html" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a>
+  <a href="en/skogfix.html" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Utenlandsk</span></a>
+</div>
+            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Åpne meny">
+            <span class="menu-icon"><span></span></span>
+          </button>
+          </div>
+          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Bytt til mørk modus" title="Bytt til mørk modus">
+            <span class="bulb-wrap" aria-hidden="true">
+              <svg class="bulb-full" viewBox="0 0 96 96" focusable="false">
+                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
+                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
+                <path class="filament" d="M36 50c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0M36 54c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0"/>
+                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
+                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
+                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
+              </svg>
+              <svg class="bulb-broken" viewBox="0 0 96 96" focusable="false">
+                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
+                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
+                <path class="bulb-crack" d="M46 30l-4 8 6 6-6 8 8 8"/>
+                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
+                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
+                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
+                <path class="bulb-shard" d="M52 86l8 6-10 2z"/>
+              </svg>
+            </span>
+            <span class="sr-only" data-theme-status>Lysstatus</span>
+          </button>
+          <div class="menu-panel" id="main-menu" data-menu-panel hidden>
+            <a href="om-fjordfix.html">Om FjordFix</a>
+            <a href="tjenester.html">Enkeltoppdrag</a>
+        <a href="vedlikeholdsavtaler.html">Vedlikeholdsavtaler</a>
+            <a href="priser.html">Prisoversikt</a>
+            <a href="kontakt.html">Kontakt</a>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="section">
+      <div class="meta">Vedlikeholdsavtale</div>
+      <h1>🌲 SkogFix</h1>
+      <p>SkogFix vedlikeholdsavtale er for deg som ønsker kontrollert og jevn oppfølging av skogkant, terreng og vegetasjon gjennom året, uten at det gror igjen eller blir et større inngrep senere.</p>
+      <p>Med fast avtale sørger FjordFix for rydding og beskjæring der behovet er størst, slik at eiendommen fremstår ryddig, tilgjengelig og gjennomtenkt over tid.</p>
+      <p>SkogFix handler om kontrollert vedlikehold med fokus på form, sikt og helhetsinntrykk.</p>
+      <p>Dette er praktisk og bevisst utført arbeid, ikke grov flatehogst, men målrettet rydding som tar vare på det som skal stå igjen.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Hva innebærer SkogFix som vedlikeholdsavtale?</div>
+      <p>SkogFix utføres som planlagte besøk gjennom året, tilpasset eiendom, terreng og ønsket nivå på vedlikehold.</p>
+      <p>Typiske oppgaver:</p>
+      <ul>
+        <li>Rydding av kratt og buskas</li>
+        <li>Fjerning av uønsket vegetasjon</li>
+        <li>Beskjæring av greiner for å fremheve stammer og trær</li>
+        <li>Åpning av siktlinjer og utsyn</li>
+        <li>Vedlikehold langs skogkant, vei, innkjørsel og uteområder</li>
+        <li>Opprydding av avkapp etter avtale</li>
+      </ul>
+      <p>Arbeidet prioriteres der det gir mest effekt, slik at området holdes ryddig og balansert uten unødvendige inngrep.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Når passer en SkogFix vedlikeholdsavtale?</div>
+      <ul>
+        <li>Når du vil hindre gjengroing over tid</li>
+        <li>Når utsikt, lys og sikt gradvis har blitt borte</li>
+        <li>For eiendommer med skogkant eller naturtomt</li>
+        <li>For sameier og mindre eiendommer med felles uteområder</li>
+        <li>Når du ønsker jevn oppfølging fremfor store ryddesjau</li>
+      </ul>
+      <p>Fast vedlikehold gir et penere og mer naturlig resultat enn sporadiske inngrep.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Slik jobber FjordFix med SkogFix</div>
+      <ul>
+        <li>Fast avtale med tydelig omfang</li>
+        <li>Besøk planlegges i forkant</li>
+        <li>Fokus på ryddig og skånsom utførelse</li>
+        <li>Bruk av håndverktøy, motorsag og kantutstyr der det er hensiktsmessig</li>
+        <li>Området etterlates ryddig etter hvert besøk</li>
+      </ul>
+      <p>SkogFix handler om å ta vare på terrenget, ikke å overdrive.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Pris og omfang</div>
+      <p>SkogFix vedlikeholdsavtale prises per besøk, med fleksibel frekvens gjennom året.</p>
+      <p>Veiledende pris:</p>
+      <p><strong>Fra 1 590 kr per besøk</strong></p>
+      <p>Avtalen kan settes opp med ønsket antall besøk per år, basert på behov og eiendommens karakter.</p>
+      <p>Endelig pris avtales på forhånd og tar hensyn til:</p>
+      <ul>
+        <li>terreng og tilgjengelighet</li>
+        <li>omfang av vegetasjon</li>
+        <li>ønsket nivå på rydding og beskjæring</li>
+        <li>geografisk plassering</li>
+      </ul>
+      <p>Dette gir forutsigbarhet både for kunde og leverandør.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Fleksibilitet og tilpasning</div>
+      <p>SkogFix vedlikeholdsavtale kan:</p>
+      <ul>
+        <li>tilpasses eiendommens størrelse og behov</li>
+        <li>justeres over tid</li>
+        <li>kombineres med enkeltoppdrag ved større behov</li>
+      </ul>
+      <p>Avtalen er ment å være praktisk og gjennomførbar, ikke rigid.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Ønsker du kun hjelp én gang?</div>
+      <p>SkogFix kan også bestilles som enkeltoppdrag dersom du kun trenger rydding eller beskjæring ved behov.</p>
+      <p>👉 <a href="skogfix.html">Les mer om SkogFix som enkeltoppdrag</a></p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Klar for et ryddigere og mer åpent uteområde?</div>
+      <p>Ta kontakt, så finner vi en SkogFix-løsning som passer din eiendom.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
+      <div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="for-ansatte.html">For ansatte</a>
+      </div>
+      <div style="width:100%;font-size:12px;opacity:.7">Crafted by Fjorden Breakwater AS</div>
+    </div>
+  </footer>
+
+
+  <script>
+    const yearTarget = document.getElementById('y');
+    if (yearTarget) {
+      yearTarget.textContent = new Date().getFullYear();
+    }
+
+    const root = document.documentElement;
+    const toggle = document.querySelector('[data-theme-toggle]');
+    const storageKey = 'fjordfix-theme';
+    const storedTheme = localStorage.getItem(storageKey);
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+    const applyTheme = (theme) => {
+      if (theme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+      if (toggle) {
+        const isDark = theme === 'dark';
+        toggle.setAttribute('aria-pressed', isDark);
+        toggle.setAttribute('data-state', isDark ? 'off' : 'on');
+        const isBroken = toggle.getAttribute('data-broken') === 'true';
+        const label = isDark ? 'Fiks pæren og slå på lys' : 'Bytt til mørk modus';
+        toggle.setAttribute('aria-label', label);
+        toggle.setAttribute('title', label);
+        const status = toggle.querySelector('[data-theme-status]');
+        if (status) {
+          status.textContent = isDark ? (isBroken ? 'Pære knust' : 'Lys av') : 'Lys på';
+        }
+        if (isDark && !isBroken) {
+          toggle.setAttribute('data-broken', 'true');
+          if (status) {
+            status.textContent = 'Pære knust';
+          }
+        }
+        if (!isDark) {
+          toggle.removeAttribute('data-broken');
+        }
+      }
+      localStorage.setItem(storageKey, theme);
+    };
+
+    applyTheme(initialTheme);
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+      });
+    }
+
+    const menuButton = document.querySelector('[data-menu-toggle]');
+    const menuPanel = document.querySelector('[data-menu-panel]');
+    const closeMenu = () => {
+      if (!menuButton || !menuPanel) return;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuPanel.hidden = true;
+    };
+    if (menuButton && menuPanel) {
+      menuButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (langPanel && langToggle) {
+          langToggle.setAttribute('aria-expanded', 'false');
+          langPanel.hidden = true;
+        }
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+        menuPanel.hidden = isOpen;
+      });
+      document.addEventListener('click', (event) => {
+        if (menuPanel.contains(event.target) || menuButton.contains(event.target)) return;
+        closeMenu();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+      menuPanel.addEventListener('click', (event) => {
+        if (event.target && event.target.tagName === 'A') closeMenu();
+      });
+    }
+
+    const langToggle = document.querySelector('[data-lang-toggle]');
+    const langPanel = document.querySelector('[data-lang-panel]');
+    const langKey = 'fjordfix-lang';
+    const currentPath = window.location.pathname;
+    const normalizePath = (path) => {
+      if (!path || path === '/') return '/index.html';
+      if (path == '/nn' || path == '/nn/') return '/nn/index.html';
+      if (path == '/en' || path == '/en/') return '/en/index.html';
+      if (path.endsWith('/')) return `${path.slice(0, -1)}.html`;
+      if (!path.endsWith('.html')) return `${path}.html`;
+      return path;
+    };
+    const basePath = normalizePath(currentPath);
+    const isFile = window.location.protocol === 'file:';
+    const isNn = isFile ? basePath.includes('/nn/') : basePath.startsWith('/nn/');
+    const isEn = isFile ? basePath.includes('/en/') : basePath.startsWith('/en/');
+
+    const langIcon = langToggle ? langToggle.querySelector('span') : null;
+    if (langIcon) {
+      langIcon.classList.remove('flag-no', 'flag-uk');
+      langIcon.classList.add(isEn ? 'flag-uk' : 'flag-no');
+    }
+
+    const withoutLang = (path) => {
+      const normalized = normalizePath(path);
+      const stripped = normalized.replace(/^\/(nn|en)(?=\/)/, '');
+      return stripped || '/index.html';
+    };
+    const withLang = (path, lang) => {
+      const normalized = normalizePath(path);
+      if (lang === 'nb') return withoutLang(normalized);
+      const prefix = `/${lang}`;
+      if (normalized.startsWith(`${prefix}/`)) return normalized;
+      const stripped = withoutLang(normalized);
+      return stripped === '/index.html' ? `${prefix}/index.html` : `${prefix}${stripped}`;
+    };
+    const choiceHref = (choice) => {
+      if (!langPanel) return null;
+      const link = langPanel.querySelector(`[data-lang-choice="${choice}"]`);
+      if (!link) return null;
+      const href = link.getAttribute('href');
+      return href ? new URL(href, window.location.href).href : null;
+    };
+    const targetForLang = (choice) => {
+      if (isFile) return choiceHref(choice);
+      return withLang(basePath, choice);
+    };
+    const storedLang = localStorage.getItem(langKey);
+    if (storedLang === 'nn' && !isNn) {
+      const target = targetForLang('nn');
+      if (target) window.location.href = target;
+    }
+    if (storedLang === 'en' && !isEn) {
+      const target = targetForLang('en');
+      if (target) window.location.href = target;
+    }
+    if (storedLang === 'nb' && (isNn || isEn)) {
+      const target = targetForLang('nb');
+      if (target) window.location.href = target;
+    }
+    const closeLang = () => {
+      if (!langToggle || !langPanel) return;
+      langToggle.setAttribute('aria-expanded', 'false');
+      langPanel.hidden = true;
+    };
+    if (langToggle && langPanel) {
+      langToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (menuButton && menuPanel) {
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuPanel.hidden = true;
+        }
+        const isOpen = langToggle.getAttribute('aria-expanded') === 'true';
+        langToggle.setAttribute('aria-expanded', String(!isOpen));
+        langPanel.hidden = isOpen;
+      });
+      langPanel.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-lang-choice]');
+        if (!link) return;
+        event.preventDefault();
+        const choice = link.getAttribute('data-lang-choice');
+        localStorage.setItem(langKey, choice);
+        const target = targetForLang(choice);
+        if (target) window.location.href = target;
+      });
+      document.addEventListener('click', (event) => {
+        if (langPanel.contains(event.target) || langToggle.contains(event.target)) return;
+        closeLang();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeLang();
+      });
+    }
+
+
+  </script>
+</body>
+</html>
