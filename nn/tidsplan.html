@@ -13,10 +13,11 @@
     body{min-height:100vh;display:flex;flex-direction:column}
     main{flex:1}
 
-    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+    .wrap{max-width:1400px;margin:0 auto;padding:0 20px}
     .wrap-wide{max-width:100%;padding:0 24px}
 
     .nav{position:sticky;top:0;z-index:10;background:#ffffff;border-bottom:1px solid rgba(15,23,42,.12)}
+    .nav .wrap{max-width:1120px}
     .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:14px 0;gap:14px}
     .brand{display:grid;grid-template-columns:180px 1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
     .brand-left{display:flex;align-items:center;gap:16px}
@@ -81,9 +82,11 @@
     .section{padding:24px 0}
     .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
 
-    .card{border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--card);box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    .card{border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--card);box-shadow:0 12px 32px rgba(15,23,42,.08);width:100%}
     .table-wrap{overflow:auto}
     table{width:100%;border-collapse:collapse;min-width:900px}
+    .schedule-wrap{overflow:auto}
+    .schedule-grid{min-width:900px}
     th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
     th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
     select.status{padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#ffffff;color:var(--ink);font-weight:700}
@@ -94,16 +97,33 @@
     .schedule-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
     .schedule-nav{display:flex;align-items:center;gap:8px}
     .schedule-nav button{border:1px solid var(--line);background:var(--surface-04);border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+    .month-card{margin-bottom:24px}
+    .month-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+    .month-nav{display:flex;align-items:center;gap:8px}
+    .month-nav button{border:1px solid var(--line);background:var(--surface-04);border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+    .month-wrap{overflow:auto}
+    .month-grid{min-width:900px;display:grid;gap:8px;margin-top:12px}
+    .month-row{display:grid;grid-template-columns:80px repeat(7,minmax(120px,1fr));gap:8px}
+    .month-row.month-head{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .month-week-number{width:100%;border:1px solid var(--line);background:var(--surface-04);border-radius:10px;padding:10px 8px;font-weight:800;cursor:pointer;text-align:center}
+    .month-week-number:hover{background:rgba(15,23,42,.08)}
+    .month-day{border:1px solid var(--line);border-radius:12px;padding:8px;min-height:92px;background:var(--card)}
+    .month-day.is-outside{background:var(--surface-04);color:var(--muted)}
+    .month-day-number{font-weight:800;font-size:13px;margin-bottom:6px}
+    .month-events{display:grid;gap:4px}
+    .month-event{font-size:12px;padding:4px 6px;border-radius:8px;background:rgba(255,106,0,.16);color:var(--ink);font-weight:600}
+    .month-event.is-invoiced{background:var(--surface-04)}
+    .month-event.month-more{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:700;text-align:center}
     .schedule-axis{display:grid;grid-template-columns:320px 1fr;gap:12px;margin:12px 0}
     .schedule-axis-days{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
     .schedule-axis-days span{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:center;padding:8px 6px;border-radius:10px;cursor:pointer}
     .schedule-axis-days span.is-active{background:var(--surface-04);color:var(--ink);font-weight:700}
-    .schedule-row{display:grid;grid-template-columns:320px 1fr;gap:12px;align-items:center;margin-bottom:10px}
+    .schedule-row{display:grid;grid-template-columns:320px 1fr;gap:12px;align-items:stretch;margin-bottom:10px}
     .schedule-meta{font-size:14px}
     .schedule-meta strong{display:block;font-size:15px}
     .schedule-meta small{color:var(--muted)}
-    .schedule-timeline{position:relative;height:40px;border:1px solid var(--line);border-radius:12px;background-image:linear-gradient(to right, rgba(15,23,42,.08) 0, rgba(15,23,42,.08) 1px, transparent 1px);background-size:calc(100% / 7) 100%}
-    .schedule-bar{position:absolute;top:6px;height:28px;border-radius:999px;background:var(--orange);color:#0b1220;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 8px 16px rgba(15,23,42,.18)}
+    .schedule-timeline{position:relative;min-height:44px;border:1px solid var(--line);border-radius:12px;background-image:linear-gradient(to right, rgba(15,23,42,.08) 0, rgba(15,23,42,.08) 1px, transparent 1px);background-size:calc(100% / 7) 100%}
+    .schedule-bar{position:absolute;top:4px;left:12px;width:calc(100% - 24px);height:calc(100% - 8px);border-radius:12px;background:var(--orange);color:#0b1220;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .schedule-bar.is-invoiced{background:#ffffff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
     .schedule-empty{padding:14px;border-radius:12px;background:var(--surface-04);color:var(--muted)}
   </style>
@@ -168,10 +188,22 @@
     </div>
   </div>
 
-  <main class="wrap wrap-wide">
+  <main class="wrap">
     <div class="section">
       <h1>Tidsplan</h1>
-      <div class="card">
+      <div class="card month-card">
+        <div class="month-header">
+          <h2 data-month-label>Januar</h2>
+          <div class="month-nav">
+            <button type="button" data-month-prev>← Førre månad</button>
+            <button type="button" data-month-next>Neste månad →</button>
+          </div>
+        </div>
+        <div class="month-wrap">
+          <div class="month-grid" data-month-grid></div>
+        </div>
+      </div>
+      <div class="card" data-week-card>
         <div class="schedule-header">
           <h2>Ukeoversikt</h2>
           <div class="schedule-nav">
@@ -180,11 +212,15 @@
             <button type="button" data-week-next>Neste uke →</button>
           </div>
         </div>
-        <div class="schedule-axis">
-          <div></div>
-          <div class="schedule-axis-days" data-axis-days></div>
+        <div class="schedule-wrap">
+          <div class="schedule-grid">
+            <div class="schedule-axis">
+              <div></div>
+              <div class="schedule-axis-days" data-axis-days></div>
+            </div>
+            <div data-schedule-rows></div>
+          </div>
         </div>
-        <div data-schedule-rows></div>
       </div>
     </div>
   </main>
@@ -193,7 +229,7 @@
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
       <div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="../for-ansatte.html">For ansatte</a>
+      <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="../for-ansatte.html" style="text-decoration:none">For ansatte</a>
       </div>
       <div style="width:100%;font-size:12px;opacity:.7">Crafted by Fjorden Breakwater AS</div>
     </div>
@@ -379,6 +415,11 @@
     const weekLabel = document.querySelector('[data-week-label]');
     const weekPrev = document.querySelector('[data-week-prev]');
     const weekNext = document.querySelector('[data-week-next]');
+    const monthLabel = document.querySelector('[data-month-label]');
+    const monthPrev = document.querySelector('[data-month-prev]');
+    const monthNext = document.querySelector('[data-month-next]');
+    const monthGrid = document.querySelector('[data-month-grid]');
+    const weekCard = document.querySelector('[data-week-card]');
     const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbxgT4003G2LDXx833XM6TflgXNTvTF78fmY1kZyWh2Q41XKLO9dEPJ2FEJ9rCuRVEA/exec';
 
     const loadRequests = async () => {
@@ -395,6 +436,23 @@
       }
     };
     let requests = [];
+    let plannedRows = [];
+
+    const monthNames = [
+      'Januar',
+      'Februar',
+      'Mars',
+      'April',
+      'Mai',
+      'Juni',
+      'Juli',
+      'August',
+      'September',
+      'Oktober',
+      'November',
+      'Desember'
+    ];
+    const dayNames = ['Man', 'Tys', 'Ons', 'Tor', 'Fre', 'Lau', 'Sun'];
 
     const startOfWeek = (date) => {
       const d = new Date(date);
@@ -404,6 +462,9 @@
       return d;
     };
     let currentWeek = startOfWeek(new Date());
+    let currentMonth = new Date();
+    currentMonth.setDate(1);
+    currentMonth.setHours(0, 0, 0, 0);
 
     const formatRange = (date) => {
       const start = new Date(date);
@@ -414,6 +475,16 @@
     };
 
     let selectedDayIndex = null;
+
+    const toDateOnly = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+    const isoWeekNumber = (date) => {
+      const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      const dayNum = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    };
 
     const renderAxis = () => {
       if (!axisDays) return;
@@ -442,6 +513,17 @@
       if (value.toLowerCase().includes('one')) return 'Oppdrag';
       return value;
     };
+    const shortTypeLetter = (value) => {
+      if (!value) return '';
+      const lower = value.toLowerCase();
+      if (lower.includes('vedlikeholdsavtale') || lower.includes('maintenance')) return 'A';
+      if (lower.includes('enkeltoppdrag') || lower.includes('one')) return 'O';
+      return '';
+    };
+    const firstName = (value) => {
+      if (!value) return '';
+      return String(value).trim().split(/\s+/)[0] || '';
+    };
 
     const renderSchedule = () => {
       if (!scheduleRows) return;
@@ -453,20 +535,25 @@
       const weekStart = new Date(currentWeek);
       const weekEnd = new Date(currentWeek);
       weekEnd.setDate(weekEnd.getDate() + 7);
-      const rows = requests.filter((item) => {
-        const status = String(item.status || '').toLowerCase();
-        const isPlanned = status === 'kontaktet' || status === 'avtalt' || status === 'fakturert';
-        return isPlanned && (item.startdato || item.dato) && item.start && item.slutt;
-      });
+      const rows = plannedRows
+        .filter((item) => item.start && item.slutt)
+        .sort((a, b) => {
+          const dateDiff = a.startDate - b.startDate;
+          if (dateDiff) return dateDiff;
+          if (!a.start && !b.start) return 0;
+          if (!a.start) return 1;
+          if (!b.start) return -1;
+          const [ah, am] = a.start.split(':').map(Number);
+          const [bh, bm] = b.start.split(':').map(Number);
+          return (ah * 60 + am) - (bh * 60 + bm);
+        });
       if (!rows.length) {
         scheduleRows.innerHTML = '<div class=\"schedule-empty\">Ingen planlagte oppdrag for denne uken.</div>';
         return;
       }
       rows.forEach((item) => {
-        const startDateValue = item.startdato || item.dato;
-        const endDateValue = item.sluttdato || startDateValue;
-        const startDate = new Date(startDateValue);
-        const endDate = new Date(endDateValue);
+        const startDate = new Date(item.startDate);
+        const endDate = new Date(item.endDate);
         if (endDate < weekStart || startDate >= weekEnd) return;
         const [sh, sm] = item.start.split(':').map(Number);
         const [eh, em] = item.slutt.split(':').map(Number);
@@ -477,8 +564,8 @@
         const clampTime = (hours, minutes) => Math.min(minutesPerDay, Math.max(0, (hours - startHour) * 60 + minutes));
         const startIndex = clampDay(startDayIndex);
         const endIndex = clampDay(endDayIndex);
-        const startTimeMinutes = startDayIndex < 0 ? 0 : clampTime(sh, sm);
-        const endTimeMinutes = endDayIndex > 6 ? minutesPerDay : clampTime(eh, em);
+        const startTimeMinutes = 0;
+        const endTimeMinutes = minutesPerDay;
         const startMinutes = startIndex * minutesPerDay + startTimeMinutes;
         const endMinutes = endIndex * minutesPerDay + endTimeMinutes;
         const left = Math.max(0, startMinutes) / totalMinutes * 100;
@@ -493,7 +580,7 @@
             <small>${item.tjeneste || ''} · ${shortType(item.type) || ''}</small>
           </div>
           <div class=\"schedule-timeline\">
-            <div class=\"schedule-bar ${status === 'fakturert' ? 'is-invoiced' : ''}\" style=\"left:${left}%;width:${width}%\">
+            <div class=\"schedule-bar ${item.status === 'fakturert' || item.status === 'invoiced' ? 'is-invoiced' : ''}\" style=\"left:${left}%;width:${width}%\">
               ${item.start}–${item.slutt}
             </div>
           </div>
@@ -507,12 +594,122 @@
       }
     };
 
+    const renderMonth = () => {
+      if (!monthGrid) return;
+      monthGrid.innerHTML = '';
+      const head = document.createElement('div');
+      head.className = 'month-row month-head';
+      head.innerHTML = `
+        <div>Veke</div>
+        ${dayNames.map((day) => `<div>${day}</div>`).join('')}
+      `;
+      monthGrid.appendChild(head);
+      const monthStart = new Date(currentMonth);
+      const gridStart = startOfWeek(monthStart);
+      for (let w = 0; w < 6; w += 1) {
+        const weekStart = new Date(gridStart);
+        weekStart.setDate(gridStart.getDate() + (w * 7));
+        const row = document.createElement('div');
+        row.className = 'month-row';
+        const weekButton = document.createElement('button');
+        weekButton.type = 'button';
+        weekButton.className = 'month-week-number';
+        weekButton.textContent = `Veke ${isoWeekNumber(weekStart)}`;
+        weekButton.addEventListener('click', () => {
+          currentWeek = startOfWeek(weekStart);
+          selectedDayIndex = null;
+          renderAxis();
+          renderSchedule();
+          if (weekCard) {
+            weekCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+        row.appendChild(weekButton);
+        for (let d = 0; d < 7; d += 1) {
+          const dayDate = new Date(weekStart);
+          dayDate.setDate(weekStart.getDate() + d);
+          const cell = document.createElement('div');
+          cell.className = 'month-day';
+          if (dayDate.getMonth() !== currentMonth.getMonth()) {
+            cell.classList.add('is-outside');
+          }
+          const dayNumber = document.createElement('div');
+          dayNumber.className = 'month-day-number';
+          dayNumber.textContent = String(dayDate.getDate());
+          const eventsWrap = document.createElement('div');
+          eventsWrap.className = 'month-events';
+          const dayOnly = toDateOnly(dayDate);
+          const dayTasks = plannedRows
+            .filter((item) => dayOnly >= item.startDate && dayOnly <= item.endDate)
+            .sort((a, b) => {
+              if (!a.start && !b.start) return 0;
+              if (!a.start) return 1;
+              if (!b.start) return -1;
+              const [ah, am] = a.start.split(':').map(Number);
+              const [bh, bm] = b.start.split(':').map(Number);
+              return (ah * 60 + am) - (bh * 60 + bm);
+            });
+          dayTasks.slice(0, 3).forEach((item) => {
+            const event = document.createElement('div');
+            event.className = 'month-event';
+            if (item.status === 'fakturert' || item.status === 'invoiced') event.classList.add('is-invoiced');
+            const nameLabel = firstName(item.navn);
+            const taskLabel = item.tjeneste || '';
+            const typeLetter = shortTypeLetter(item.type);
+            const typeLabel = typeLetter ? `(${typeLetter})` : '';
+            event.textContent = [taskLabel, typeLabel, nameLabel].filter(Boolean).join(' · ');
+            eventsWrap.appendChild(event);
+          });
+          if (dayTasks.length > 3) {
+            const more = document.createElement('div');
+            more.className = 'month-event month-more';
+            more.textContent = `+${dayTasks.length - 3} fleire`;
+            eventsWrap.appendChild(more);
+          }
+          cell.appendChild(dayNumber);
+          cell.appendChild(eventsWrap);
+          row.appendChild(cell);
+        }
+        monthGrid.appendChild(row);
+      }
+      if (monthLabel) monthLabel.textContent = monthNames[currentMonth.getMonth()];
+    };
+
     const init = async () => {
       requests = await loadRequests();
+      plannedRows = requests.reduce((acc, item) => {
+        const status = String(item.status || '').toLowerCase();
+        const isPlanned = status === 'kontaktet' || status === 'avtalt' || status === 'fakturert';
+        const startDateValue = item.startdato || item.dato;
+        if (!isPlanned || !startDateValue) return acc;
+        const endDateValue = item.sluttdato || startDateValue;
+        const startDate = new Date(startDateValue);
+        const endDate = new Date(endDateValue);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 0);
+        acc.push({
+          ...item,
+          status,
+          startDate,
+          endDate
+        });
+        return acc;
+      }, []);
+      renderMonth();
       renderAxis();
       renderSchedule();
     };
     init();
+    if (monthPrev && monthNext) {
+      monthPrev.addEventListener('click', () => {
+        currentMonth.setMonth(currentMonth.getMonth() - 1);
+        renderMonth();
+      });
+      monthNext.addEventListener('click', () => {
+        currentMonth.setMonth(currentMonth.getMonth() + 1);
+        renderMonth();
+      });
+    }
     if (weekPrev && weekNext) {
       weekPrev.addEventListener('click', () => {
         currentWeek.setDate(currentWeek.getDate() - 7);
