@@ -48,6 +48,11 @@
       gap:10px;
       margin-bottom:20px;
     }
+    .logo-link{
+      text-decoration:none;
+      color:inherit;
+      display:inline-block;
+    }
     .logo img{
       height:86px;
       width:auto;
@@ -113,10 +118,12 @@
 </head>
 <body>
   <main role="main" aria-labelledby="title">
-    <div class="logo">
-      <img src="Logo.png" alt="FjordFix AS" />
-      <img class="text-logo" src="Text_logo.png" alt="FjordFix" />
-    </div>
+    <a class="logo-link" href="https://fjordfix.com/" aria-label="Gå til fjordfix.com">
+      <div class="logo">
+        <img src="Logo.png" alt="FjordFix AS" />
+        <img class="text-logo" src="Text_logo.png" alt="FjordFix" />
+      </div>
+    </a>
     <div class="badge" aria-hidden="true">Midlertidig utilgjengeleg</div>
     <h1 id="title">Me gjer litt vedlikehald</h1>
     <p>

@@ -1,0 +1,8 @@
+/vedlikehold.html  /vedlikehold.html  200
+/vedlikehold       /vedlikehold/index.html  200
+/vedlikehold/*     /vedlikehold/:splat  200
+/Logo.png          /Logo.png          200
+/Text_logo.png     /Text_logo.png     200
+/flag-uk.svg       /flag-uk.svg       200
+/Knarvik.png       /Knarvik.png       200
+/*                 /vedlikehold.html  302
