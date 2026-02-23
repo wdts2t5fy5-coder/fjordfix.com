@@ -13,17 +13,18 @@
     body{min-height:100vh;display:flex;flex-direction:column}
     main{flex:1}
 
-    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+    .wrap{max-width:1320px;margin:0 auto;padding:0 28px}
 
-    .nav{position:sticky;top:0;z-index:10;background:#ffffff;border-bottom:1px solid rgba(15,23,42,.12)}
-    .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:14px 0;gap:14px}
-    .brand{display:grid;grid-template-columns:180px 1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
+    .nav{position:sticky;top:0;z-index:10;background:#ffffff;border-bottom:0;backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);box-shadow:none}
+    .nav::after{content:"";position:absolute;left:0;right:0;top:100%;height:48px;pointer-events:none;background:linear-gradient(to bottom, rgba(255,106,0,.14), rgba(255,106,0,.08) 42%, rgba(255,106,0,0));opacity:.40}
+    .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:12px 0;gap:14px}
+    .brand{display:grid;grid-template-columns:1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
     .brand-left{display:flex;align-items:center;gap:16px}
     .brand-link{display:inline-flex;align-items:center;text-decoration:none}
-    .brand-title{display:flex;align-items:center;justify-content:center;height:110px}
-    .brand-title img{height:74px;width:auto;display:block}
+    .brand-title{display:flex;align-items:center;justify-content:flex-start;height:96px}
+    .brand-title img{height:76px;width:auto;display:block}
     .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
-    .nav-menu-stack{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .nav-menu-stack{display:flex;flex-direction:row;gap:8px;align-items:center}
     .lang-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}
     .lang-panel[hidden]{display:none}
     .lang-panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
@@ -31,11 +32,11 @@
     .lang-panel .flag-no{width:48px;height:48px;flex:0 0 48px;border-radius:12px}
     .lang-panel .flag-uk{display:block;width:48px;height:48px;flex:0 0 48px;border-radius:12px}
 
-    .flag-uk{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('flag-uk.svg');}
+    .flag-uk{display:block;width:100%;height:100%;border:2px solid #ffffff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('flag-uk.svg');}
 
     .lang-button{padding:0;overflow:hidden}
-    .flag-no{display:block;width:100%;height:100%;border:8px solid #ffffff;border-radius:inherit;background:linear-gradient(90deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(180deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(90deg, transparent 38%, #ffffff 38% 62%, transparent 62%),linear-gradient(180deg, transparent 38%, #ffffff 38% 62%, transparent 62%),#ba0c2f;}
-    .menu-button{width:48px;height:48px;border-radius:12px;border:1px solid rgba(15,23,42,.12);background:#ffffff;display:grid;place-items:center;cursor:pointer}
+    .flag-no{display:block;width:100%;height:100%;border:2px solid #ffffff;border-radius:inherit;background:linear-gradient(90deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(180deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(90deg, transparent 38%, #ffffff 38% 62%, transparent 62%),linear-gradient(180deg, transparent 38%, #ffffff 38% 62%, transparent 62%),#ba0c2f;}
+    .menu-button{width:48px;height:48px;border-radius:12px;border:2px solid rgba(15,23,42,.12);background:#ffffff;display:grid;place-items:center;cursor:pointer}
     .menu-button:hover{background:var(--surface-04)}
     .menu-icon{position:relative;width:22px;height:14px}
     .menu-icon::before,
@@ -55,7 +56,7 @@
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .theme-toggle{padding:10px 12px;border:none;border-radius:999px;min-width:48px;min-height:48px;background:transparent;color:#0f172a;transition:transform .2s ease}
     .theme-toggle:hover{transform:translateY(-1px);background:transparent}
-    .theme-toggle .bulb-wrap{position:relative;width:38px;height:38px;transform:translateY(-12px)}
+    .theme-toggle .bulb-wrap{position:relative;width:38px;height:38px;transform:translateY(0)}
     .theme-toggle svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s ease, transform .2s ease}
     .theme-toggle .bulb-outline{stroke:var(--bulb-stroke);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
     .theme-toggle .bulb-fill{fill:var(--bulb-fill)}
@@ -71,9 +72,31 @@
     .theme-toggle[data-state="off"]{--bulb-fill:rgba(15,23,42,.08);--bulb-stroke:rgba(15,23,42,.55);--bulb-base:#6f7d96}
     .theme-toggle[data-state="off"] .bulb-highlight{stroke:rgba(15,23,42,.2)}
     .theme-toggle[data-state="off"] svg{transform:scale(.96)}
+    .theme-toggle[data-state="off"][data-broken="true"]{--bulb-fill:rgba(255,255,255,.22);--bulb-stroke:#ffffff;--bulb-base:#7b8aa6}
+    .theme-toggle[data-state="off"][data-broken="true"] .bulb-highlight{stroke:rgba(255,255,255,.72)}
+    .theme-toggle[data-state="off"][data-broken="true"] .bulb-broken{filter:drop-shadow(0 2px 4px rgba(0,0,0,.35))}
+.theme-toggle[data-state="off"][data-broken="true"] .bulb-base,
+    .theme-toggle[data-state="off"][data-broken="true"] .bulb-tip{fill:#6f7d96;stroke:#6f7d96}
+    .theme-toggle[data-state="off"][data-broken="true"] .bulb-screw{fill:#6f7d96;stroke:#334155}
     .theme-toggle .bulb-broken{opacity:0}
     .theme-toggle[data-broken="true"] .bulb-full{opacity:0}
     .theme-toggle[data-broken="true"] .bulb-broken{opacity:1;transform:translate(14px,22px) rotate(18deg)}
+
+    html[data-theme="dark"] .nav{background:var(--bg);border-bottom:0}
+    html[data-theme="dark"] .nav::after{background:linear-gradient(to bottom, rgba(255,106,0,.12), rgba(255,106,0,.07) 42%, rgba(255,106,0,0));opacity:.36}
+    html[data-theme="dark"] .lang-panel,
+    html[data-theme="dark"] .menu-panel{background:var(--card);border-color:var(--line)}
+    html[data-theme="dark"] .lang-panel a,
+    html[data-theme="dark"] .menu-panel a{color:#ffffff}
+    html[data-theme="dark"] .theme-toggle{color:var(--ink)}
+    html[data-theme="dark"] .menu-button{border-color:rgba(255,255,255,.78);background:transparent}
+    html[data-theme="dark"] .menu-icon::before,
+    html[data-theme="dark"] .menu-icon::after,
+    html[data-theme="dark"] .menu-icon span{background:#ffffff}
+    html[data-theme="dark"] .flag-no,
+    html[data-theme="dark"] .flag-uk{border-color:var(--bg)}
+    html[data-theme="dark"] .lang-panel .flag-no,
+    html[data-theme="dark"] .lang-panel .flag-uk{border-color:#ffffff;border-width:2px}
     h1{margin:28px 0 8px;font-size:34px}
     h2{margin:0 0 6px;font-size:22px}
     p{margin:0 0 16px;color:var(--muted);line-height:1.6}
@@ -100,31 +123,24 @@
   <div class="nav">
     <div class="wrap nav-inner">
       <div class="brand" aria-label="FjordFix">
-        <div class="brand-left">
-          <a class="brand-link" href="index.html" aria-label="Til forsiden">
-            <div class="mark" aria-hidden="true">
-              <img src="../Logo.png" alt="FjordFix logo" />
-            </div>
-          </a>
-        </div>
         <div class="brand-title">
           <a class="brand-link" href="index.html" aria-label="Til forsiden">
-            <img src="../Text_logo.png" alt="FjordFix" />
+            <img src="../logo_white.png" data-logo-light="../logo_white.png" data-logo-dark="../logo_black.png" alt="FjordFix" />
           </a>
         </div>
         <div class="nav-menu">
           <div class="nav-menu-stack">
-            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Bytt språk" title="Bytt språk"><span class="flag-no" aria-hidden="true"></span></button>
-            <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
-  <a href="../vedlikeholdsavtaler.html" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Urban</span></a>
-  <a href="../nn/vedlikeholdsavtaler.html" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Local</span></a>
-  <a href="vedlikeholdsavtaler.html" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>English</span></a>
-</div>
             <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Åpne meny">
             <span class="menu-icon"><span></span></span>
           </button>
+            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Bytt språk"><span class="flag-no" aria-hidden="true"></span></button>
+            <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
+  <a href="../vedlikeholdsavtaler.html" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Urban</span></a>
+  <a href="../nn/vedlikeholdsavtaler.html" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Local</span></a>
+  <a href="vedlikeholdsavtaler.html" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Not norsk</span></a>
+</div>
           </div>
-          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Bytt til mørk modus" title="Bytt til mørk modus">
+          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Easy now..." title="Easy now...">
             <span class="bulb-wrap" aria-hidden="true">
               <svg class="bulb-full" viewBox="0 0 96 96" focusable="false">
                 <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
@@ -241,10 +257,13 @@
       }
       if (toggle) {
         const isDark = theme === 'dark';
+      document.querySelectorAll('[data-logo-light][data-logo-dark]').forEach((logo) => {
+        logo.src = theme === 'dark' ? logo.getAttribute('data-logo-dark') : logo.getAttribute('data-logo-light');
+      });
         toggle.setAttribute('aria-pressed', isDark);
         toggle.setAttribute('data-state', isDark ? 'off' : 'on');
         const isBroken = toggle.getAttribute('data-broken') === 'true';
-        const label = isDark ? 'Fiks pæren og slå på lys' : 'Bytt til mørk modus';
+        const label = isDark ? 'Let there be light' : 'Easy now...';
         toggle.setAttribute('aria-label', label);
         toggle.setAttribute('title', label);
         const status = toggle.querySelector('[data-theme-status]');
