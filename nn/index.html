@@ -372,7 +372,7 @@
     <article class="service-spotlight reverse">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="../SmåFix.png" alt="" />
+          <img src="../SmaaFix.png" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">SmåFix</span>
@@ -683,7 +683,8 @@
       spotlightIcons.forEach((icon) => {
         const rect = icon.getBoundingClientRect();
         const progress = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
-        const offset = 18 - (progress * 30);
+        const range = icon.classList.contains('spotlight-logo') ? 42 : 30;
+        const offset = 18 - (progress * range);
         icon.style.setProperty('--float-y', `${offset.toFixed(1)}px`);
       });
     };
