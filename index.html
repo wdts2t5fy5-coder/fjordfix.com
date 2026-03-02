@@ -223,9 +223,14 @@
     .spotlight-image img{width:min(72%,420px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 10px 28px rgba(15,23,42,.16))}
     .service-spotlight.reverse .spotlight-icon{order:2}
     .service-spotlight.reverse .spotlight-copy{order:1}
-    .services-more{padding:44px 28px 78px}
-    .services-more .card h3{font-size:24px;margin-bottom:14px}
-    .services-links{display:flex;flex-wrap:wrap;gap:10px}
+    .services-more{padding:24px 28px 36px;text-align:center}
+    .services-more h3{margin:0 0 18px;font-size:24px}
+    .services-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .services-links .btn{min-height:54px;padding:14px 22px;border-radius:16px}
+    .contact-panel{max-width:920px;margin:0 auto;text-align:center}
+    .contact-actions{margin:18px 0;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .contact-note{margin-top:46px}
+    #kontakt .section-title{justify-content:center;text-align:center}
 
     ul.clean{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px}
     ul.clean li{display:flex;gap:10px;align-items:flex-start;color:var(--text-78);line-height:1.45}
@@ -330,7 +335,7 @@
         </div>
       </div>
       <div class="hero-media">
-        <img src="Knarvik.png" alt="Utsikt over Knarvik og fjorden" />
+        <img src="Knarvik.png?v=20260302" alt="Utsikt over Knarvik og fjorden" />
       </div>
     </div>
     <div class="wrap hero-body"></div>
@@ -341,7 +346,7 @@
     <article class="service-spotlight reverse">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-logo" aria-hidden="true">
-          <img src="Logo.png" alt="" />
+          <img src="Logo.png?v=20260302" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">Om FjordFix</span>
@@ -355,7 +360,7 @@
     <article class="service-spotlight">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="TryggFix.png" alt="" />
+          <img src="TryggFix.png?v=20260302" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">TryggFix</span>
@@ -369,7 +374,7 @@
     <article class="service-spotlight reverse">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="SmaaFix.png" alt="" />
+          <img src="SmaaFix.png?v=20260302" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">SmåFix</span>
@@ -383,7 +388,7 @@
     <article class="service-spotlight">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="HageFix.png" alt="" />
+          <img src="HageFix.png?v=20260302" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">HageFix</span>
@@ -397,7 +402,7 @@
     <article class="service-spotlight reverse">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="ReinFix.png" alt="" />
+          <img src="ReinFix.png?v=20260302" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">ReinFix</span>
@@ -411,7 +416,7 @@
     <article class="service-spotlight">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="SnøFix.png" alt="" />
+          <img src="SnøFix.png?v=20260302" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">SnøFix</span>
@@ -423,13 +428,11 @@
     </article>
 
     <div class="wrap services-more">
-      <div class="card">
-        <h3>Flere tjenester</h3>
-        <div class="services-links">
-          <a class="btn btn-ghost" href="skogfix.html">SkogFix</a>
-          <a class="btn btn-ghost" href="steinfix.html">SteinFix</a>
-          <a class="btn btn-primary" href="tjenester.html">Se alle tjenester</a>
-        </div>
+      <h3>Flere tjenester</h3>
+      <div class="services-links">
+        <a class="btn btn-ghost" href="skogfix.html">SkogFix</a>
+        <a class="btn btn-ghost" href="steinfix.html">SteinFix</a>
+        <a class="btn btn-ghost" href="tjenester.html">Se alle tjenester</a>
       </div>
     </div>
   </section>
@@ -440,22 +443,15 @@
       <div class="section-title">
         <div>
           <h2>Kontakt</h2>
-          <p>Send kort info, så svarer vi raskt.</p>
         </div>
       </div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Rask bestilling</h3>
-          <p>Fyll inn skjema og vi kontakter deg for en uforpliktene prat om ditt prosjekt.</p>
-          <div style="margin:18px 0;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn btn-primary" href="kontakt.html">Få tilbud</a>
-            <a class="btn btn-ghost" href="tel:+4748265364">Ring nå</a>
-            <a class="btn btn-ghost" href="sms:+4748265364?&body=Hei%20FjordFix!%20Jeg%20%C3%B8nsker%20hjelp%20med%20...%20Adresse:%20...%20Tidspunkt:%20...">Send SMS</a>
-            <a class="btn btn-ghost" href="priser.html">Se priser</a>
-          </div>
-          <div class="note" style="margin-top:12px">⚠️ Vi tar ikke arbeid som krever fagbrev (fast el/rør/våtrom). Hvis oppdraget krever fagfolk, sier vi ifra.</div>
+      <div class="contact-panel">
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="kontakt.html">Få tilbud</a>
+          <a class="btn btn-ghost" href="tel:+4748265364">Ring nå</a>
         </div>
+        <div class="note contact-note">⚠️ Vi utfører ikke arbeid som etter lovverket krever autorisert fagforetak (f.eks. fast el-installasjon, rør i våtrom m.m.).<br>Dersom oppdraget krever godkjent fagkompetanse, gir vi beskjed og anbefaler riktig fagperson.</div>
       </div>
     </div>
   </section>
@@ -466,7 +462,7 @@
       <div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div>
       <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="for-ansatte.html" style="text-decoration:none">For ansatte</a>
       </div>
-      <div style="width:100%;font-size:12px;opacity:.7">Crafted by Fjorden Breakwater AS</div>
+      <div style="width:100%;font-size:12px;opacity:.7">crafted by fjordtind studio</div>
     </div>
   </footer>
 
