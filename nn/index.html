@@ -167,8 +167,19 @@
     .hero-title-area{height:calc(var(--hero-title-height) + var(--hero-title-gap) + (var(--hero-image-height) * 0.5))}
     .hero-title-sticky{position:relative;z-index:2}
     .hero-title-sticky .wrap{padding:0 0 0 0.9cm}
-    h1{margin:0;font-size:46px;line-height:1.08;letter-spacing:-.6px}
-    .hero-media{position:absolute;top:calc(var(--hero-title-height) + var(--hero-title-gap));left:0;right:0;height:var(--hero-image-height);opacity:0;animation:fade-in 1.2s ease forwards}
+    h1{
+      margin:0;
+      font-size:54px;
+      line-height:1.04;
+      letter-spacing:-.022em;
+      font-weight:700;
+      font-family:inherit;
+      text-wrap:balance;
+      text-shadow:none;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    .hero-media{position:absolute;top:calc(var(--hero-title-height) + var(--hero-title-gap));left:0;right:0;height:var(--hero-image-height);opacity:0;animation:fade-in 1.2s ease forwards;transform:translate3d(0,0,0);will-change:transform,opacity;backface-visibility:hidden}
     .hero-media img{display:block;width:100%;height:100%;object-fit:cover}
     @keyframes fade-in{to{opacity:1}}
     body.scroll-lock{overflow:hidden;touch-action:none}
@@ -201,13 +212,23 @@
     .grid{display:grid;gap:14px}
     .grid-3{grid-template-columns:repeat(3,1fr)}
     .grid-2{grid-template-columns:repeat(2,1fr)}
-    .services-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:stretch}
-    .service-card{display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);height:100%;position:relative;padding-bottom:180px}
-    .service-card .cta{position:absolute;left:16px;right:16px;bottom:16px;margin-top:0;padding-top:0}
-    .service-icon{font-size:26px}
-    .service-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-    .service-tag{display:inline-flex;align-items:center;border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--text-66);text-transform:uppercase;letter-spacing:.08em}
-    .service-lead{margin:0;color:var(--text-66)}
+    .focus-services{padding:0;margin-top:18px}
+    .service-spotlight{min-height:100svh;display:flex;align-items:center}
+    .service-spotlight:nth-of-type(odd){background:linear-gradient(135deg, rgba(255,106,0,.10), rgba(255,255,255,0) 56%)}
+    .service-spotlight:nth-of-type(even){background:linear-gradient(225deg, rgba(255,106,0,.10), rgba(255,255,255,0) 56%)}
+    .spotlight-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,72px);align-items:center;padding:56px 28px}
+    .spotlight-icon{--float-y:0px;font-size:clamp(130px,20vw,260px);line-height:.9;text-align:center;filter:drop-shadow(0 10px 30px rgba(15,23,42,.18));transform:translate3d(0,var(--float-y),0);transition:transform .18s linear}
+    .spotlight-copy h2{margin:0 0 16px;font-size:clamp(44px,6.4vw,92px);line-height:.96;letter-spacing:-1.2px}
+    .spotlight-copy p{margin:0 0 26px;font-size:clamp(24px,2.8vw,38px);line-height:1.18;color:var(--text-82);max-width:20ch}
+    .spotlight-kicker{display:block;margin-bottom:16px;font-size:clamp(16px,1.5vw,20px);font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+    .spotlight-copy p.compact{font-size:clamp(21px,2.2vw,30px);line-height:1.28;max-width:34ch}
+    .spotlight-logo img{width:min(78%,500px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 12px 32px rgba(15,23,42,.18))}
+    .spotlight-image img{width:min(72%,420px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 10px 28px rgba(15,23,42,.16))}
+    .service-spotlight.reverse .spotlight-icon{order:2}
+    .service-spotlight.reverse .spotlight-copy{order:1}
+    .services-more{padding:44px 28px 78px}
+    .services-more .card h3{font-size:24px;margin-bottom:14px}
+    .services-links{display:flex;flex-wrap:wrap;gap:10px}
 
     ul.clean{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px}
     ul.clean li{display:flex;gap:10px;align-items:flex-start;color:var(--text-78);line-height:1.45}
@@ -226,13 +247,21 @@
     .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66)}
 
     @media (max-width: 920px){
-      h1{font-size:38px}
+      h1{font-size:42px;line-height:1.06}
+      .hero{--hero-image-height:320px}
       .hero-grid{grid-template-columns:1fr;}
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
       .pricing{grid-template-columns:1fr}
       .nav-links{display:none}
       .cta-buttons{grid-template-columns:1fr}
+      .service-spotlight{min-height:84svh}
+      .spotlight-inner{grid-template-columns:1fr;text-align:left;padding:48px 28px}
+      .spotlight-icon{font-size:clamp(110px,28vw,190px);text-align:left}
+      .service-spotlight.reverse .spotlight-icon,
+      .service-spotlight.reverse .spotlight-copy{order:initial}
+      .spotlight-copy h2{font-size:clamp(36px,12vw,62px)}
+      .spotlight-copy p{font-size:clamp(20px,6vw,30px)}
     }
   </style>
 </head>
@@ -307,139 +336,103 @@
         <img src="../Knarvik.png" alt="Utsikt over Knarvik og fjorden" />
       </div>
     </div>
-    <div class="wrap hero-body">
-      <p class="lead">FjordFix tilbyr vaktmeistertenester og praktisk hjelp inne og ute for privatpersonar, bedrifter og sameige. Rask respons, ryddig utført og tydeleg pris før vi startar.</p>
-
-      <div class="pill-row" aria-label="Høgdepunkt">
-        <div class="pill">Ein fast kontaktperson</div>
-        <div class="pill">Lokal og tilgjengeleg hjelp</div>
-        <div class="pill">Rask respons</div>
-        <div class="pill">Småjobbar tekne på alvor</div>
-        <div class="pill">Ryddig utført arbeid</div>
-      </div>
-    </div>
+    <div class="wrap hero-body"></div>
   </header>
 
   <!-- SERVICES -->
-  <section id="tjenester">
-    <div class="wrap">
-      <div class="section-title">
-        <div>
-          <h2>Våre avtalar og tenester</h2>
-          <p>Nokre tenester kan leverast både som faste vedlikehaldsavtalar og som enkeltoppdrag. Andre eignar seg best som avgrensa enkeltjobbar eller prosjekt.</p>
+  <section id="tjenester" class="focus-services">
+    <article class="service-spotlight reverse">
+      <div class="wrap spotlight-inner">
+        <div class="spotlight-icon spotlight-logo" aria-hidden="true">
+          <img src="../Logo.png" alt="" />
+        </div>
+        <div class="spotlight-copy">
+          <span class="spotlight-kicker">Om FjordFix</span>
+          <h2>Praktisk hjelp, utan styr.</h2>
+          <p class="compact">FjordFix gir deg éin fast kontaktperson, rask respons og ryddig utført arbeid. Vi hjelper med små og store kvardagsoppgåver inne og ute, på ein enkel måte som passar både travle kvardagar i Bergen sentrum og rolege dagar i større hus på Manger.</p>
+          <a class="btn btn-primary" href="om-fjordfix.html">Les om FjordFix</a>
         </div>
       </div>
+    </article>
 
-      <div class="services-grid">
-        <article class="service-card">
-          <div class="service-icon">🔐</div>
-          <div class="service-top">
-            <h3>TryggFix</h3>
-          </div>
-          <p class="service-lead">Trygt tilsyn og småfix som tek tak før det blir problem.</p>
-          <div class="cta">
-            <span class="cta-label">Sjå detaljar:</span>
-            <div class="cta-buttons">
-              <a class="btn btn-primary" href="tryggfix.html">Vedlikehaldsavtale</a>
-              <span class="btn btn-ghost btn-fake" aria-hidden="true">&nbsp;</span>
-            </div>
-          </div>
-        </article>
-        <article class="service-card">
-          <div class="service-icon">🛠️</div>
-          <div class="service-top">
-            <h3>SmåFix</h3>
-          </div>
-          <p class="service-lead">Praktisk hjelp inne og ute – små jobbar som gjev stor forskjell når dei blir gjorde.</p>
-          <div class="cta">
-            <span class="cta-label">Sjå detaljar:</span>
-            <div class="cta-buttons">
-              <span class="btn btn-primary btn-fake" aria-hidden="true">&nbsp;</span>
-              <a class="btn btn-ghost" href="smafix.html">Enkeltoppdrag</a>
-            </div>
-          </div>
-        </article>
-        <article class="service-card">
-          <div class="service-icon">🌿</div>
-          <div class="service-top">
-            <h3>HageFix</h3>
-          </div>
-          <p class="service-lead">Vi held hagen i orden - frå kantklipping og beskjering til opprydding. Utførast ved behov eller som fast vedlikehald.</p>
-          <div class="cta">
-            <span class="cta-label">Sjå detaljar:</span>
-            <div class="cta-buttons">
-
-              <a class="btn btn-primary" href="hagefix.html">Sesongavtale</a>
-
-              <a class="btn btn-ghost" href="hagefix-enkeltoppdrag.html">Enkeltoppdrag</a>
-            </div>
-          </div>
-        </article>
-        <article class="service-card">
-          <div class="service-icon">🧼</div>
-          <div class="service-top">
-            <h3>ReinFix</h3>
-          </div>
-          <p class="service-lead">Jamn orden og lett vedlikehaldsvask når bustaden treng ei oppfrisking. Praktisk hjelp, ryddig utført.</p>
-          <div class="cta">
-            <span class="cta-label">Sjå detaljar:</span>
-            <div class="cta-buttons">
-
-              <a class="btn btn-primary" href="reinfix.html">Vedlikehaldsavtale</a>
-
-              <a class="btn btn-ghost" href="reinfix-enkeltoppdrag.html">Enkeltoppdrag</a>
-            </div>
-          </div>
-        </article>
-        <article class="service-card" data-service-extra hidden>
-          <div class="service-icon">🌲</div>
-          <div class="service-top">
-            <h3>SkogFix</h3>
-          </div>
-          <p class="service-lead">Rydding av kratt og tre for betre sikt og mindre gjengroing.</p>
-          <div class="cta">
-            <span class="cta-label">Sjå detaljar:</span>
-            <div class="cta-buttons">
-
-              <a class="btn btn-primary" href="skogfix.html">Vedlikehaldsavtale</a>
-
-              <a class="btn btn-ghost" href="skogfix.html">Enkeltoppdrag</a>
-            </div>
-          </div>
-        </article>
-        <article class="service-card" data-service-extra hidden>
-          <div class="service-icon">🪨</div>
-          <div class="service-top">
-            <h3>SteinFix</h3>
-          </div>
-          <p class="service-lead">Skånsam fjerning av større steinar ved kontrollert splitting i mindre massar.</p>
-          <div class="cta">
-            <span class="cta-label">Sjå detaljar:</span>
-            <div class="cta-buttons">
-              <span class="btn btn-primary btn-fake" aria-hidden="true">&nbsp;</span>
-              <a class="btn btn-ghost" href="steinfix.html">Enkeltoppdrag</a>
-            </div>
-          </div>
-        </article>
-        <article class="service-card" data-service-extra hidden>
-          <div class="service-icon">❄️</div>
-          <div class="service-top">
-            <h3>SnøFix</h3>
-          </div>
-          <p class="service-lead">Føreseieleg snørydding gjennom vinteren. Avgrensa tal på avtalar.</p>
-          <div class="cta">
-            <span class="cta-label">Sjå detaljar:</span>
-            <div class="cta-buttons">
-
-              <a class="btn btn-primary" href="snofix.html">Sesongavtale</a>
-
-              <a class="btn btn-ghost" href="snofix-enkeltoppdrag.html">Enkeltoppdrag</a>
-            </div>
-          </div>
-        </article>
+    <article class="service-spotlight">
+      <div class="wrap spotlight-inner">
+        <div class="spotlight-icon spotlight-image" aria-hidden="true">
+          <img src="../TryggFix.png" alt="" />
+        </div>
+        <div class="spotlight-copy">
+          <span class="spotlight-kicker">TryggFix</span>
+          <h2>Fast tilsyn. Full ro.</h2>
+          <p>Vi ser til bustaden din jamleg, oppdagar ting tidleg og fiksar småproblem før dei veks.</p>
+          <a class="btn btn-primary" href="tryggfix.html">Sjå TryggFix</a>
+        </div>
       </div>
-      <div class="services-actions">
-        <button class="btn btn-ghost" type="button" data-services-toggle>Vis fleire avtalar og tenester</button>
+    </article>
+
+    <article class="service-spotlight reverse">
+      <div class="wrap spotlight-inner">
+        <div class="spotlight-icon spotlight-image" aria-hidden="true">
+          <img src="../SmåFix.png" alt="" />
+        </div>
+        <div class="spotlight-copy">
+          <span class="spotlight-kicker">SmåFix</span>
+          <h2>Små jobbar. Stor forskjell.</h2>
+          <p>Du peikar. Vi gjer. Rask og ryddig hjelp inne og ute, utan styr.</p>
+          <a class="btn btn-primary" href="smafix.html">Sjå SmåFix</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="service-spotlight">
+      <div class="wrap spotlight-inner">
+        <div class="spotlight-icon spotlight-image" aria-hidden="true">
+          <img src="../HageFix.png" alt="" />
+        </div>
+        <div class="spotlight-copy">
+          <span class="spotlight-kicker">HageFix</span>
+          <h2>Fin hage. Mindre stress.</h2>
+          <p>Vi held uteområdet ryddig med klipp, beskjering og enkel hagehjelp gjennom sesongen.</p>
+          <a class="btn btn-primary" href="hagefix.html">Sjå HageFix</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="service-spotlight reverse">
+      <div class="wrap spotlight-inner">
+        <div class="spotlight-icon spotlight-image" aria-hidden="true">
+          <img src="../ReinFix.png" alt="" />
+        </div>
+        <div class="spotlight-copy">
+          <span class="spotlight-kicker">ReinFix</span>
+          <h2>Reint heim. Meir ro.</h2>
+          <p>Vi tek den jamne oppfriskinga, slik at bustaden held seg ryddig, rein og klar.</p>
+          <a class="btn btn-primary" href="reinfix.html">Sjå ReinFix</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="service-spotlight">
+      <div class="wrap spotlight-inner">
+        <div class="spotlight-icon spotlight-image" aria-hidden="true">
+          <img src="../SnøFix.png" alt="" />
+        </div>
+        <div class="spotlight-copy">
+          <span class="spotlight-kicker">SnøFix</span>
+          <h2>Trygge vinterdagar.</h2>
+          <p>Vi ryddar snø når det trengst, så inngang, tun og tilkomst held seg trygg og framkomeleg.</p>
+          <a class="btn btn-primary" href="snofix.html">Sjå SnøFix</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="wrap services-more">
+      <div class="card">
+        <h3>Fleire tenester</h3>
+        <div class="services-links">
+          <a class="btn btn-ghost" href="skogfix.html">SkogFix</a>
+          <a class="btn btn-ghost" href="steinfix.html">SteinFix</a>
+          <a class="btn btn-primary" href="tjenester.html">Sjå alle tenester</a>
+        </div>
       </div>
     </div>
   </section>
@@ -579,6 +572,8 @@
     let lockDistance = 0;
     let lockOffset = 0;
     let scrollLocked = false;
+    let lastScrollY = window.scrollY;
+    let appliedMediaOffset = Number.NaN;
 
     const setScrollLocked = (nextLocked) => {
       scrollLocked = nextLocked;
@@ -586,9 +581,12 @@
     };
 
     const setLockOffset = (nextOffset) => {
-      if (!heroTitle) return;
+      if (!heroMedia) return;
       lockOffset = Math.max(0, Math.min(lockDistance, nextOffset));
-      heroTitle.style.transform = `translateY(${lockOffset}px)`;
+      if (lockOffset !== appliedMediaOffset) {
+        heroMedia.style.transform = `translate3d(0,${-lockOffset}px,0)`;
+        appliedMediaOffset = lockOffset;
+      }
       if (lockOffset >= lockDistance && scrollLocked) {
         setScrollLocked(false);
       }
@@ -606,6 +604,7 @@
         setLockOffset(lockDistance);
       }
       if (window.scrollY === 0 && lockDistance > 0) {
+        setLockOffset(0);
         setScrollLocked(true);
       }
     };
@@ -649,14 +648,19 @@
     const onScroll = () => {
       if (scrollLocked) return;
       if (window.scrollY === 0 && lockDistance > 0) {
+        const returningToTop = lastScrollY > 0;
+        setLockOffset(returningToTop ? lockDistance : 0);
         setScrollLocked(true);
       }
+      lastScrollY = window.scrollY;
     };
 
     updateHeroLayout();
     if (window.scrollY === 0 && lockDistance > 0) {
+      setLockOffset(0);
       setScrollLocked(true);
     }
+    lastScrollY = window.scrollY;
     window.addEventListener('load', updateHeroLayout);
     window.addEventListener('resize', () => {
       window.requestAnimationFrame(updateHeroLayout);
@@ -667,6 +671,31 @@
     document.addEventListener('touchend', onTouchEnd);
     document.addEventListener('keydown', onKeyDown);
     window.addEventListener('scroll', onScroll);
+
+    const spotlightIcons = Array.from(document.querySelectorAll('.spotlight-icon'));
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let spotlightTicking = false;
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const updateSpotlightIcons = () => {
+      spotlightTicking = false;
+      if (reduceMotion || !spotlightIcons.length) return;
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+      spotlightIcons.forEach((icon) => {
+        const rect = icon.getBoundingClientRect();
+        const progress = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
+        const offset = 18 - (progress * 30);
+        icon.style.setProperty('--float-y', `${offset.toFixed(1)}px`);
+      });
+    };
+    const queueSpotlightIcons = () => {
+      if (spotlightTicking) return;
+      spotlightTicking = true;
+      window.requestAnimationFrame(updateSpotlightIcons);
+    };
+    updateSpotlightIcons();
+    window.addEventListener('load', updateSpotlightIcons);
+    window.addEventListener('resize', queueSpotlightIcons);
+    window.addEventListener('scroll', queueSpotlightIcons, { passive: true });
 
     const langToggle = document.querySelector('[data-lang-toggle]');
     const langPanel = document.querySelector('[data-lang-panel]');
