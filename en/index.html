@@ -37,8 +37,8 @@
     }
     html[data-theme="dark"]{
       color-scheme:dark;
-      --bg:#0b1220;
-      --card:#0f1b33;
+      --bg:#000000;
+      --card:#0a0a0a;
       --line:rgba(255,255,255,.12);
       --white:#ffffff;
       --text-85:rgba(255,255,255,.85);
@@ -115,6 +115,8 @@
     .btn-primary:hover{filter:saturate(1.05) brightness(1.03)}
     .btn-ghost{background:var(--surface-06)}
     .btn-ghost:hover{background:var(--surface-10)}
+    .btn-light{background:#ffffff;color:#0b1220;border-color:rgba(255,255,255,.92)}
+    .btn-light:hover{background:rgba(255,255,255,.92)}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .theme-toggle{padding:10px 12px;border:none;border-radius:999px;min-width:48px;min-height:48px;background:transparent;color:#0f172a;transition:transform .2s ease}
     .theme-toggle:hover{transform:translateY(-1px);background:transparent}
@@ -160,12 +162,12 @@
     html[data-theme="dark"] .lang-panel .flag-no,
     html[data-theme="dark"] .lang-panel .flag-uk{border-color:#ffffff;border-width:2px}
 
-    .hero{--hero-image-height:360px;--hero-title-height:120px;--hero-title-gap:40px;padding:160px 0 34px}
+    .hero{--hero-image-height:360px;--hero-title-height:120px;--hero-title-gap:40px;--hero-title-travel:.5415;--hero-sticky-top:0px;padding:188px 0 34px}
     .hero-grid{display:grid;grid-template-columns: 1.3fr .9fr;gap:26px;align-items:start}
     .hero-body{margin-top:0}
     .hero-stack{position:relative;height:calc(var(--hero-title-height) + var(--hero-title-gap) + var(--hero-image-height))}
-    .hero-title-area{height:calc(var(--hero-title-height) + var(--hero-title-gap) + (var(--hero-image-height) * 0.5))}
-    .hero-title-sticky{position:relative;z-index:2}
+    .hero-title-area{height:calc(var(--hero-title-height) + var(--hero-title-gap) + (var(--hero-image-height) * var(--hero-title-travel)))}
+    .hero-title-sticky{position:sticky;top:var(--hero-sticky-top);z-index:2}
     .hero-title-sticky .wrap{padding:0 0 0 0.9cm}
     h1{
       margin:0;
@@ -179,11 +181,9 @@
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
     }
-    .hero-media{position:absolute;top:calc(var(--hero-title-height) + var(--hero-title-gap));left:0;right:0;height:var(--hero-image-height);opacity:0;animation:fade-in 1.2s ease forwards;transform:translate3d(0,0,0);will-change:transform,opacity;backface-visibility:hidden}
+    .hero-media{position:absolute;top:calc(var(--hero-title-height) + var(--hero-title-gap));left:0;right:0;height:var(--hero-image-height);opacity:0;animation:fade-in 1.2s ease forwards}
     .hero-media img{display:block;width:100%;height:100%;object-fit:cover}
     @keyframes fade-in{to{opacity:1}}
-    body.scroll-lock{overflow:hidden;touch-action:none}
-    body.scroll-lock .hero-title-sticky{will-change:transform}
     .lead{margin:28px 0 64px;color:var(--text-82);font-size:18px;line-height:1.55}
     .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
     .pill{border:1px solid var(--border-14);background:var(--surface-06);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--text-85);font-weight:700}
@@ -253,7 +253,7 @@
 
     @media (max-width: 920px){
       h1{font-size:42px;line-height:1.06}
-      .hero{--hero-image-height:320px}
+      .hero{--hero-image-height:320px;--hero-title-travel:.4964;--hero-sticky-top:0px;padding:176px 0 34px}
       .hero-grid{grid-template-columns:1fr;}
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
@@ -353,8 +353,8 @@
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">About FjordFix</span>
-          <h2>Practical help, no fuss.</h2>
-          <p class="compact">FjordFix gives you one dedicated contact, fast response, and tidy work. We help with small and large everyday tasks indoors and outdoors, in a simple way that fits both busy weekdays in central Bergen and quieter days in larger homes on Manger.</p>
+          <h2>Practical help. Properly done.</h2>
+          <p class="compact">Whether you need help in a city apartment or maintenance around the house, you get a fast response, one fixed point of contact, and work done properly.</p>
           <a class="btn btn-primary" href="om-fjordfix.html">Read about FjordFix</a>
         </div>
       </div>
@@ -367,7 +367,7 @@
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">CareFix</span>
-          <h2>Regular check-ins. Full peace of mind.</h2>
+          <h2>Regular check-ins.<br>Full peace of mind.</h2>
           <p>We keep an eye on your property regularly, catch issues early, and fix small problems before they grow.</p>
           <a class="btn btn-primary" href="tryggfix.html">See CareFix</a>
         </div>
@@ -395,7 +395,7 @@
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">GardenFix</span>
-          <h2>Tidy garden. Less stress.</h2>
+          <h2>Beautiful garden. All year.</h2>
           <p>We keep outdoor areas neat with trimming, pruning, and simple garden help throughout the season.</p>
           <a class="btn btn-primary" href="hagefix.html">See GardenFix</a>
         </div>
@@ -430,14 +430,20 @@
       </div>
     </article>
 
-    <div class="wrap services-more">
-      <h3>More services</h3>
-      <div class="services-links">
-        <a class="btn btn-ghost" href="skogfix.html">TreeFix</a>
-        <a class="btn btn-ghost" href="steinfix.html">StoneFix</a>
-        <a class="btn btn-ghost" href="tjenester.html">See all services</a>
+    <article class="service-spotlight reverse">
+      <div class="wrap spotlight-inner">
+        <div class="spotlight-icon spotlight-image" aria-hidden="true">
+          <img src="../SkogFix.png?v=20260302" alt="" />
+        </div>
+        <div class="spotlight-copy">
+          <span class="spotlight-kicker">TreeFix</span>
+          <h2>Woodland edges. Order. Clear views.</h2>
+          <p>We keep woodland edges, terrain and vegetation tidy through the year with targeted clearing and pruning where it makes the biggest difference.</p>
+          <a class="btn btn-primary" href="skogfix.html">See TreeFix</a>
+        </div>
       </div>
-    </div>
+    </article>
+
   </section>
 
   <!-- CONTACT -->
@@ -452,7 +458,7 @@
       <div class="contact-panel">
         <div class="contact-actions">
           <a class="btn btn-primary" href="kontakt.html">Get a quote</a>
-          <a class="btn btn-ghost" href="tel:+4748265364">Call now</a>
+          <a class="btn btn-light" href="tel:+4748265364">Call now</a>
         </div>
         <div class="note contact-note">⚠️ We don’t take work that requires certified trades (fixed electrical/plumbing/wet rooms).<br>If the job requires specialists, we’ll let you know.</div>
       </div>
@@ -465,7 +471,7 @@
       <div>© <span id="y"></span> FjordFix AS · Practical help for home and garden</div>
       <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="../for-ansatte.html" style="text-decoration:none">For ansatte</a>
       </div>
-      <div style="width:100%;font-size:12px;opacity:.7">crafted by fjordtind studio</div>
+      <div style="width:100%;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
 
@@ -565,108 +571,21 @@
     const hero = document.querySelector('.hero');
     const heroTitle = document.querySelector('.hero-title-sticky');
     const heroMedia = document.querySelector('.hero-media');
-    let lockDistance = 0;
-    let lockOffset = 0;
-    let scrollLocked = false;
-    let lastScrollY = window.scrollY;
-    let appliedMediaOffset = Number.NaN;
-
-    const setScrollLocked = (nextLocked) => {
-      scrollLocked = nextLocked;
-      document.body.classList.toggle('scroll-lock', scrollLocked);
-    };
-
-    const setLockOffset = (nextOffset) => {
-      if (!heroMedia) return;
-      lockOffset = Math.max(0, Math.min(lockDistance, nextOffset));
-      if (lockOffset !== appliedMediaOffset) {
-        heroMedia.style.transform = `translate3d(0,${-lockOffset}px,0)`;
-        appliedMediaOffset = lockOffset;
-      }
-      if (lockOffset >= lockDistance && scrollLocked) {
-        setScrollLocked(false);
-      }
-    };
 
     const updateHeroLayout = () => {
       if (!hero || !heroTitle || !heroMedia) return;
+      const heroStyles = window.getComputedStyle(hero);
+      if (window.scrollY <= 1) {
+        hero.style.setProperty('--hero-sticky-top', `${Math.round(heroTitle.getBoundingClientRect().top)}px`);
+      }
       hero.style.setProperty('--hero-title-height', `${heroTitle.offsetHeight}px`);
-      const titleRect = heroTitle.getBoundingClientRect();
-      const mediaRect = heroMedia.getBoundingClientRect();
-      const baseDistance = (mediaRect.top + (mediaRect.height * 0.46)) - titleRect.bottom;
-      const maxDistance = mediaRect.bottom - titleRect.bottom;
-      lockDistance = Math.max(0, Math.round(Math.min(baseDistance * 1.00, maxDistance)));
-      if (lockOffset > lockDistance) {
-        setLockOffset(lockDistance);
-      }
-      if (window.scrollY === 0 && lockDistance > 0) {
-        setLockOffset(0);
-        setScrollLocked(true);
-      }
-    };
-
-    const onWheel = (event) => {
-      if (!scrollLocked) return;
-      event.preventDefault();
-      setLockOffset(lockOffset + event.deltaY);
-    };
-
-    let touchStartY = null;
-    const onTouchStart = (event) => {
-      if (!scrollLocked || !event.touches || !event.touches.length) return;
-      touchStartY = event.touches[0].clientY;
-    };
-    const onTouchMove = (event) => {
-      if (!scrollLocked || touchStartY === null) return;
-      const currentY = event.touches[0].clientY;
-      const delta = touchStartY - currentY;
-      touchStartY = currentY;
-      event.preventDefault();
-      setLockOffset(lockOffset + delta);
-    };
-    const onTouchEnd = () => {
-      touchStartY = null;
-    };
-
-    const onKeyDown = (event) => {
-      if (!scrollLocked) return;
-      let delta = 0;
-      if (event.key === 'ArrowDown') delta = 40;
-      if (event.key === 'ArrowUp') delta = -40;
-      if (event.key === 'PageDown') delta = 300;
-      if (event.key === 'PageUp') delta = -300;
-      if (event.key === ' ') delta = event.shiftKey ? -300 : 300;
-      if (!delta) return;
-      event.preventDefault();
-      setLockOffset(lockOffset + delta);
-    };
-
-    const onScroll = () => {
-      if (scrollLocked) return;
-      if (window.scrollY === 0 && lockDistance > 0) {
-        const returningToTop = lastScrollY > 0;
-        setLockOffset(returningToTop ? lockDistance : 0);
-        setScrollLocked(true);
-      }
-      lastScrollY = window.scrollY;
     };
 
     updateHeroLayout();
-    if (window.scrollY === 0 && lockDistance > 0) {
-      setLockOffset(0);
-      setScrollLocked(true);
-    }
-    lastScrollY = window.scrollY;
     window.addEventListener('load', updateHeroLayout);
     window.addEventListener('resize', () => {
       window.requestAnimationFrame(updateHeroLayout);
     });
-    document.addEventListener('wheel', onWheel, { passive: false });
-    document.addEventListener('touchstart', onTouchStart, { passive: true });
-    document.addEventListener('touchmove', onTouchMove, { passive: false });
-    document.addEventListener('touchend', onTouchEnd);
-    document.addEventListener('keydown', onKeyDown);
-    window.addEventListener('scroll', onScroll);
 
     const spotlightIcons = Array.from(document.querySelectorAll('.spotlight-icon'));
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -677,10 +596,11 @@
       if (reduceMotion || !spotlightIcons.length) return;
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
       spotlightIcons.forEach((icon) => {
-        const rect = icon.getBoundingClientRect();
+        const section = icon.closest('.service-spotlight');
+        const rect = (section || icon).getBoundingClientRect();
         const progress = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
-        const range = icon.classList.contains('spotlight-logo') ? 42 : 30;
-        const offset = 18 - (progress * range);
+        const range = 30;
+        const offset = 15 - (progress * range);
         icon.style.setProperty('--float-y', `${offset.toFixed(1)}px`);
       });
     };
