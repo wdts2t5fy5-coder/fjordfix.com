@@ -655,7 +655,7 @@
     const cityInput = document.querySelector('input[name="Sted"]');
     if (postalInput && cityInput) {
       let postalTimer = null;
-      let postalRequest = null;
+      let postalLookupPromise = null;
 
       const setCityMode = ({ readOnly, placeholder, clearValue = false }) => {
         cityInput.readOnly = readOnly;
@@ -665,26 +665,20 @@
         }
       };
 
-      const fetchCity = async (postalCode) => {
-        if (postalRequest) {
-          postalRequest.abort();
+      const loadPostalLookup = async () => {
+        if (!postalLookupPromise) {
+          postalLookupPromise = import('https://cdn.skypack.dev/postnummer');
         }
-        postalRequest = new AbortController();
+        return postalLookupPromise;
+      };
+
+      const fetchCity = async (postalCode) => {
         try {
-          const response = await fetch(`https://ws.geonorge.no/adresser/v1/postnumre/${postalCode}`, {
-            signal: postalRequest.signal,
-          });
-          if (!response.ok) {
-            setCityMode({
-              readOnly: false,
-              placeholder: 'Fant ikke poststed. Skriv inn manuelt',
-              clearValue: true,
-            });
-            return;
-          }
-          const result = await response.json();
-          if (result && result.postnummer === postalCode && result.poststed) {
-            cityInput.value = result.poststed;
+          const module = await loadPostalLookup();
+          const postalLookup = module.default || module;
+          const poststed = typeof postalLookup.poststed === 'function' ? postalLookup.poststed(postalCode) : '';
+          if (poststed) {
+            cityInput.value = poststed;
             cityInput.readOnly = true;
             cityInput.placeholder = 'Sted fylles inn automatisk';
           } else {
@@ -695,7 +689,6 @@
             });
           }
         } catch (error) {
-          if (error.name === 'AbortError') return;
           setCityMode({
             readOnly: false,
             placeholder: 'Kunne ikke hente poststed. Skriv inn manuelt',
@@ -711,10 +704,6 @@
         }
         if (postalTimer) window.clearTimeout(postalTimer);
         if (postalCode.length !== 4) {
-          if (postalRequest) {
-            postalRequest.abort();
-            postalRequest = null;
-          }
           setCityMode({
             readOnly: true,
             placeholder: 'Sted fylles inn automatisk',
