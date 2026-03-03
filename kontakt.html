@@ -667,16 +667,30 @@
 
       const loadPostalLookup = async () => {
         if (!postalLookupPromise) {
-          postalLookupPromise = import('https://cdn.skypack.dev/postnummer');
+          postalLookupPromise = fetch('postnummer.csv')
+            .then((response) => {
+              if (!response.ok) throw new Error('postal-registry-unavailable');
+              return response.text();
+            })
+            .then((csv) => {
+              const lookup = new Map();
+              csv.split(/\r?\n/).slice(1).forEach((line) => {
+                if (!line) return;
+                const [code, city] = line.split(',');
+                if (code && city && !lookup.has(code)) {
+                  lookup.set(code, city.trim());
+                }
+              });
+              return lookup;
+            });
         }
         return postalLookupPromise;
       };
 
       const fetchCity = async (postalCode) => {
         try {
-          const module = await loadPostalLookup();
-          const postalLookup = module.default || module;
-          const poststed = typeof postalLookup.poststed === 'function' ? postalLookup.poststed(postalCode) : '';
+          const postalLookup = await loadPostalLookup();
+          const poststed = postalLookup.get(postalCode) || '';
           if (poststed) {
             cityInput.value = poststed;
             cityInput.readOnly = true;
