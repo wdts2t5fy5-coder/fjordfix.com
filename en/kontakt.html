@@ -116,19 +116,19 @@
     .back{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-weight:700;color:var(--orange);text-decoration:none}
     .section{padding:24px 0}
     .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
-    .contact-cards{display:grid;gap:12px;margin-top:20px}
-    .contact-card{border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:var(--card);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
-    .contact-card strong{color:var(--ink)}
-    .contact-heading{margin:96px 0 6px}
-    .contact-label{font-weight:700;color:var(--ink);margin:0 0 6px}
-    @media (min-width:720px){
-      .contact-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-    }
+    .contact-quick{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;margin-top:10px}
+    .contact-quick a{text-decoration:none;font-weight:700}
     .form{display:grid;gap:10px;margin-top:18px}
+    .form h3{margin:8px 0 0}
+    .form-top{display:grid;gap:24px}
+    .form-panel{display:grid;gap:10px;align-content:start}
     .form-row{display:grid;gap:10px}
     .form-row.form-row-equal{grid-template-columns:1fr 1fr}
     @media (min-width:720px){
       .form-row{grid-template-columns:1.6fr 1fr}
+    }
+    @media (min-width:980px){
+      .form-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
     }
     input,textarea,select{width:100%;padding:12px 12px;border-radius:14px;border:1px solid rgba(15,23,42,.14);background:#ffffff;color:var(--ink);outline:none;font-size:16px;line-height:1.5}
     .form select{font-size:16px;line-height:1.5;padding:14px 16px;min-height:48px;background:#ffffff;color:var(--ink);appearance:none;-webkit-appearance:none;color-scheme:light}
@@ -213,29 +213,39 @@
     <div class="section">
       <h1>Contact</h1>
       <p>Get in touch with questions or a request. We respond quickly.</p>
+      <div class="contact-quick">
+        <a href="tel:+4748265364">48 26 53 64</a>
+        <a href="mailto:kris@fjordfix.com">kris@fjordfix.com</a>
+      </div>
       <div style="margin-top:22px">
         <form class="form" name="foresporsel" method="post" data-netlify="true" netlify-honeypot="bot-field" action="/en/takk.html" enctype="multipart/form-data">
           <input type="hidden" name="form-name" value="foresporsel" />
           <p class="sr-only">
             <label>Do not fill out this field: <input name="bot-field" /></label>
           </p>
-          <h3>Who is booking?</h3>
-          <div class="form-row form-row-equal">
-            <input name="Fornavn" placeholder="First name" />
-            <input name="Etternavn" placeholder="Last name" />
-          </div>
-          <div class="form-row form-row-equal">
-            <input name="Telefon" placeholder="Phone" />
-            <input name="email" placeholder="Email" type="email" autocomplete="email" />
-          </div>
-          <h3>Where should it be fixed?</h3>
-          <div class="form-row form-row-equal">
-            <input name="Gateadresse" placeholder="Street address" />
-            <div aria-hidden="true"></div>
-          </div>
-          <div class="form-row form-row-equal">
-            <input name="Postkode" placeholder="Postal code" inputmode="numeric" autocomplete="postal-code" />
-            <input name="Sted" placeholder="City fills in automatically" readonly />
+          <div class="form-top">
+            <div class="form-panel">
+              <h3>Who is booking?</h3>
+              <div class="form-row form-row-equal">
+                <input name="Fornavn" placeholder="First name" />
+                <input name="Etternavn" placeholder="Last name" />
+              </div>
+              <div class="form-row form-row-equal">
+                <input name="Telefon" placeholder="Phone" />
+                <input name="email" placeholder="Email" type="email" autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-panel">
+              <h3>Where should it be fixed?</h3>
+              <div class="form-row form-row-equal">
+                <input name="Gateadresse" placeholder="Street address" />
+                <input name="Husnummer" placeholder="House number" />
+              </div>
+              <div class="form-row form-row-equal">
+                <input name="Postkode" placeholder="Postal code" inputmode="numeric" autocomplete="postal-code" />
+                <input name="Sted" placeholder="City fills in automatically" readonly />
+              </div>
+            </div>
           </div>
           <div class="job-block" data-job-block>
             <div class="job-section" data-job-section>
@@ -272,21 +282,6 @@
           </div>
           <button class="btn btn-primary" type="submit">Send</button>
         </form>
-      </div>
-      <h3 class="contact-heading">Contact info</h3>
-      <div class="contact-cards">
-        <div>
-          <div class="contact-label">Phone</div>
-          <div class="contact-card">
-            <a href="tel:+4748265364">48 26 53 64</a>
-          </div>
-        </div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-card">
-            <a href="mailto:krister.dyrkolbotn@icloud.com">krister.dyrkolbotn@icloud.com</a>
-          </div>
-        </div>
       </div>
     </div>
   </main>
@@ -528,9 +523,11 @@
         const last = data.get('Etternavn') || '';
         const navn = `${first} ${last}`.trim();
         const gateadresse = data.get('Gateadresse') || '';
+        const husnummer = data.get('Husnummer') || '';
         const postkode = data.get('Postkode') || '';
         const sted = data.get('Sted') || '';
-        const adresse = [gateadresse, postkode, sted].filter(Boolean).join(', ');
+        const gateadresseFull = [gateadresse, husnummer].filter(Boolean).join(' ');
+        const adresse = [gateadresseFull, postkode, sted].filter(Boolean).join(', ');
         const telefon = data.get('Telefon') || '';
         const email = data.get('email') || '';
         const serviceSelect = requestForm.querySelector('select[name="Tjeneste"]');
@@ -547,6 +544,7 @@
           telefon,
           email,
           gateadresse,
+          husnummer,
           postkode,
           sted,
           adresse,
@@ -568,6 +566,7 @@
           telefon,
           email,
           gateadresse,
+          husnummer,
           postkode,
           sted,
           navn,
