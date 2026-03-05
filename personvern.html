@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="nn">
+<html lang="no">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<title>FjordFix | Vedlikehaldsavtalar</title>
+<title>Personvern og cookies | FjordFix</title>
   <style>
     :root{--orange:#ff6a00;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff;--panel:#ffffff}
     *{box-sizing:border-box}
@@ -102,23 +102,33 @@
     html[data-theme="dark"] .lang-panel .flag-uk{border-color:#ffffff;border-width:2px}
     h1{margin:28px 0 8px;font-size:34px}
     h2{margin:0 0 6px;font-size:22px}
+    h3{margin:0 0 8px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
     p{margin:0 0 16px;color:var(--muted);line-height:1.6}
     .back{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-weight:700;color:var(--orange);text-decoration:none}
-    .section{padding:24px 0;display:grid;gap:18px}
-    .sub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-    .card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card);box-shadow:var(--shadow);display:grid;gap:10px}
-    .card .meta{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-    .btn-link{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:12px;border:1px solid transparent;background:var(--orange);text-decoration:none;font-weight:700;color:#ffffff;width:max-content}
-    .btn-link:hover{filter:brightness(.95)}
+    .section{padding:24px 0}
+    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
+    .services-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:24px}
+    .service-card{display:grid;gap:12px;padding:18px;border-radius:18px;border:1px solid var(--line);background:var(--card);box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    .service-icon{font-size:28px}
+    .service-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+    .service-tag{display:inline-flex;align-items:center;border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .service-lead{margin:0;color:var(--muted)}
+    .service-actions{margin-top:auto}
     .btn-primary{background:var(--orange);color:#ffffff;border-color:transparent}
     .btn-primary:hover{filter:brightness(.95)}
-    .callout{padding:18px;border-radius:16px;border:1px dashed var(--line);background:var(--surface-04);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;font-weight:700}
+    .card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card);box-shadow:var(--shadow)}
+    .intro-card{margin-top:18px}
+    .card h2{margin:0 0 18px}
+    .location-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    .location-note{margin-top:12px}
+    .service-detail{padding:20px;border-radius:18px;border:1px solid var(--line);background:var(--panel);scroll-margin-top:140px}
+    .service-detail + .service-detail{margin-top:18px}
+    .detail-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:8px}
+    .detail-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .detail-grid ul{margin:0;padding-left:18px;color:var(--ink)}
+    .detail-grid li{margin:6px 0}
+    .callout{margin-top:22px;padding:18px;border-radius:16px;border:1px dashed var(--line);background:var(--surface-04);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;font-weight:700}
     .callout p{margin:0;color:var(--ink)}
-    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
-    @media (max-width: 920px){
-      .sub-grid{grid-template-columns:1fr}
-    }
-    .muted{color:var(--muted)}
   </style>
 </head>
 <body>
@@ -128,7 +138,7 @@
       <div class="brand" aria-label="FjordFix">
         <div class="brand-title">
           <a class="brand-link" href="index.html" aria-label="Til forsiden">
-            <img src="../logo_white.png" data-logo-light="../logo_white.png" data-logo-dark="../logo_black.png" alt="FjordFix" />
+            <img src="logo_white.png" data-logo-light="logo_white.png" data-logo-dark="logo_black.png" alt="FjordFix" />
           </a>
         </div>
         <div class="nav-menu">
@@ -138,12 +148,12 @@
           </button>
             <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Bytt språk"><span class="flag-no" aria-hidden="true"></span></button>
             <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
-  <a href="../abonnementer.html" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a>
-  <a href="abonnementer.html" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a>
-  <a href="../en/abonnementer.html" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Utenlandsk</span></a>
+  <a href="index.html" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a>
+  <a href="nn/index.html" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a>
+  <a href="en/index.html" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Utenlandsk</span></a>
 </div>
           </div>
-          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Rolig no..." title="Rolig no...">
+          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Rolig nå..." title="Rolig nå...">
             <span class="bulb-wrap" aria-hidden="true">
               <svg class="bulb-full" viewBox="0 0 96 96" focusable="false">
                 <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
@@ -168,7 +178,7 @@
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="om-fjordfix.html">Om FjordFix</a>
             <a href="tjenester.html">Enkeltoppdrag</a>
-        <a href="vedlikeholdsavtaler.html">Vedlikehaldsavtalar</a>
+        <a href="vedlikeholdsavtaler.html">Vedlikeholdsavtaler</a>
             <a href="priser.html">Prisoversikt</a>
             <a href="kontakt.html">Kontakt</a>
 </div>
@@ -178,60 +188,24 @@
   </div>
   <main class="wrap">
     <div class="section">
-      <div>
-        <h1>Vedlikehaldsavtalar</h1>
-        <p>Fast vedlikehald for privatbustader, sameige og bedrifter. Her er dei mest populære avtalane våre.</p>
+      <h1>Personvern og cookies</h1>
+      <div class="card intro-card">
+        <p>FjordFix behandler opplysninger du selv sender inn i kontaktskjema (for eksempel navn, e-post, telefon, adresse og melding) for å kunne svare på henvendelsen og følge opp bestilling.</p>
+        <h2>Hva lagres</h2>
+        <p>Opplysninger fra skjema kan bli sendt videre til e-post og interne verktøy brukt for administrasjon av forespørsler. Vi bruker ikke markedsføringscookies.</p>
+        <h2>Cookies og lokal lagring</h2>
+        <p>Nettsiden bruker funksjonell lagring for språkvalg og tema (lyst/mørkt). Dette brukes kun for å forbedre brukeropplevelsen på siden.</p>
+        <h2>Kontakt</h2>
+        <p>Spørsmål om personvern kan sendes til <a href="mailto:kris@fjordfix.com">kris@fjordfix.com</a>.</p>
+        <p style="margin-top:18px;font-size:12px;opacity:.8">Sist oppdatert: 5. mars 2026</p>
       </div>
-
-      <div class="sub-grid">
-        <div class="card">
-          <div class="meta">Heilårsvedlikehaldsavtale</div>
-          <h2>🔐 TryggFix – tilsyn & småfix</h2>
-          <p>Trygt tilsyn og småfix som tek tak før det blir problem.</p>
-          <a class="btn-link" href="tryggfix.html">Les meir</a>
-        </div>
-
-        <div class="card">
-          <div class="meta">Sesong (april–oktober)</div>
-          <h2>🌿 HageFix – lett hagevedlikehald</h2>
-          <p>Ryddig uteområde med faste månadslege besøk og lett vedlikehald.</p>
-          <a class="btn-link" href="hagefix.html">Les meir</a>
-        </div>
-
-        <div class="card">
-          <div class="meta">2 besøk per månad</div>
-          <h2>🧼 ReinFix – vedlikehaldsvask</h2>
-          <p>Lett vedlikehaldsvask for eldre eller bustader som står tomme.</p>
-          <a class="btn-link" href="reinfix.html">Les meir</a>
-        </div>
-
-        <div class="card">
-          <div class="meta">Årleg vedlikehaldsavtale</div>
-          <h2>🌲 SkogFix – skogkant & terreng</h2>
-          <p>Førebyggjande rydding som held skogkant og terreng i sjakk.</p>
-          <a class="btn-link" href="skogfix.html">Les meir</a>
-        </div>
-        <div class="card">
-          <div class="meta">Sesong (november–mars)</div>
-          <h2>❄️ SnøFix – vinteravtale</h2>
-          <p>Snørydding og strøing som gjev trygg tilkomst heile vinteren.</p>
-          <a class="btn-link" href="snofix.html">Les meir</a>
-        </div>
-      </div>
-
-      <div class="callout">
-        <p>✔️ Usikker på kva slags hjelp du treng? Ta kontakt – så finn vi rett Fix for oppgåva.</p>
-        <a class="btn btn-primary" href="kontakt.html">Ta kontakt</a>
-      </div>
-
-      <a class="back" href="kontakt.html">Gå til kontakt</a>
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div><div><a href="../personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a></div></div><div style="display:flex;gap:14px;flex-wrap:wrap"><a href="../for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div>
+      <div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div><div><a href="personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a></div></div><div style="display:flex;gap:14px;flex-wrap:wrap"><a href="for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
@@ -264,7 +238,7 @@
         toggle.setAttribute('aria-pressed', isDark);
         toggle.setAttribute('data-state', isDark ? 'off' : 'on');
         const isBroken = toggle.getAttribute('data-broken') === 'true';
-        const label = isDark ? 'La det bli lys' : 'Rolig no...';
+        const label = isDark ? 'La det bli lys' : 'Rolig nå...';
         toggle.setAttribute('aria-label', label);
         toggle.setAttribute('title', label);
         const status = toggle.querySelector('[data-theme-status]');
@@ -334,7 +308,7 @@
       if (!path.endsWith('.html')) return `${path}.html`;
       return path;
     };
-    const basePath = normalizePath(currentPath);
+    const basePath = currentPath.includes("personvern.html") ? "/index.html" : normalizePath(currentPath);
     const isFile = window.location.protocol === 'file:';
     const isNn = isFile ? basePath.includes('/nn/') : basePath.startsWith('/nn/');
     const isEn = isFile ? basePath.includes('/en/') : basePath.startsWith('/en/');

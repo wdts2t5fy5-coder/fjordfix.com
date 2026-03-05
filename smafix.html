@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FjordFix | SmåFix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<title>FjordFix | SmåFix</title>
   <style>
     :root{--orange:#ff6a00;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff;--panel:#ffffff}
     *{box-sizing:border-box}
-    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background: radial-gradient(1200px 600px at 20% 0%, rgba(255,106,0,.22), transparent 60%), radial-gradient(900px 500px at 85% 10%, rgba(255,138,51,.14), transparent 55%), var(--bg)}
+    body{margin:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background:var(--bg)}
     html[data-theme="dark"]{color-scheme:dark;--bg:#000000;--card:#0a0a0a;--panel:#0a0a0a;--ink:#ffffff;--muted:rgba(255,255,255,.72);--line:rgba(255,255,255,.12);--surface-04:rgba(255,255,255,.06);--shadow:0 18px 60px rgba(0,0,0,.28)}
     a{color:inherit}
     body{min-height:100vh;display:flex;flex-direction:column}
@@ -15,17 +18,17 @@
 
     .wrap{max-width:1320px;margin:0 auto;padding:0 28px}
 
-    .nav{position:sticky;top:0;z-index:10;background:#ffffff;border-bottom:0;backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);box-shadow:none}
-    .nav::after{content:"";position:absolute;left:0;right:0;top:100%;height:48px;pointer-events:none;background:linear-gradient(to bottom, rgba(255,106,0,.14), rgba(255,106,0,.08) 42%, rgba(255,106,0,0));opacity:.40}
-    .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:12px 0;gap:14px}
+    .nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);border-bottom:0;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:none}
+    .nav::after{display:none}
+    .nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:18px 0;gap:14px}
     .brand{display:grid;grid-template-columns:1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
     .brand-left{display:flex;align-items:center;gap:16px}
     .brand-link{display:inline-flex;align-items:center;text-decoration:none}
-    .brand-title{display:flex;align-items:center;justify-content:flex-start;height:96px}
-    .brand-title img{height:76px;width:auto;display:block}
+    .brand-title{display:flex;align-items:center;justify-content:flex-start;height:112px}
+    .brand-title img{height:88px;width:auto;display:block}
     .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
     .nav-menu-stack{display:flex;flex-direction:row;gap:8px;align-items:center}
-    .lang-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}
+    .lang-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#f7fbfe;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}
     .lang-panel[hidden]{display:none}
     .lang-panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
     .lang-panel a:hover{background:var(--surface-04)}
@@ -36,7 +39,7 @@
 
     .lang-button{padding:0;overflow:hidden}
     .flag-no{display:block;width:100%;height:100%;border:2px solid #ffffff;border-radius:inherit;background:linear-gradient(90deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(180deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(90deg, transparent 38%, #ffffff 38% 62%, transparent 62%),linear-gradient(180deg, transparent 38%, #ffffff 38% 62%, transparent 62%),#ba0c2f;}
-    .menu-button{width:48px;height:48px;border-radius:12px;border:2px solid rgba(15,23,42,.12);background:#ffffff;display:grid;place-items:center;cursor:pointer}
+    .menu-button{width:48px;height:48px;border-radius:12px;border:2px solid rgba(15,23,42,.12);background:#f7fbfe;display:grid;place-items:center;cursor:pointer}
     .menu-button:hover{background:var(--surface-04)}
     .menu-icon{position:relative;width:22px;height:14px}
     .menu-icon::before,
@@ -45,7 +48,7 @@
     .menu-icon::before{top:0}
     .menu-icon span{top:6px}
     .menu-icon::after{bottom:0}
-    .menu-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#ffffff;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:4px}
+    .menu-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#f7fbfe;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:4px}
     .menu-panel[hidden]{display:none}
     .menu-panel a{padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
     .menu-panel a:hover{background:var(--surface-04)}
@@ -82,8 +85,8 @@
     .theme-toggle[data-broken="true"] .bulb-full{opacity:0}
     .theme-toggle[data-broken="true"] .bulb-broken{opacity:1;transform:translate(14px,22px) rotate(18deg)}
 
-    html[data-theme="dark"] .nav{background:var(--bg);border-bottom:0}
-    html[data-theme="dark"] .nav::after{background:linear-gradient(to bottom, rgba(255,106,0,.12), rgba(255,106,0,.07) 42%, rgba(255,106,0,0));opacity:.36}
+    html[data-theme="dark"] .nav{background:rgba(0,0,0,.92);border-bottom:0}
+    html[data-theme="dark"] .nav::after{display:none}
     html[data-theme="dark"] .lang-panel,
     html[data-theme="dark"] .menu-panel{background:var(--card);border-color:var(--line)}
     html[data-theme="dark"] .lang-panel a,
@@ -215,11 +218,9 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
-      <div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap"><a href="for-ansatte.html" style="text-decoration:none">For ansatte</a>
-      </div>
-      <div style="width:100%;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none">crafted by fjordtind.studio</a></div>
+    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
+      <div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div><div><a href="personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a></div></div><div style="display:flex;gap:14px;flex-wrap:wrap"><a href="for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div>
+      <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
 
