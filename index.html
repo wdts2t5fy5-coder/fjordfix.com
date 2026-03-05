@@ -65,6 +65,7 @@
       --input-text:#ffffff;
     }
     *{box-sizing:border-box}
+    html{scroll-snap-type:y mandatory;scroll-padding-top:140px}
     html,body{margin:0;padding:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--white); background:var(--bg);} 
     a{color:inherit}
     body{min-height:100vh;display:flex;flex-direction:column}
@@ -233,10 +234,20 @@
     .services-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
     .services-links .btn{min-height:54px;padding:14px 22px;border-radius:16px}
     .contact-panel{max-width:920px;margin:0 auto;text-align:center}
-    .contact-actions{margin:18px 0;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-    .contact-note{margin-top:46px}
-    #kontakt{margin-top:clamp(72px,10vh,140px)}
+    .contact-actions{margin:30px 0 18px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .contact-note{margin-top:46px;transform:translateY(32px)}
+    #kontakt{
+      margin-top:clamp(72px,10vh,140px);
+      padding:clamp(110px,14vh,200px) 0;
+      min-height:calc(100svh - 320px);
+      display:flex;
+      align-items:center;
+    }
+    .hero,
+    .service-spotlight,
+    #kontakt{scroll-snap-align:start;scroll-snap-stop:always}
     #kontakt .section-title{justify-content:center;text-align:center}
+    #kontakt .section-title h2{font-size:clamp(2rem,6vw,4rem);line-height:.96;letter-spacing:-1.2px}
 
     ul.clean{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px}
     ul.clean li{display:flex;gap:10px;align-items:flex-start;color:var(--text-78);line-height:1.45}
@@ -252,7 +263,7 @@
     textarea{min-height:120px;resize:vertical}
     input::placeholder,textarea::placeholder{color:var(--text-45)}
 
-    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66)}
+    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66);scroll-snap-align:end;scroll-snap-stop:always}
 
     @media (max-width: 920px){
       h1{font-size:42px;line-height:1.06}
@@ -272,7 +283,12 @@
       .service-spotlight.reverse .spotlight-copy{order:initial}
       .spotlight-copy h2{font-size:clamp(2rem,6vw,4rem)}
       .spotlight-copy p{font-size:clamp(20px,6vw,30px)}
-      #kontakt{margin-top:clamp(56px,9vh,108px)}
+      .contact-note{transform:translateY(18px)}
+      #kontakt{
+        margin-top:clamp(56px,9vh,108px);
+        padding:clamp(88px,12vh,150px) 0;
+        min-height:calc(100svh - 280px);
+      }
     }
   </style>
 </head>
@@ -457,7 +473,7 @@
     <div class="wrap">
       <div class="section-title">
         <div>
-          <h2>Kontakt</h2>
+          <h2>Kontakt.</h2>
         </div>
       </div>
 
