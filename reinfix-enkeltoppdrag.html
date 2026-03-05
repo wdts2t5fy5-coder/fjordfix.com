@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<title>FjordFix | ReinFix enkeltoppdrag</title>
+<title>FjordFix | RenFix enkeltoppdrag</title>
   <style>
     :root{--orange:#ff6a00;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff;--panel:#ffffff}
     *{box-sizing:border-box}
@@ -61,6 +61,20 @@
     .theme-toggle:hover{transform:translateY(-1px);background:transparent}
     .theme-toggle .bulb-wrap{position:relative;width:38px;height:38px;transform:translateY(0)}
     .theme-toggle svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s ease, transform .2s ease}
+    html.theme-switching,
+    html.theme-switching body,
+    html.theme-switching .nav,
+    html.theme-switching .hero,
+    html.theme-switching .service-spotlight,
+    html.theme-switching .section-title h2,
+    html.theme-switching .sub,
+    html.theme-switching .note,
+    html.theme-switching .btn,
+    html.theme-switching .menu-button,
+    html.theme-switching .lang-button,
+    html.theme-switching .lang-panel,
+    html.theme-switching .menu-panel,
+    html.theme-switching .footer{transition:background-color .42s ease, color .42s ease, border-color .42s ease, box-shadow .42s ease, opacity .42s ease}
     .theme-toggle .bulb-outline{stroke:var(--bulb-stroke);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
     .theme-toggle .bulb-fill{fill:var(--bulb-fill)}
     .theme-toggle .bulb-base{fill:var(--bulb-base)}
@@ -169,14 +183,14 @@
   <main class="wrap">
     <div class="section">
       <div class="meta">Enkeltoppdrag</div>
-      <h1>🧼 ReinFix</h1>
-      <p>ReinFix er for deg som trenger praktisk hjelp til vask og klargjøring ved behov – uten fast avtale.</p>
+      <h1>🧼 RenFix</h1>
+      <p>RenFix er for deg som trenger praktisk hjelp til vask og klargjøring ved behov – uten fast avtale.</p>
       <p>Når boligen trenger en oppfriskning før besøk, utleie, salg eller bare litt orden i hverdagen, tar FjordFix jobben.</p>
       <p>Dette er effektiv og ryddig vedlikeholdsvask, med fokus på det som gir mest synlig og merkbar effekt.</p>
     </div>
     <hr>
     <div class="section">
-      <div class="meta">Hva kan ReinFix brukes til?</div>
+      <div class="meta">Hva kan RenFix brukes til?</div>
       <ul>
         <li>Lett vask av gulv i utvalgte rom</li>
         <li>Tørking av støv på tilgjengelige flater</li>
@@ -188,7 +202,7 @@
     </div>
     <hr>
     <div class="section">
-      <div class="meta">Når passer ReinFix som enkeltoppdrag?</div>
+      <div class="meta">Når passer RenFix som enkeltoppdrag?</div>
       <ul>
         <li>Når boligen trenger en gjennomgang her og nå</li>
         <li>Før salg, visning eller besøk</li>
@@ -206,28 +220,29 @@
         <li>Effektiv og skånsom gjennomføring</li>
         <li>Boligen etterlates ryddig og trivelig</li>
       </ul>
-      <p>ReinFix handler om å få gjort det som ofte blir utsatt, på en enkel og ordentlig måte.</p>
+      <p>RenFix handler om å få gjort det som ofte blir utsatt, på en enkel og ordentlig måte.</p>
     </div>
     <hr>
     <div class="section">
       <div class="meta">Ønsker du jevn oppfølging?</div>
-      <p>ReinFix kan også leveres som vedlikeholdsavtale for deg som ønsker regelmessig vask og orden over tid.</p>
-      <p>👉 <a href="reinfix.html">Les mer om ReinFix som vedlikeholdsavtale</a></p>
+      <p>RenFix kan også leveres som vedlikeholdsavtale for deg som ønsker regelmessig vask og orden over tid.</p>
+      <p>👉 <a href="reinfix.html">Les mer om RenFix som vedlikeholdsavtale</a></p>
     </div>
     <hr>
     <div class="section">
       <div class="meta">Klar for å komme i gang?</div>
-      <p>Ta kontakt, så finner vi en ReinFix-løsning som passer boligen din.</p>
+      <p>Ta kontakt, så finner vi en RenFix-løsning som passer boligen din.</p>
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS · Praktisk hjelp i hus og hage – på strilavis</div><div><a href="personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a></div></div><div style="display:flex;gap:14px;flex-wrap:wrap"><a href="for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div>
+      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – på strilavis</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
+
 
 
   <script>
@@ -243,7 +258,12 @@
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
 
+    let themeTransitionTimer = null;
+
     const applyTheme = (theme) => {
+      root.classList.add('theme-switching');
+      if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
+      themeTransitionTimer = window.setTimeout(() => root.classList.remove('theme-switching'), 460);
       if (theme === 'dark') {
         root.setAttribute('data-theme', 'dark');
       } else {
