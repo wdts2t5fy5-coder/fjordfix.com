@@ -49,9 +49,6 @@
     .logo{
       display:flex;
       justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      gap:0;
       margin-bottom:20px;
     }
     .logo-link{
@@ -63,12 +60,9 @@
       width:auto;
       display:block;
     }
-    .logo > img:not(.text-logo){
-      height:380px;
-    }
-    .logo .text-logo{
-      height:84px;
-      margin-top:-52px;
+    .logo img{
+      width:min(500px, 100%);
+      height:auto;
     }
     h1{
       margin:28px 0 24px;
@@ -103,7 +97,7 @@
     }
     .btn-primary{
       border:none;
-      color:#0b1220;
+      color:#ffffff;
       background:linear-gradient(135deg,var(--orange),var(--orange2));
     }
     .foot{
@@ -126,8 +120,7 @@
   <main role="main" aria-labelledby="title">
     <a class="logo-link" href="https://fjordfix.com/" aria-label="Gå til fjordfix.com">
       <div class="logo">
-        <img src="/Logo.png" alt="FjordFix AS" />
-        <img class="text-logo" src="/Text_logo.png" alt="FjordFix" />
+        <img src="/logo_black.png" alt="FjordFix AS" />
       </div>
     </a>
     <h1 id="title">Me er straks på plass.</h1>
