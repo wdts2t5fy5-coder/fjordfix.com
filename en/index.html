@@ -412,8 +412,7 @@
           </button>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="om-fjordfix.html">About FjordFix</a>
-            <a href="tjenester.html">One&#8209;off&nbsp;jobs</a>
-        <a href="vedlikeholdsavtaler.html">Maintenance plans</a>
+            <a href="tjenester.html">Services</a>
           <a href="priser.html">Pricing</a>
             <a href="kontakt.html">Contact</a>
 </div>
@@ -442,7 +441,7 @@
 
   <!-- SERVICES -->
   <section id="tjenester" class="focus-services">
-    <article class="service-spotlight reverse">
+    <article class="service-spotlight">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-logo" aria-hidden="true">
           <img src="../Logo.png?v=20260302" alt="" />
@@ -456,24 +455,10 @@
       </div>
     </article>
 
-    <article class="service-spotlight">
-      <div class="wrap spotlight-inner">
-        <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="../TryggFix.png?v=20260302" alt="" />
-        </div>
-        <div class="spotlight-copy">
-          <span class="spotlight-kicker">CareFix</span>
-          <h2>Regular check-ins.<br>Full peace of mind.</h2>
-          <p>We keep an eye on your property regularly, catch issues early, and fix small problems before they grow.</p>
-          <a class="btn btn-primary" href="tryggfix.html">See CareFix</a>
-        </div>
-      </div>
-    </article>
-
     <article class="service-spotlight reverse">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="../SmaaFix.png?v=20260302" alt="" />
+          <img src="../SmåFix.png" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">HandyFix</span>
@@ -487,55 +472,13 @@
     <article class="service-spotlight">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="../HageFix.png?v=20260302" alt="" />
+          <img src="../HageFix_Hekketrimming.png" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">GardenFix</span>
           <h2>Beautiful garden. All year.</h2>
           <p>We keep outdoor areas neat with trimming, pruning, and simple garden help throughout the season.</p>
-          <a class="btn btn-primary" href="hagefix.html">See GardenFix</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="service-spotlight reverse">
-      <div class="wrap spotlight-inner">
-        <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="../ReinFix.png?v=20260302" alt="" />
-        </div>
-        <div class="spotlight-copy">
-          <span class="spotlight-kicker">CleanFix</span>
-          <h2>Cleaner home. More calm.</h2>
-          <p>We handle the regular refresh so your home stays tidy, clean, and ready.</p>
-          <a class="btn btn-primary" href="reinfix.html">See CleanFix</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="service-spotlight">
-      <div class="wrap spotlight-inner">
-        <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="../SnøFix.png?v=20260302" alt="" />
-        </div>
-        <div class="spotlight-copy">
-          <span class="spotlight-kicker">SnowFix</span>
-          <h2>Safer winter days.</h2>
-          <p>We clear snow when needed so entrances, driveways, and access routes stay safe and passable.</p>
-          <a class="btn btn-primary" href="snofix.html">See SnowFix</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="service-spotlight reverse">
-      <div class="wrap spotlight-inner">
-        <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="../SkogFix.png?v=20260302" alt="" />
-        </div>
-        <div class="spotlight-copy">
-          <span class="spotlight-kicker">TreeFix</span>
-          <h2>Woodland edges. Order. Clear views.</h2>
-          <p>We keep woodland edges, terrain and vegetation tidy through the year with targeted clearing and pruning where it makes the biggest difference.</p>
-          <a class="btn btn-primary" href="skogfix.html">See TreeFix</a>
+          <a class="btn btn-primary" href="hagefix-enkeltoppdrag.html">See GardenFix</a>
         </div>
       </div>
     </article>
@@ -564,7 +507,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – på strilavis</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
+      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Practical help for home and garden — for city and countryside.</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
@@ -700,8 +643,8 @@
         const rect = (section || icon).getBoundingClientRect();
         const progress = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
         const eased = 0.5 - (0.5 * Math.cos(progress * Math.PI));
-        const range = 54;
-        const offset = -27 + (eased * range);
+        const range = 72;
+        const offset = -36 + (eased * range);
         icon.style.setProperty('--float-y', `${offset.toFixed(1)}px`);
       });
     };

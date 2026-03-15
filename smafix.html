@@ -152,6 +152,10 @@
     .section{padding:24px 0}
     .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
     .meta{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    .card{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--card);box-shadow:var(--shadow)}
+    .intro-card{margin-top:18px}
+    .btn-primary{background:var(--orange);color:#ffffff;border-color:transparent}
+    .btn-primary:hover{filter:brightness(.95)}
   </style>
 </head>
 <body>
@@ -200,8 +204,7 @@
           </button>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="om-fjordfix.html">Om FjordFix</a>
-            <a href="tjenester.html">Enkeltoppdrag</a>
-        <a href="vedlikeholdsavtaler.html">Vedlikeholdsavtaler</a>
+            <a href="tjenester.html">Tjenester</a>
             <a href="priser.html">Prisoversikt</a>
             <a href="kontakt.html">Kontakt</a>
 </div>
@@ -212,58 +215,64 @@
 
   <main class="wrap">
     <div class="section">
-      <div class="meta">Enkeltoppdrag</div>
       <h1>🛠️ SmåFix – praktisk hjelp inne og ute</h1>
-      <p>SmåFix er for deg som trenger hjelp med små, praktiske oppgaver som ofte blir utsatt – men som gir stor forskjell når de først blir gjort.</p>
-      <p>Dette er jobber som er for små til håndverker, men for viktige til å bli liggende.</p>
-      <p>SmåFix passer godt når du vil få gjort én eller flere oppgaver på en effektiv og ryddig måte.</p>
+      <div class="card intro-card">
+        <p>SmåFix er for deg som trenger hjelp med små, praktiske oppgaver som ofte blir utsatt – men som gir stor forskjell når de først blir gjort.</p>
+        <p>Dette er jobber som er for små til håndverker, men for viktige til å bli liggende.</p>
+        <p>SmåFix passer godt når du vil få gjort én eller flere oppgaver på en effektiv og ryddig måte.</p>
+      </div>
     </div>
-    <hr>
     <div class="section">
-      <div class="meta">Hva kan SmåFix brukes til?</div>
-      <ul>
-        <li>Montering av hyller, gardiner og TV-fester</li>
-        <li>Små reparasjoner og justeringer</li>
-        <li>Skifte av blandebatteri</li>
-        <li>Justering av dører, skuffer og beslag</li>
-        <li>Enkle vedlikeholdsoppgaver inne</li>
-        <li>Legge ny fugemasse</li>
-        <li>Mindre oppgaver ute, som rydding eller demontering</li>
-      </ul>
+      <div class="card">
+        <div class="meta">Hva kan SmåFix brukes til?</div>
+        <ul>
+          <li>Montering av hyller, gardiner og TV-fester</li>
+          <li>Små reparasjoner og justeringer</li>
+          <li>Skifte av blandebatteri</li>
+          <li>Justering av dører, skuffer og beslag</li>
+          <li>Enkle vedlikeholdsoppgaver inne</li>
+          <li>Legge ny fugemasse</li>
+          <li>Mindre oppgaver ute, som rydding eller demontering</li>
+        </ul>
+      </div>
     </div>
-    <hr>
     <div class="section">
-      <div class="meta">Når passer SmåFix?</div>
-      <ul>
-        <li>Når du har flere små jobber som har blitt liggende</li>
-        <li>Når du vil få unna praktiske ting på én økt</li>
-        <li>Når oppgaven er for liten til å bestille håndverker</li>
-        <li>For eldre eller andre som ønsker praktisk hjelp</li>
-        <li>Før salg, utleie eller besøk</li>
-      </ul>
+      <div class="card">
+        <div class="meta">Når passer SmåFix?</div>
+        <ul>
+          <li>Når du har flere små jobber som har blitt liggende</li>
+          <li>Når du vil få unna praktiske ting på én økt</li>
+          <li>Når oppgaven er for liten til å bestille håndverker</li>
+          <li>For eldre eller andre som ønsker praktisk hjelp</li>
+          <li>Før salg, utleie eller besøk</li>
+        </ul>
+      </div>
     </div>
-    <hr>
     <div class="section">
-      <div class="meta">Slik jobber FjordFix</div>
-      <ul>
-        <li>Oppdrag avtales på forhånd</li>
-        <li>Tydelig pris og forventet tidsbruk</li>
-        <li>Effektiv gjennomføring</li>
-        <li>Ryddig avslutning</li>
-      </ul>
-      <p>SmåFix handler om å få ting gjort, uten styr.</p>
+      <div class="card">
+        <div class="meta">Slik jobber FjordFix</div>
+        <ul>
+          <li>Oppdrag avtales på forhånd</li>
+          <li>Tydelig pris og forventet tidsbruk</li>
+          <li>Effektiv gjennomføring</li>
+          <li>Ryddig avslutning</li>
+        </ul>
+        <p>SmåFix handler om å få ting gjort, uten styr.</p>
+      </div>
     </div>
-    <hr>
     <div class="section">
-      <div class="meta">Klar for å komme i gang?</div>
-      <p>Ta kontakt, så finner vi en løsning som passer for deg.</p>
+      <div class="card">
+        <div class="meta">Klar for å komme i gang?</div>
+        <p>Ta kontakt, så finner vi en løsning som passer for deg.</p>
+        <a class="btn btn-primary" href="kontakt.html">Gå til kontakt</a>
+      </div>
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – på strilavis</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
+      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>

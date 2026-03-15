@@ -85,6 +85,8 @@
     .mark{width:110px;height:110px;display:grid;place-items:center}
     .mark img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(15,23,42,.12);padding:12px 14px;border-radius:14px;text-decoration:none;font-weight:800;background:transparent;color:inherit}
+    .btn-primary{background:linear-gradient(135deg,var(--orange),#165A74);color:#ffffff;border:none}
+    .btn-primary:hover{filter:saturate(1.05) brightness(1.03)}
     .btn-ghost{background:var(--surface-04)}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     .theme-toggle{padding:10px 12px;border:none;border-radius:999px;min-width:48px;min-height:48px;background:transparent;color:#0f172a;transition:transform .2s ease}
@@ -202,8 +204,7 @@
           </button>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="om-fjordfix.html">Om FjordFix</a>
-            <a href="tjenester.html">Enkeltoppdrag</a>
-        <a href="vedlikeholdsavtaler.html">Vedlikehaldsavtalar</a>
+            <a href="tjenester.html">Tjenester</a>
             <a href="priser.html">Prisoversikt</a>
             <a href="kontakt.html">Kontakt</a>
 </div>
@@ -216,33 +217,22 @@
       <h1>Prisoversikt</h1>
       <div class="card" style="margin:18px 0">
         <h2>Priser</h2>
-        <p>Hos FjordFix skal det vere enkelt å forstå kva du betaler for. Du får alltid tydeleg pris før vi startar – ingen overraskingar.</p>
-        <p><strong>Timepris:</strong> 690 kr<br><strong>Minstepris:</strong> 1,5 time per oppdrag</p>
-        <p>Minsteprisen dekkjer oppstart, klargjering og køyring i nærområdet.</p>
-        <p>For større eller tydeleg avgrensa jobbar blir fastpris avtalt på førehand.</p>
-      </div>
-
-      <div class="price-grid">
-        <div class="card">
-          <h2>Reiseveg</h2>
-          <p>FjordFix er stasjonert i Knarvik. Oppdrag innan ca. 20 minutt reise går til ordinær pris. Ved lengre reiseveg blir pris eller samla økt avtalt på førehand.</p>
-        </div>
-        <div class="card">
-          <h2>Vedlikehaldsavtale</h2>
-          <p>Vedlikehaldsavtalar har fast pris og tydeleg innhald, og gjev føreseieleg hjelp over tid.</p>
-        </div>
+        <p>Hos FjordFix skal det vere enkelt å forstå kva du betaler for.</p>
+        <p><strong>Timepris:</strong> 750 kr<br><strong>Minstepris:</strong> 2 timar per oppdrag</p>
+        <p>Tidsbruk blir rekna frå avreise frå Knarvik. Reisetid til og frå oppdrag inngår derfor i medgått tid.</p>
+        <p>For større eller tydeleg avgrensa jobbar kan fastpris eller prisestimat avtalast på førehand.</p>
       </div>
 
       <h2>Usikker på kva det vil koste?</h2>
       <p>Ta kontakt – så gjev eg eit ærleg overslag eller forslag til løysing.</p>
-      <a class="back" href="kontakt.html">Gå til kontakt</a>
+      <a class="btn btn-primary" href="kontakt.html">Gå til kontakt</a>
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – på strilavis</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
+      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>

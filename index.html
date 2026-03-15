@@ -263,6 +263,9 @@
     .service-spotlight:nth-of-type(odd){background:transparent}
     .service-spotlight:nth-of-type(even){background:transparent}
     .spotlight-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,72px);align-items:center;padding:56px 28px}
+    @media (min-width: 921px){
+      .spotlight-inner{transform:translateY(-24px)}
+    }
     .spotlight-icon{--float-y:0px;font-size:clamp(130px,20vw,260px);line-height:.9;text-align:center;filter:none;transform:translate3d(0,var(--float-y),0);transition:transform .18s linear}
     .spotlight-copy h2{margin:0 0 16px;font-size:clamp(2rem,6vw,4rem);line-height:.96;letter-spacing:-1.2px}
     .spotlight-copy p{margin:0 0 26px;font-size:clamp(24px,2.8vw,38px);line-height:1.18;color:var(--text-82);max-width:20ch}
@@ -410,8 +413,7 @@
           </button>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="om-fjordfix.html">Om FjordFix</a>
-            <a href="tjenester.html">Enkeltoppdrag</a>
-        <a href="vedlikeholdsavtaler.html">Vedlikeholdsavtaler</a>
+            <a href="tjenester.html">Tjenester</a>
           <a href="priser.html">Prisoversikt</a>
             <a href="kontakt.html">Kontakt</a>
 </div>
@@ -427,7 +429,7 @@
       <div class="hero-title-area">
         <div class="hero-title-sticky">
           <div class="wrap">
-            <h1>Praktisk hjelp i hus og hage<br>– <span style="color:var(--orange)">på strilavis</span>.</h1>
+            <h1>Praktisk hjelp i hus og hage<br>– <span style="color:var(--orange)">for byfolk og stril</span>.</h1>
           </div>
         </div>
       </div>
@@ -440,7 +442,7 @@
 
   <!-- SERVICES -->
   <section id="tjenester" class="focus-services">
-    <article class="service-spotlight reverse">
+    <article class="service-spotlight">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-logo" aria-hidden="true">
           <img src="Logo.png?v=20260302" alt="" />
@@ -454,24 +456,10 @@
       </div>
     </article>
 
-    <article class="service-spotlight">
-      <div class="wrap spotlight-inner">
-        <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="TryggFix.png?v=20260302" alt="" />
-        </div>
-        <div class="spotlight-copy">
-          <span class="spotlight-kicker">TryggFix</span>
-          <h2>Fast tilsyn.<br>Full ro.</h2>
-          <p>Vi ser til boligen din jevnlig, oppdager ting tidlig og fikser småproblemer før de vokser.</p>
-          <a class="btn btn-primary" href="tryggfix.html">Se TryggFix</a>
-        </div>
-      </div>
-    </article>
-
     <article class="service-spotlight reverse">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="SmaaFix.png?v=20260302" alt="" />
+          <img src="SmåFix.png" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">SmåFix</span>
@@ -485,55 +473,13 @@
     <article class="service-spotlight">
       <div class="wrap spotlight-inner">
         <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="HageFix.png?v=20260302" alt="" />
+          <img src="HageFix_Hekketrimming.png" alt="" />
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">HageFix</span>
           <h2>Fin hage.<br>Hele året.</h2>
           <p>Vi holder uteområdet ryddig med klipp, beskjæring og enkel hagehjelp gjennom sesongen.</p>
-          <a class="btn btn-primary" href="hagefix.html">Se HageFix</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="service-spotlight reverse">
-      <div class="wrap spotlight-inner">
-        <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="RenFix.png?v=20260302" alt="" />
-        </div>
-        <div class="spotlight-copy">
-          <span class="spotlight-kicker">RenFix</span>
-          <h2>Rent hjem.<br>Mer ro.</h2>
-          <p>Vi tar den jevne oppfriskningen, slik at boligen holder seg ryddig, ren og klar.</p>
-          <a class="btn btn-primary" href="reinfix.html">Se RenFix</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="service-spotlight">
-      <div class="wrap spotlight-inner">
-        <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="SnøFix.png?v=20260302" alt="" />
-        </div>
-        <div class="spotlight-copy">
-          <span class="spotlight-kicker">SnøFix</span>
-          <h2>Trygge vinterdager.</h2>
-          <p>Vi rydder snø når det trengs, så inngang, gårdsplass og adkomst holder seg trygg og fremkommelig.</p>
-          <a class="btn btn-primary" href="snofix.html">Se SnøFix</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="service-spotlight reverse">
-      <div class="wrap spotlight-inner">
-        <div class="spotlight-icon spotlight-image" aria-hidden="true">
-          <img src="SkogFix.png?v=20260302" alt="" />
-        </div>
-        <div class="spotlight-copy">
-          <span class="spotlight-kicker">SkogFix</span>
-          <h2>Trygg rydding. Klar utsikt.</h2>
-          <p>Vi holder skogkant, terreng og vegetasjon ryddig gjennom året med målrettet rydding og beskjæring der det gir mest effekt.</p>
-          <a class="btn btn-primary" href="skogfix.html">Se SkogFix</a>
+          <a class="btn btn-primary" href="hagefix-enkeltoppdrag.html">Se HageFix</a>
         </div>
       </div>
     </article>
@@ -562,7 +508,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – på strilavis</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
+      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
@@ -687,8 +633,8 @@
         const rect = (section || icon).getBoundingClientRect();
         const progress = clamp((viewportHeight - rect.top) / (viewportHeight + rect.height), 0, 1);
         const eased = 0.5 - (0.5 * Math.cos(progress * Math.PI));
-        const range = 54;
-        const offset = -27 + (eased * range);
+        const range = 72;
+        const offset = -36 + (eased * range);
         icon.style.setProperty('--float-y', `${offset.toFixed(1)}px`);
       });
     };

@@ -246,8 +246,7 @@
           </button>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="om-fjordfix.html">Om FjordFix</a>
-            <a href="tjenester.html">Enkeltoppdrag</a>
-        <a href="vedlikeholdsavtaler.html">Vedlikeholdsavtaler</a>
+            <a href="tjenester.html">Tjenester</a>
             <a href="priser.html">Prisoversikt</a>
             <a href="kontakt.html">Kontakt</a>
 </div>
@@ -299,19 +298,9 @@
               <div class="form-row form-row-equal" data-job-row>
                 <select name="Tjeneste">
                   <option value="" disabled selected>Velg oppdrag</option>
-                <option value="tryggfix">🔐 TryggFix</option>
                 <option value="smafix">🛠️ SmåFix</option>
                 <option value="hagefix">🌿 HageFix</option>
-                <option value="reinfix">🧼 RenFix</option>
-                <option value="skogfix">🌲 SkogFix</option>
-                <option value="steinfix">🪨 SteinFix</option>
-                <option value="snofix">❄️ SnøFix</option>
                   <option value="annet">Annet</option>
-                </select>
-                <select name="Oppdragstype">
-                  <option value="" disabled selected>Velg oppdragstype</option>
-                  <option value="enkeltoppdrag">Enkeltoppdrag</option>
-                  <option value="vedlikeholdsavtale">Vedlikeholdsavtale</option>
                 </select>
               </div>
               <div class="textarea-wrap">
@@ -335,7 +324,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – på strilavis</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
+      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
@@ -526,35 +515,11 @@
       });
     }
 
-    const allowedTypes = {
-      smafix: ['enkeltoppdrag'],
-      hagefix: ['enkeltoppdrag', 'vedlikeholdsavtale'],
-      tryggfix: ['vedlikeholdsavtale'],
-      reinfix: ['enkeltoppdrag', 'vedlikeholdsavtale'],
-      snofix: ['enkeltoppdrag', 'vedlikeholdsavtale'],
-      skogfix: ['enkeltoppdrag', 'vedlikeholdsavtale'],
-      steinfix: ['enkeltoppdrag'],
-      annet: ['enkeltoppdrag', 'vedlikeholdsavtale'],
-    };
     const bindJobRow = (section) => {
       const row = section.querySelector('[data-job-row]');
       if (!row) return;
       const serviceSelect = row.querySelector('select[name="Tjeneste"]');
-      const typeSelect = row.querySelector('select[name="Oppdragstype"]');
-      if (!serviceSelect || !typeSelect) return;
-      const updateTypeOptions = () => {
-        const service = serviceSelect.value;
-        const allowed = allowedTypes[service] || [];
-        Array.from(typeSelect.options).forEach((option) => {
-          if (!option.value) return;
-          option.disabled = !allowed.includes(option.value);
-        });
-        if (typeSelect.value && !allowed.includes(typeSelect.value)) {
-          typeSelect.value = '';
-        }
-      };
-      serviceSelect.addEventListener('change', updateTypeOptions);
-      updateTypeOptions();
+      if (!serviceSelect) return;
     };
     document.querySelectorAll('[data-job-section]').forEach(bindJobRow);
     const jobBlock = document.querySelector('[data-job-block]');
@@ -581,9 +546,7 @@
         const telefon = data.get('Telefon') || '';
         const email = data.get('email') || '';
         const serviceSelect = requestForm.querySelector('select[name="Tjeneste"]');
-        const typeSelect = requestForm.querySelector('select[name="Oppdragstype"]');
         const tjeneste = serviceSelect ? serviceSelect.options[serviceSelect.selectedIndex]?.text : '';
-        const type = typeSelect ? typeSelect.options[typeSelect.selectedIndex]?.text : '';
         const beskrivelse = data.get('Beskrivelse') || '';
         const id = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now());
         const record = {
@@ -599,7 +562,6 @@
           sted,
           adresse,
           tjeneste,
-          type,
           beskrivelse,
           kommentar: beskrivelse,
           status: 'ny',
