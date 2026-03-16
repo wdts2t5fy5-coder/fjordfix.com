@@ -176,18 +176,22 @@
     }
     @media (min-width:980px){
       .form-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+      .job-block{width:calc((100% - 28px) / 2)}
     }
-    input,textarea,select{width:100%;padding:12px 12px;border-radius:14px;border:1px solid rgba(15,23,42,.14);background:#ffffff;color:var(--ink);outline:none;font-size:16px;line-height:1.5}
+    input,textarea,select{width:100%;padding:12px 12px;border-radius:14px;border:1px solid rgba(15,23,42,.14);background:#ffffff;color:var(--ink);outline:none;font-size:16px;line-height:1.5;font-family:inherit;font-weight:400}
     .form select{font-size:16px;line-height:1.5;padding:14px 16px;min-height:48px;background:#ffffff;color:var(--ink);appearance:none;-webkit-appearance:none;color-scheme:light}
     .form select option{background:#ffffff;color:var(--ink)}
     textarea{min-height:120px;max-height:600px;resize:vertical}
     input::placeholder,textarea::placeholder{color:rgba(15,23,42,.55)}
     .muted{color:var(--muted)}
-    .job-block{display:grid;gap:10px}
+    .job-block{display:grid;gap:10px;margin-top:16px}
     .job-section{display:grid;gap:10px}
+    .form-row > *, .textarea-wrap{width:calc(100% - 12px);justify-self:start}
+    [data-job-row] > *{width:calc(100% - 12px);justify-self:start}
+    .form .btn-primary[type="submit"]{width:calc(100% - 12px);justify-self:start}
     .textarea-wrap{position:relative}
     .textarea-wrap textarea{padding-left:66px;padding-bottom:88px}
-    .attachment-label{position:absolute;left:10px;bottom:10px;width:48px;height:48px;border-radius:12px;border:1px solid rgba(15,23,42,.2);background:#e5e7eb;display:grid;place-items:center;cursor:pointer}
+    .attachment-label{position:absolute;left:10px;bottom:14px;width:48px;height:48px;border-radius:12px;border:1px solid rgba(15,23,42,.2);background:#e5e7eb;display:grid;place-items:center;cursor:pointer}
     .attachment-label input{position:absolute;left:-9999px}
     .attachment-label svg{width:28px;height:28px;stroke:#6b7280;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
     .attachment-preview{position:absolute;left:66px;bottom:6px;display:flex;align-items:center;gap:8px;max-width:320px;flex-wrap:wrap}
@@ -198,6 +202,9 @@
     .job-btn{width:36px;height:36px;border-radius:10px;border:1px solid rgba(15,23,42,.18);background:#ffffff;color:var(--ink);font-size:20px;font-weight:700;line-height:1;cursor:pointer}
     .job-btn:disabled{opacity:.4;cursor:not-allowed}
     .fix-label{display:block;margin:0 0 6px;font-size:0.95em;color:var(--ink);font-weight:700}
+    @media (min-width:980px){
+      .form .btn-primary[type="submit"]{width:calc(((100% - 28px) / 2) - 12px)}
+    }
   </style>
 </head>
 <body>
@@ -257,14 +264,11 @@
   <main class="wrap">
     <div class="section">
       <h1>Kontakt</h1>
-      <p>Ta kontakt for spørsmål eller bestilling. Vi svarar raskt.</p>
-      <div class="contact-quick">
-        <a href="tel:+4748265364">48 26 53 64</a>
-        <a href="mailto:kris@fjordfix.com">kris@fjordfix.com</a>
-      </div>
+      <p>Ta kontakt for spørsmål eller bestilling, så følgjer eg opp så snart som mogleg.</p>
       <div style="margin-top:22px">
         <form class="form" name="foresporsel" method="post" data-netlify="true" netlify-honeypot="bot-field" action="/nn/takk.html" enctype="multipart/form-data">
           <input type="hidden" name="form-name" value="foresporsel" />
+          <input type="hidden" name="subject" value="Ny FjordFix-førespurnad" />
           <p class="sr-only">
             <label>Ikkje fyll ut dette feltet: <input name="bot-field" /></label>
           </p>
@@ -304,7 +308,7 @@
                 </select>
               </div>
               <div class="textarea-wrap">
-                <textarea name="Beskriving" placeholder="Kort beskriving. Legg gjerne til bilete eller vedlegg også." data-word-limit="300"></textarea>
+                <textarea name="Beskriving" placeholder="Kort beskriving. Legg gjerne til bilete eller vedlegg også." data-word-limit="200"></textarea>
                 <label class="attachment-label" aria-label="Legg ved filer">
                   <input type="file" name="Vedlegg" multiple />
                   <svg viewBox="-2 0 26 24" aria-hidden="true">
@@ -315,7 +319,7 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary" type="submit">Send</button>
+          <button class="btn btn-primary" type="submit" style="margin-top:16px">Send</button>
         </form>
       </div>
     </div>
@@ -324,7 +328,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="font-size:12px;opacity:.8"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
@@ -530,7 +534,7 @@
     }
 
     const requestForm = document.querySelector('form[name="foresporsel"]');
-    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbxgT4003G2LDXx833XM6TflgXNTvTF78fmY1kZyWh2Q41XKLO9dEPJ2FEJ9rCuRVEA/exec';
+    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbx990wNsgUbjKyHhbOnG8LkfSbqGIm4975GSf01yosZkAQUbi0tIFX2fr9PDT41VVTq/exec';
     if (requestForm) {
       requestForm.addEventListener('submit', () => {
         const data = new FormData(requestForm);
@@ -584,7 +588,6 @@
           navn,
           adresse,
           tjeneste,
-          type,
           beskrivelse,
           kommentar: beskrivelse,
           status: 'ny',

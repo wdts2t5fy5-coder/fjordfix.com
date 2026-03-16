@@ -291,7 +291,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="font-size:12px;opacity:.8"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
@@ -490,7 +490,7 @@
     const monthNext = document.querySelector('[data-month-next]');
     const monthGrid = document.querySelector('[data-month-grid]');
     const weekCard = document.querySelector('[data-week-card]');
-    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbxgT4003G2LDXx833XM6TflgXNTvTF78fmY1kZyWh2Q41XKLO9dEPJ2FEJ9rCuRVEA/exec';
+    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbx990wNsgUbjKyHhbOnG8LkfSbqGIm4975GSf01yosZkAQUbi0tIFX2fr9PDT41VVTq/exec';
 
     const loadRequests = async () => {
       try {
@@ -590,6 +590,8 @@
       if (lower.includes('enkeltoppdrag') || lower.includes('one')) return 'O';
       return '';
     };
+    const displayName = (item) => item.navn || [item.fornavn, item.etternavn].filter(Boolean).join(' ');
+    const displayAddress = (item) => item.adresse || [item.gateadresse, item.postkode, item.sted].filter(Boolean).join(', ');
     const firstName = (value) => {
       if (!value) return '';
       return String(value).trim().split(/\s+/)[0] || '';
@@ -645,8 +647,8 @@
         row.className = 'schedule-row';
         row.innerHTML = `
           <div class=\"schedule-meta\">
-            <strong>${item.navn || ''}</strong>
-            <small>${item.adresse || ''}</small><br>
+            <strong>${displayName(item) || ''}</strong>
+            <small>${displayAddress(item) || ''}</small><br>
             <small>${item.tjeneste || ''} · ${shortType(item.type) || ''}</small>
           </div>
           <div class=\"schedule-timeline\">
@@ -723,7 +725,7 @@
             const event = document.createElement('div');
             event.className = 'month-event';
             if (item.status === 'fakturert' || item.status === 'invoiced') event.classList.add('is-invoiced');
-            const nameLabel = firstName(item.navn);
+            const nameLabel = firstName(displayName(item));
             const taskLabel = item.tjeneste || '';
             const typeLetter = shortTypeLetter(item.type);
             const typeLabel = typeLetter ? `(${typeLetter})` : '';

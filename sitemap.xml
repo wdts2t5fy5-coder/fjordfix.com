@@ -25,6 +25,9 @@
     <loc>https://fjordfix.com/en/tjenester.html</loc>
   </url>
   <url>
+    <loc>https://fjordfix.com/en/vedlikeholdsavtaler.html</loc>
+  </url>
+  <url>
     <loc>https://fjordfix.com/hagefix-enkeltoppdrag.html</loc>
   </url>
   <url>
@@ -61,6 +64,9 @@
     <loc>https://fjordfix.com/nn/tjenester.html</loc>
   </url>
   <url>
+    <loc>https://fjordfix.com/nn/vedlikeholdsavtaler.html</loc>
+  </url>
+  <url>
     <loc>https://fjordfix.com/om-fjordfix.html</loc>
   </url>
   <url>
@@ -74,5 +80,8 @@
   </url>
   <url>
     <loc>https://fjordfix.com/tjenester.html</loc>
+  </url>
+  <url>
+    <loc>https://fjordfix.com/vedlikeholdsavtaler.html</loc>
   </url>
 </urlset>

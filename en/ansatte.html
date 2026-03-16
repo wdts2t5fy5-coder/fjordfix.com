@@ -294,7 +294,7 @@
 
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:grid;gap:4px;width:100%"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Practical help for home and garden — for city and countryside.</div><div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;width:100%"><a href="/personvern.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">Personvern og cookies</a><a href="/for-ansatte.html" style="text-decoration:none;color:inherit;font-size:12px;opacity:.8">For ansatte</a></div></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Practical help for home and garden — for city and countryside.</div><div style="font-size:12px;opacity:.8"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
@@ -484,7 +484,7 @@
     }
 
     const tbody = document.querySelector('[data-requests]');
-    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbxgT4003G2LDXx833XM6TflgXNTvTF78fmY1kZyWh2Q41XKLO9dEPJ2FEJ9rCuRVEA/exec';
+    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbx990wNsgUbjKyHhbOnG8LkfSbqGIm4975GSf01yosZkAQUbi0tIFX2fr9PDT41VVTq/exec';
 
     const loadRequests = async () => {
       try {
@@ -542,6 +542,8 @@
     ];
     const typeOptions = ['A', 'O'];
     const escapeHtml = (value) => String(value || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const displayName = (item) => item.navn || [item.fornavn, item.etternavn].filter(Boolean).join(' ');
+    const displayAddress = (item) => item.adresse || [item.gateadresse, item.postkode, item.sted].filter(Boolean).join(', ');
     const buildOptions = (current, options) => {
       const unique = Array.from(new Set(options));
       const currentValue = current || '';
@@ -561,8 +563,8 @@
         const row = document.createElement('tr');
         row.innerHTML = `
           <td><button class="info-btn" type="button" data-info-index="${idx}">More info</button></td>
-          <td>${item.navn || ''}</td>
-          <td>${item.adresse || ''}</td>
+          <td>${displayName(item) || ''}</td>
+          <td>${displayAddress(item) || ''}</td>
           <td>
             <select class="edit-select" data-index="${idx}" data-field="tjeneste" data-prev="${escapeHtml(item.tjeneste || '')}">
               ${buildOptions(item.tjeneste || '', serviceOptions)}
