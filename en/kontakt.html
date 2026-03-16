@@ -537,7 +537,8 @@
     const requestForm = document.querySelector('form[name="foresporsel"]');
     const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbx990wNsgUbjKyHhbOnG8LkfSbqGIm4975GSf01yosZkAQUbi0tIFX2fr9PDT41VVTq/exec';
     if (requestForm) {
-      requestForm.addEventListener('submit', () => {
+      requestForm.addEventListener('submit', (event) => {
+        event.preventDefault();
         const data = new FormData(requestForm);
         const first = data.get('Fornavn') || '';
         const last = data.get('Etternavn') || '';
@@ -594,7 +595,10 @@
           status: 'ny',
           created: record.created,
         });
-        fetch(sheetsEndpoint, { method: 'POST', body: payload, mode: 'no-cors', keepalive: true });
+        fetch(sheetsEndpoint, { method: 'POST', body: payload, mode: 'no-cors', keepalive: true })
+          .finally(() => {
+            window.location.href = requestForm.action;
+          });
       });
     }
 
