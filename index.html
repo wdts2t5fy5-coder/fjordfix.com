@@ -165,6 +165,7 @@
     html.theme-switching .lang-panel,
     html.theme-switching .menu-panel,
     html.theme-switching .footer{transition:background-color .42s ease, color .42s ease, border-color .42s ease, box-shadow .42s ease, opacity .42s ease}
+
     .theme-toggle .bulb-outline{stroke:var(--bulb-stroke);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
     .theme-toggle .bulb-fill{fill:var(--bulb-fill)}
     .theme-toggle .bulb-base{fill:var(--bulb-base)}
@@ -228,13 +229,13 @@
       text-rendering:optimizeLegibility;
     }
     .hero-heading-line:first-child{
-      font-size:clamp(3.7rem,6.3vw,5.35rem);
+      font-size:clamp(3.2rem,5.6vw,4.7rem);
       line-height:.92;
       letter-spacing:-.05em;
       font-weight:700;
     }
     .hero-heading-line:last-child{
-      font-size:clamp(2.1rem,4.15vw,3.5rem);
+      font-size:clamp(1.8rem,3.4vw,2.8rem);
       line-height:1.02;
       letter-spacing:-.03em;
       font-weight:500;
@@ -337,8 +338,21 @@
     input::placeholder,textarea::placeholder{color:var(--text-45)}
 
     .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66);scroll-snap-align:end;scroll-snap-stop:always}
+    .footer-wrap{display:grid;gap:10px}
+    .footer-main{display:grid;gap:4px;width:100%}
+    .footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}
+    .footer-row-top{grid-template-columns:1fr}
+    .footer-copy{font-size:12px;opacity:.8}
+    .footer-meta{font-size:12px;opacity:.8}
+    .footer-contact{font-size:14px;opacity:.8;text-align:right;white-space:nowrap}
+    .footer-credit{width:100%;text-align:center;font-size:12px;opacity:.7}
 
     @media (max-width: 920px){
+      .footer-wrap{gap:12px}
+      .footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline}
+      .footer-copy,.footer-meta{font-size:11px}
+      .footer-contact{font-size:11px}
+
       h1{font-size:42px;line-height:1.06}
       .hero{--hero-image-height:320px;--hero-title-gap:28px;--hero-title-travel:.4964;--hero-sticky-top:0px;padding:88px 0 34px}
       .hero-title-sticky .wrap{padding:0 22px}
@@ -460,8 +474,8 @@
         <div class="hero-title-sticky">
           <div class="wrap">
             <h1 class="hero-heading">
-              <span class="hero-heading-line">Eiendomsservice</span>
-              <span class="hero-heading-line">i <span class="hero-heading-accent">Knarvik</span> og <span class="hero-heading-accent">omegn</span></span>
+              <span class="hero-heading-line hero-heading-accent">Eiendomsservice</span>
+              <span class="hero-heading-line">i Knarvik og omegn</span>
             </h1>
           </div>
         </div>
@@ -540,9 +554,9 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Eiendomsservice i Knarvik og omegn</div><div style="font-size:12px;opacity:.8"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
-      <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
+    <div class="wrap footer-wrap">
+      <div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Eiendomsservice i Knarvik og omegn</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
+      <div class="footer-credit"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
 
