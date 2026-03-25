@@ -207,13 +207,39 @@
     html[data-theme="dark"] .lang-panel .flag-no,
     html[data-theme="dark"] .lang-panel .flag-uk{border-color:#ffffff;border-width:2px}
 
-    .hero{--hero-image-height:360px;--hero-title-height:120px;--hero-title-gap:40px;--hero-title-travel:.5415;--hero-sticky-top:0px;padding:188px 0 34px}
+    .hero{--hero-image-height:360px;--hero-title-height:120px;--hero-title-gap:56px;--hero-title-travel:.5415;--hero-sticky-top:0px;padding:188px 0 34px}
     .hero-grid{display:grid;grid-template-columns: 1.3fr .9fr;gap:26px;align-items:start}
     .hero-body{margin-top:0}
     .hero-stack{position:relative;height:calc(var(--hero-title-height) + var(--hero-title-gap) + var(--hero-image-height))}
     .hero-title-area{height:calc(var(--hero-title-height) + var(--hero-title-gap) + (var(--hero-image-height) * var(--hero-title-travel)))}
     .hero-title-sticky{position:sticky;top:var(--hero-sticky-top);z-index:2}
     .hero-title-sticky .wrap{padding:0 0 0 0.9cm}
+    .hero-heading{
+      max-width:11.5ch;
+      display:grid;
+      gap:10px;
+      margin:0;
+    }
+    .hero-heading-line{
+      display:block;
+      margin:0;
+      text-wrap:balance;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    .hero-heading-line:first-child{
+      font-size:clamp(3.7rem,6.3vw,5.35rem);
+      line-height:.92;
+      letter-spacing:-.05em;
+      font-weight:700;
+    }
+    .hero-heading-line:last-child{
+      font-size:clamp(2.1rem,4.15vw,3.5rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      font-weight:500;
+    }
+    .hero-heading-accent{color:var(--orange)}
     h1{
       margin:0;
       font-size:54px;
@@ -314,7 +340,11 @@
 
     @media (max-width: 920px){
       h1{font-size:42px;line-height:1.06}
-      .hero{--hero-image-height:320px;--hero-title-travel:.4964;--hero-sticky-top:0px;padding:88px 0 34px}
+      .hero{--hero-image-height:320px;--hero-title-gap:34px;--hero-title-travel:.4964;--hero-sticky-top:0px;padding:88px 0 34px}
+      .hero-title-sticky .wrap{padding:0 28px}
+      .hero-heading{max-width:9.5ch;gap:8px}
+      .hero-heading-line:first-child{font-size:clamp(2.85rem,12vw,3.8rem);line-height:.94;letter-spacing:-.045em}
+      .hero-heading-line:last-child{font-size:clamp(1.55rem,6.6vw,2.2rem);line-height:1.08;letter-spacing:-.025em}
       .hero-grid{grid-template-columns:1fr;}
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
@@ -429,7 +459,10 @@
       <div class="hero-title-area">
         <div class="hero-title-sticky">
           <div class="wrap">
-            <h1>Praktisk hjelp i hus og hage<br>– <span style="color:var(--orange)">for byfolk og stril</span>.</h1>
+            <h1 class="hero-heading">
+              <span class="hero-heading-line">Eiendomsservice</span>
+              <span class="hero-heading-line">i <span class="hero-heading-accent">Knarvik</span> og <span class="hero-heading-accent">omegn</span></span>
+            </h1>
           </div>
         </div>
       </div>
@@ -508,7 +541,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Praktisk hjelp i hus og hage – for byfolk og stril</div><div style="font-size:12px;opacity:.8"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Eiendomsservice i Knarvik og omegn</div><div style="font-size:12px;opacity:.8"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
