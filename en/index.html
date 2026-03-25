@@ -216,6 +216,32 @@
     .hero-title-area{height:calc(var(--hero-title-height) + var(--hero-title-gap) + (var(--hero-image-height) * var(--hero-title-travel)))}
     .hero-title-sticky{position:sticky;top:var(--hero-sticky-top);z-index:2}
     .hero-title-sticky .wrap{padding:0 0 0 0.9cm}
+    .hero-heading{
+      max-width:15.5ch;
+      display:grid;
+      gap:10px;
+      margin:0;
+    }
+    .hero-heading-line{
+      display:block;
+      margin:0;
+      text-wrap:balance;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    .hero-heading-line:first-child{
+      font-size:clamp(3.2rem,5.6vw,4.7rem);
+      line-height:.92;
+      letter-spacing:-.05em;
+      font-weight:700;
+    }
+    .hero-heading-line:last-child{
+      font-size:clamp(1.8rem,3.4vw,2.8rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      font-weight:500;
+    }
+    .hero-heading-accent{color:var(--orange)}
     h1{
       margin:0;
       font-size:54px;
@@ -312,6 +338,9 @@
     .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66);scroll-snap-align:end;scroll-snap-stop:always}
 
     @media (max-width: 920px){
+      .hero-heading{max-width:10.8ch;gap:6px}
+      .hero-heading-line:first-child{font-size:clamp(2.3rem,10.2vw,3.1rem);line-height:.96;letter-spacing:-.04em}
+      .hero-heading-line:last-child{font-size:clamp(1.15rem,5.4vw,1.55rem);line-height:1.12;letter-spacing:-.02em}
       h1{font-size:42px;line-height:1.06}
       .hero{--hero-image-height:320px;--hero-title-travel:.4964;--hero-sticky-top:0px;padding:88px 0 34px}
       .hero-grid{grid-template-columns:1fr;}
@@ -428,7 +457,10 @@
       <div class="hero-title-area">
         <div class="hero-title-sticky">
           <div class="wrap">
-            <h1>Practical help for home and garden<br>– <span style="color:var(--orange)">done the local way</span>.</h1>
+            <h1 class="hero-heading">
+              <span class="hero-heading-line hero-heading-accent">Property Services</span>
+              <span class="hero-heading-line">serving Knarvik and surrounding areas</span>
+            </h1>
           </div>
         </div>
       </div>
@@ -507,7 +539,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Practical help for home and garden — for city and countryside.</div><div style="font-size:12px;opacity:.8"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Property Services serving Knarvik and surrounding areas</div><div style="font-size:12px;opacity:.8"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
       <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
