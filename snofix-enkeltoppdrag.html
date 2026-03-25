@@ -150,7 +150,23 @@
     ul{margin:0 0 12px;padding-left:18px;color:var(--ink)}
     li{margin:6px 0}
     .section{padding:24px 0}
-    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
+    .footer{padding:26px 0 28px;border-top:1px solid var(--line);margin-top:28px;color:var(--muted)}
+    .footer-wrap{display:grid;gap:10px}
+    .footer-main{display:grid;gap:4px;width:100%}
+    .footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}
+    .footer-row-top{grid-template-columns:1fr}
+    .footer-copy{font-size:12px;opacity:.8}
+    .footer-meta{font-size:12px;opacity:.8}
+    .footer-contact{font-size:14px;opacity:.8;text-align:right;white-space:nowrap}
+    .footer-credit{width:100%;text-align:center;font-size:12px;opacity:.7;margin-top:10px}
+    @media (max-width: 920px){
+      .footer{padding:24px 0 14px}
+      .footer-wrap{gap:8px}
+      .footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline}
+      .footer-copy,.footer-meta{font-size:11px}
+      .footer-contact{font-size:11px}
+      .footer-credit{margin-top:14px;font-size:11px}
+    }
     .meta{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
   </style>
 </head>
@@ -263,9 +279,9 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
+    <div class="wrap footer-wrap">
       <div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Eiendomsservice i Knarvik og omegn</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern.html" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
-      <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
+      <div class="footer-credit"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
 

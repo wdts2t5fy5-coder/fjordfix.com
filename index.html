@@ -319,7 +319,7 @@
     #kontakt .wrap{transform:translateY(56px)}
     .hero,
     .service-spotlight,
-    #kontakt{scroll-snap-align:start;scroll-snap-stop:always}
+    #kontakt{scroll-snap-align:end;scroll-snap-stop:always}
     #kontakt .section-title{justify-content:center;text-align:center}
     #kontakt .section-title h2{font-size:clamp(2rem,6vw,4rem);line-height:.96;letter-spacing:-1.2px}
 
@@ -337,7 +337,7 @@
     textarea{min-height:120px;resize:vertical}
     input::placeholder,textarea::placeholder{color:var(--text-45)}
 
-    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66);scroll-snap-align:end;scroll-snap-stop:always}
+    .footer{padding:26px 0 28px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66)}
     .footer-wrap{display:grid;gap:10px}
     .footer-main{display:grid;gap:4px;width:100%}
     .footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}
@@ -345,13 +345,15 @@
     .footer-copy{font-size:12px;opacity:.8}
     .footer-meta{font-size:12px;opacity:.8}
     .footer-contact{font-size:14px;opacity:.8;text-align:right;white-space:nowrap}
-    .footer-credit{width:100%;text-align:center;font-size:12px;opacity:.7}
+    .footer-credit{width:100%;text-align:center;font-size:12px;opacity:.7;margin-top:10px}
 
     @media (max-width: 920px){
-      .footer-wrap{gap:12px}
+      .footer{padding:24px 0 14px}
+      .footer-wrap{gap:8px}
       .footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline}
       .footer-copy,.footer-meta{font-size:11px}
       .footer-contact{font-size:11px}
+      .footer-credit{margin-top:14px;font-size:11px}
 
       h1{font-size:42px;line-height:1.06}
       .hero{--hero-image-height:320px;--hero-title-gap:28px;--hero-title-travel:.4964;--hero-sticky-top:0px;padding:88px 0 34px}
