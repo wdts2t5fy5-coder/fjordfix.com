@@ -209,13 +209,39 @@
     html[data-theme="dark"] .lang-panel .flag-no,
     html[data-theme="dark"] .lang-panel .flag-uk{border-color:#ffffff;border-width:2px}
 
-    .hero{--hero-image-height:360px;--hero-title-height:120px;--hero-title-gap:40px;--hero-title-travel:.5415;--hero-sticky-top:0px;padding:188px 0 34px}
+    .hero{--hero-image-height:360px;--hero-title-height:120px;--hero-title-gap:56px;--hero-title-travel:.5415;--hero-sticky-top:0px;padding:188px 0 34px}
     .hero-grid{display:grid;grid-template-columns: 1.3fr .9fr;gap:26px;align-items:start}
     .hero-body{margin-top:0}
     .hero-stack{position:relative;height:calc(var(--hero-title-height) + var(--hero-title-gap) + var(--hero-image-height))}
     .hero-title-area{height:calc(var(--hero-title-height) + var(--hero-title-gap) + (var(--hero-image-height) * var(--hero-title-travel)))}
     .hero-title-sticky{position:sticky;top:var(--hero-sticky-top);z-index:2}
     .hero-title-sticky .wrap{padding:0 0 0 0.9cm}
+    .hero-heading{
+      max-width:11.5ch;
+      display:grid;
+      gap:10px;
+      margin:0;
+    }
+    .hero-heading-line{
+      display:block;
+      margin:0;
+      text-wrap:balance;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    .hero-heading-line:first-child{
+      font-size:clamp(3.7rem,6.3vw,5.35rem);
+      line-height:.92;
+      letter-spacing:-.05em;
+      font-weight:700;
+    }
+    .hero-heading-line:last-child{
+      font-size:clamp(2.1rem,4.15vw,3.5rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      font-weight:500;
+    }
+    .hero-heading-accent{color:var(--orange)}
     h1{
       margin:0;
       font-size:54px;
@@ -313,7 +339,11 @@
 
     @media (max-width: 920px){
       h1{font-size:42px;line-height:1.06}
-      .hero{--hero-image-height:320px;--hero-title-travel:.4964;--hero-sticky-top:0px;padding:88px 0 34px}
+      .hero{--hero-image-height:320px;--hero-title-gap:28px;--hero-title-travel:.4964;--hero-sticky-top:0px;padding:88px 0 34px}
+      .hero-title-sticky .wrap{padding:0 22px}
+      .hero-heading{max-width:8.2ch;gap:6px}
+      .hero-heading-line:first-child{font-size:clamp(2.3rem,10.2vw,3.1rem);line-height:.96;letter-spacing:-.04em}
+      .hero-heading-line:last-child{font-size:clamp(1.15rem,5.4vw,1.55rem);line-height:1.12;letter-spacing:-.02em}
       .hero-grid{grid-template-columns:1fr;}
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
@@ -428,7 +458,10 @@
       <div class="hero-title-area">
         <div class="hero-title-sticky">
           <div class="wrap">
-            <h1>Eiendomsservice<br>i <span style="color:var(--orange)">Knarvik</span> og <span style="color:var(--orange)">omegn</span></h1>
+            <h1 class="hero-heading">
+              <span class="hero-heading-line">Eiendomsservice</span>
+              <span class="hero-heading-line">i <span class="hero-heading-accent">Knarvik</span> og <span class="hero-heading-accent">omegn</span></span>
+            </h1>
           </div>
         </div>
       </div>
