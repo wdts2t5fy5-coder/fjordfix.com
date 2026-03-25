@@ -528,6 +528,7 @@
     }
 
     const root = document.documentElement;
+    const brandLink = document.querySelector('.brand-link');
     const toggle = document.querySelector('[data-theme-toggle]');
     const storageKey = 'fjordfix-theme';
     const storedTheme = localStorage.getItem(storageKey);
@@ -574,6 +575,22 @@
     };
 
     applyTheme(initialTheme);
+    const normalizeHomePath = (path) => {
+      if (!path || path === '/') return '/index.html';
+      if (path === '/nn' || path === '/nn/') return '/nn/index.html';
+      if (path === '/en' || path === '/en/') return '/en/index.html';
+      if (path.endsWith('/')) return `${path}index.html`;
+      return path;
+    };
+    if (brandLink) {
+      brandLink.addEventListener('click', (event) => {
+        const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
+        if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
+      });
+    }
     if (toggle) {
       toggle.addEventListener('click', () => {
         const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';

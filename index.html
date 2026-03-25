@@ -95,6 +95,7 @@
     }
     *{box-sizing:border-box}
     html{scroll-snap-type:y mandatory;scroll-padding-top:140px}
+    html.snap-free-footer{scroll-snap-type:none}
     html,body{margin:0;padding:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--white); background:var(--bg);} 
     a{color:inherit}
     body{min-height:100vh;display:flex;flex-direction:column}
@@ -567,6 +568,7 @@
     document.getElementById('y').textContent = new Date().getFullYear();
 
     const root = document.documentElement;
+    const brandLink = document.querySelector('.brand-link');
     const toggle = document.querySelector('[data-theme-toggle]');
     const storageKey = 'fjordfix-theme';
     const storedTheme = localStorage.getItem(storageKey);
@@ -613,6 +615,22 @@
     };
 
     applyTheme(initialTheme);
+    const normalizeHomePath = (path) => {
+      if (!path || path === '/') return '/index.html';
+      if (path === '/nn' || path === '/nn/') return '/nn/index.html';
+      if (path === '/en' || path === '/en/') return '/en/index.html';
+      if (path.endsWith('/')) return `${path}index.html`;
+      return path;
+    };
+    if (brandLink) {
+      brandLink.addEventListener('click', (event) => {
+        const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
+        if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
+      });
+    }
     if (toggle) {
       toggle.addEventListener('click', () => {
         const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -653,6 +671,8 @@
     const hero = document.querySelector('.hero');
     const heroTitle = document.querySelector('.hero-title-sticky');
     const heroMedia = document.querySelector('.hero-media');
+    const footer = document.querySelector('.footer');
+    let footerSnapDisabled = false;
 
     const updateHeroLayout = () => {
       if (!hero || !heroTitle || !heroMedia) return;
@@ -668,6 +688,25 @@
     window.addEventListener('resize', () => {
       window.requestAnimationFrame(updateHeroLayout);
     });
+
+    const updateFooterSnapMode = () => {
+      if (!footer) return;
+      const footerTop = footer.getBoundingClientRect().top;
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+      if (footerSnapDisabled) {
+        footerSnapDisabled = footerTop <= viewportHeight + 120;
+      } else if (footerTop <= viewportHeight - 24) {
+        footerSnapDisabled = true;
+      }
+      root.classList.toggle('snap-free-footer', footerSnapDisabled);
+    };
+
+    updateFooterSnapMode();
+    window.addEventListener('load', updateFooterSnapMode);
+    window.addEventListener('resize', () => {
+      window.requestAnimationFrame(updateFooterSnapMode);
+    });
+    window.addEventListener('scroll', updateFooterSnapMode, { passive: true });
 
     const spotlightIcons = Array.from(document.querySelectorAll('.spotlight-icon'));
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
