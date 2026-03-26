@@ -429,7 +429,7 @@
     <div class="wrap nav-inner">
       <div class="brand" aria-label="FjordFix">
         <div class="brand-title">
-          <a class="brand-link" href="/" aria-label="Til forsiden">
+          <a class="brand-link" href="/#top" aria-label="Til forsiden">
             <img src="logo_black.png" data-logo-light="logo_black.png" data-logo-dark="logo_white.png" alt="FjordFix" />
           </a>
         </div>
@@ -480,7 +480,7 @@
   </div>
 
   <!-- HERO -->
-  <header class="hero">
+  <header id="top" class="hero">
     <div class="hero-stack">
       <div class="hero-title-area">
         <div class="hero-title-sticky">
@@ -578,9 +578,9 @@
 
     const root = document.documentElement;
     const brandLink = document.querySelector('.brand-link');
+    const heroTop = document.getElementById('top');
     const toggle = document.querySelector('[data-theme-toggle]');
     const storageKey = 'fjordfix-theme';
-    const homeRefreshKey = 'fjordfix-home-refresh-top';
     const storedTheme = localStorage.getItem(storageKey);
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -632,20 +632,22 @@
       if (path.endsWith('/')) return `${path}index.html`;
       return path;
     };
-    if (sessionStorage.getItem(homeRefreshKey) === '1') {
-      sessionStorage.removeItem(homeRefreshKey);
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      window.scrollTo(0, 0);
-      window.addEventListener('load', () => window.scrollTo(0, 0), { once: true });
-    }
     if (brandLink) {
       brandLink.addEventListener('click', (event) => {
         const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
         if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
         event.preventDefault();
-        sessionStorage.setItem(homeRefreshKey, '1');
-        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-        window.location.assign(targetUrl.pathname + targetUrl.search);
+        footerSnapDisabled = false;
+        footerSnapLockY = null;
+        root.classList.remove('snap-free-footer');
+        if (window.location.hash) {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+        if (heroTop) {
+          heroTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
     }
     if (toggle) {
