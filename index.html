@@ -639,15 +639,13 @@
         event.preventDefault();
         footerSnapDisabled = false;
         footerSnapLockY = null;
+        lastScrollY = 0;
         root.classList.remove('snap-free-footer');
         if (window.location.hash) {
           history.replaceState(null, '', window.location.pathname + window.location.search);
         }
-        if (heroTop) {
-          heroTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        window.scrollTo(0, 0);
+        window.requestAnimationFrame(() => window.scrollTo(0, 0));
       });
     }
     if (toggle) {
