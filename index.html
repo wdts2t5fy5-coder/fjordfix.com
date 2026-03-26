@@ -429,7 +429,7 @@
     <div class="wrap nav-inner">
       <div class="brand" aria-label="FjordFix">
         <div class="brand-title">
-          <a class="brand-link" href="/#top" aria-label="Til forsiden">
+          <a class="brand-link" href="/" aria-label="Til forsiden">
             <img src="logo_black.png" data-logo-light="logo_black.png" data-logo-dark="logo_white.png" alt="FjordFix" />
           </a>
         </div>
@@ -641,9 +641,7 @@
         footerSnapLockY = null;
         lastScrollY = 0;
         root.classList.remove('snap-free-footer');
-        if (window.location.hash) {
-          history.replaceState(null, '', window.location.pathname + window.location.search);
-        }
+        history.replaceState(null, '', window.location.pathname + window.location.search);
         window.scrollTo(0, 0);
         window.requestAnimationFrame(() => window.scrollTo(0, 0));
       });
