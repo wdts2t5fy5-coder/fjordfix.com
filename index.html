@@ -95,6 +95,7 @@
     }
     *{box-sizing:border-box}
     html{scroll-snap-type:y mandatory;scroll-padding-top:140px}
+    html.snap-paused{scroll-snap-type:none !important}
     html,body{margin:0;padding:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--white); background:var(--bg);} 
     a{color:inherit}
     body{min-height:100vh;display:flex;flex-direction:column}
@@ -643,6 +644,7 @@
     };
     if (brandLink) {
       let brandJumpActive = false;
+      let brandJumpResetTimer = null;
       const jumpToTop = (event) => {
         event.preventDefault();
         if (brandJumpActive) return;
@@ -650,21 +652,21 @@
         const scrollingElement = document.scrollingElement || document.documentElement;
         brandLink.blur();
         history.replaceState(null, '', window.location.pathname + window.location.search);
-        root.style.scrollSnapType = 'none';
+        root.classList.add('snap-paused');
+        void root.offsetHeight;
+        if (brandJumpResetTimer) window.clearTimeout(brandJumpResetTimer);
         scrollingElement.scrollTop = 0;
         window.scrollTo(0, 0);
         window.requestAnimationFrame(() => {
           scrollingElement.scrollTop = 0;
           window.scrollTo(0, 0);
-          window.requestAnimationFrame(() => {
-            root.style.removeProperty('scroll-snap-type');
+          brandJumpResetTimer = window.setTimeout(() => {
+            root.classList.remove('snap-paused');
             brandJumpActive = false;
-          });
+          }, 120);
         });
       };
-      brandLink.addEventListener('touchstart', jumpToTop, { passive: false });
       brandLink.addEventListener('touchend', jumpToTop, { passive: false });
-      brandLink.addEventListener('pointerdown', jumpToTop);
       brandLink.addEventListener('pointerup', jumpToTop);
       brandLink.addEventListener('click', jumpToTop);
     }
