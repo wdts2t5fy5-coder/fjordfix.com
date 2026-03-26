@@ -107,6 +107,7 @@
     .brand{display:grid;grid-template-columns:1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
     .brand-left{display:flex;align-items:center;gap:16px}
     .brand-link{display:inline-flex;align-items:center;text-decoration:none}
+    .brand-link-button{padding:0;border:0;background:transparent;cursor:pointer}
     .brand-title{display:flex;align-items:center;justify-content:flex-start;height:112px}
     .brand-title img{height:88px;width:auto;display:block}
     .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
@@ -437,9 +438,9 @@
     <div class="wrap nav-inner">
       <div class="brand" aria-label="FjordFix">
         <div class="brand-title">
-          <a class="brand-link" href="#top" aria-label="Til forsiden">
+          <button class="brand-link brand-link-button" type="button" aria-label="Til forsiden">
             <img src="logo_black.png" data-logo-light="logo_black.png" data-logo-dark="logo_white.png" alt="FjordFix" />
-          </a>
+          </button>
         </div>
         <div class="nav-menu">
           <div class="nav-menu-stack">
@@ -642,8 +643,6 @@
     };
     if (brandLink) {
       brandLink.addEventListener('click', (event) => {
-        const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
-        if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
         event.preventDefault();
         const scrollingElement = document.scrollingElement || document.documentElement;
         history.replaceState(null, '', window.location.pathname + window.location.search);
