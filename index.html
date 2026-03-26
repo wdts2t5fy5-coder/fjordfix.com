@@ -707,7 +707,7 @@
       const currentScrollY = window.scrollY;
       const scrollingDown = currentScrollY > lastScrollY;
       const disableThreshold = viewportHeight - 96;
-      const enableThreshold = viewportHeight - 16;
+      const enableThreshold = viewportHeight - 120;
       if (!footerSnapDisabled && scrollingDown && footerTop <= disableThreshold) {
         footerSnapDisabled = true;
         footerSnapLockY = currentScrollY;
@@ -715,7 +715,7 @@
         if (scrollingDown) {
           footerSnapLockY = Math.max(footerSnapLockY ?? currentScrollY, currentScrollY);
         } else if (
-          currentScrollY <= (footerSnapLockY ?? currentScrollY) - 48 &&
+          currentScrollY <= (footerSnapLockY ?? currentScrollY) - 24 &&
           footerTop >= enableThreshold
         ) {
           footerSnapDisabled = false;
