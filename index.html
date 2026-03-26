@@ -662,7 +662,9 @@
           });
         });
       };
+      brandLink.addEventListener('touchstart', jumpToTop, { passive: false });
       brandLink.addEventListener('touchend', jumpToTop, { passive: false });
+      brandLink.addEventListener('pointerdown', jumpToTop);
       brandLink.addEventListener('pointerup', jumpToTop);
       brandLink.addEventListener('click', jumpToTop);
     }
