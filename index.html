@@ -95,7 +95,8 @@
     }
     *{box-sizing:border-box}
     html{scroll-snap-type:y mandatory;scroll-padding-top:140px}
-    html.snap-paused{scroll-snap-type:none !important}
+    html.snap-paused{scroll-snap-type:none !important;overscroll-behavior:none}
+    body.snap-paused-body{overflow:hidden;overscroll-behavior:none}
     html,body{margin:0;padding:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--white); background:var(--bg);} 
     a{color:inherit}
     body{min-height:100vh;display:flex;flex-direction:column}
@@ -647,12 +648,15 @@
       let brandJumpResetTimer = null;
       const jumpToTop = (event) => {
         event.preventDefault();
+        event.stopPropagation();
+        if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
         if (brandJumpActive) return;
         brandJumpActive = true;
         const scrollingElement = document.scrollingElement || document.documentElement;
         brandLink.blur();
         history.replaceState(null, '', window.location.pathname + window.location.search);
         root.classList.add('snap-paused');
+        document.body.classList.add('snap-paused-body');
         void root.offsetHeight;
         if (brandJumpResetTimer) window.clearTimeout(brandJumpResetTimer);
         scrollingElement.scrollTop = 0;
@@ -662,13 +666,14 @@
           window.scrollTo(0, 0);
           brandJumpResetTimer = window.setTimeout(() => {
             root.classList.remove('snap-paused');
+            document.body.classList.remove('snap-paused-body');
             brandJumpActive = false;
-          }, 120);
+          }, 180);
         });
       };
-      brandLink.addEventListener('touchend', jumpToTop, { passive: false });
-      brandLink.addEventListener('pointerup', jumpToTop);
-      brandLink.addEventListener('click', jumpToTop);
+      brandLink.addEventListener('touchstart', jumpToTop, { passive: false, capture: true });
+      brandLink.addEventListener('pointerdown', jumpToTop, { capture: true });
+      brandLink.addEventListener('click', jumpToTop, { capture: true });
     }
     if (toggle) {
       toggle.addEventListener('click', () => {
