@@ -376,9 +376,11 @@
       .spotlight-icon{font-size:clamp(110px,28vw,190px);text-align:left;transform:none}
       .spotlight-logo img{width:min(56vw,220px)}
       .spotlight-image img{width:min(64vw,250px)}
+      .spotlight-copy{display:flex;flex-direction:column}
       .spotlight-copy h2{margin:0 0 10px;font-size:clamp(2rem,6vw,4rem)}
-      .spotlight-copy p{margin:0 0 16px;font-size:clamp(18px,5.2vw,28px);line-height:1.2}
-      .spotlight-copy p.compact{font-size:clamp(17px,4.7vw,24px);line-height:1.25;max-width:30ch}
+      .spotlight-copy p{margin:0 0 16px;font-size:clamp(18px,5.2vw,28px);line-height:1.2;max-width:30ch}
+      .spotlight-copy p.compact{font-size:clamp(17px,4.7vw,24px);line-height:1.25}
+      .spotlight-copy .btn{align-self:flex-end}
       .service-spotlight:nth-of-type(1) .spotlight-icon{transform:translateY(-18px)}
       .service-spotlight:nth-of-type(1) .spotlight-copy{transform:translateY(-22px)}
       .service-spotlight:nth-of-type(1) .spotlight-copy h2{margin-bottom:8px}
@@ -500,7 +502,7 @@
         </div>
         <div class="spotlight-copy">
           <span class="spotlight-kicker">Om FjordFix</span>
-          <h2>Praktisk hjelp. Skikkelig gjort.</h2>
+          <h2>Praktisk hjelp.<br>Skikkelig gjort.</h2>
           <p class="compact">Enten du trenger hjelp i leilighet i sentrum eller vedlikehold rundt huset, får du rask respons, én fast kontakt og arbeid gjort på skikkelig vis.</p>
           <a class="btn btn-primary" href="/om-fjordfix">Les om FjordFix</a>
         </div>
