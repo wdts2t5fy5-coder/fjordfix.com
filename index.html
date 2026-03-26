@@ -645,17 +645,17 @@
         const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
         if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
         event.preventDefault();
+        const scrollingElement = document.scrollingElement || document.documentElement;
         history.replaceState(null, '', window.location.pathname + window.location.search);
+        root.style.scrollSnapType = 'none';
+        scrollingElement.scrollTop = 0;
         window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-        if (heroTop) {
-          heroTop.scrollTop = 0;
-        }
         window.requestAnimationFrame(() => {
+          scrollingElement.scrollTop = 0;
           window.scrollTo(0, 0);
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
+          window.requestAnimationFrame(() => {
+            root.style.removeProperty('scroll-snap-type');
+          });
         });
       });
     }
