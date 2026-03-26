@@ -705,8 +705,13 @@
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
       const currentScrollY = window.scrollY;
       const scrollingDown = currentScrollY > lastScrollY;
-      const footerReached = footerTop <= viewportHeight - 24;
-      footerSnapDisabled = scrollingDown && footerReached;
+      const disableThreshold = viewportHeight - 96;
+      const enableThreshold = viewportHeight - 12;
+      if (!footerSnapDisabled && scrollingDown && footerTop <= disableThreshold) {
+        footerSnapDisabled = true;
+      } else if (footerSnapDisabled && (!scrollingDown || footerTop >= enableThreshold)) {
+        footerSnapDisabled = false;
+      }
       lastScrollY = currentScrollY;
       root.classList.toggle('snap-free-footer', footerSnapDisabled);
     };
