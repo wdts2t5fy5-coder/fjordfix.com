@@ -683,6 +683,7 @@
     const footer = document.querySelector('.footer');
     let footerSnapDisabled = false;
     let lastScrollY = window.scrollY;
+    let footerSnapLockY = null;
 
     const updateHeroLayout = () => {
       if (!hero || !heroTitle || !heroMedia) return;
@@ -706,11 +707,16 @@
       const currentScrollY = window.scrollY;
       const scrollingDown = currentScrollY > lastScrollY;
       const disableThreshold = viewportHeight - 96;
-      const enableThreshold = viewportHeight - 12;
       if (!footerSnapDisabled && scrollingDown && footerTop <= disableThreshold) {
         footerSnapDisabled = true;
-      } else if (footerSnapDisabled && (!scrollingDown || footerTop >= enableThreshold)) {
-        footerSnapDisabled = false;
+        footerSnapLockY = currentScrollY;
+      } else if (footerSnapDisabled) {
+        if (scrollingDown) {
+          footerSnapLockY = Math.max(footerSnapLockY ?? currentScrollY, currentScrollY);
+        } else if (currentScrollY <= (footerSnapLockY ?? currentScrollY) - 120) {
+          footerSnapDisabled = false;
+          footerSnapLockY = null;
+        }
       }
       lastScrollY = currentScrollY;
       root.classList.toggle('snap-free-footer', footerSnapDisabled);
