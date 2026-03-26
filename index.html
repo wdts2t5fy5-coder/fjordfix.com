@@ -376,9 +376,9 @@
       .service-spotlight + .service-spotlight{margin-top:clamp(56px,9vh,108px)}
       .service-spotlight:first-of-type{padding-top:20px}
       .hero,
-      .service-spotlight,
+      .service-spotlight{scroll-snap-stop:normal}
       #kontakt,
-      .footer{scroll-snap-stop:normal}
+      .footer{scroll-snap-stop:always}
       .spotlight-inner{grid-template-columns:1fr;text-align:left;padding:32px 28px;gap:8px}
       .spotlight-icon{font-size:clamp(110px,28vw,190px);text-align:left;transform:none}
       .spotlight-logo img{width:min(56vw,220px)}
@@ -430,7 +430,7 @@
     <div class="wrap nav-inner">
       <div class="brand" aria-label="FjordFix">
         <div class="brand-title">
-          <a class="brand-link" href="/" aria-label="Til forsiden">
+          <a class="brand-link" href="#top" aria-label="Til forsiden">
             <img src="logo_black.png" data-logo-light="logo_black.png" data-logo-dark="logo_white.png" alt="FjordFix" />
           </a>
         </div>
@@ -638,9 +638,11 @@
         const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
         if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
         event.preventDefault();
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-        window.scrollTo(0, 0);
-        window.requestAnimationFrame(() => window.scrollTo(0, 0));
+        if (heroTop) {
+          heroTop.scrollIntoView({ behavior: 'auto', block: 'start' });
+        } else {
+          window.scrollTo(0, 0);
+        }
       });
     }
     if (toggle) {
