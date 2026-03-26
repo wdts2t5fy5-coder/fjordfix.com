@@ -678,6 +678,7 @@
     const heroMedia = document.querySelector('.hero-media');
     const footer = document.querySelector('.footer');
     let footerSnapDisabled = false;
+    let lastScrollY = window.scrollY;
 
     const updateHeroLayout = () => {
       if (!hero || !heroTitle || !heroMedia) return;
@@ -698,11 +699,11 @@
       if (!footer) return;
       const footerTop = footer.getBoundingClientRect().top;
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
-      if (footerSnapDisabled) {
-        footerSnapDisabled = footerTop <= viewportHeight + 120;
-      } else if (footerTop <= viewportHeight - 24) {
-        footerSnapDisabled = true;
-      }
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+      const footerReached = footerTop <= viewportHeight - 24;
+      footerSnapDisabled = scrollingDown && footerReached;
+      lastScrollY = currentScrollY;
       root.classList.toggle('snap-free-footer', footerSnapDisabled);
     };
 
