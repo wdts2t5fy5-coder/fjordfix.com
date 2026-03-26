@@ -580,6 +580,7 @@
     const brandLink = document.querySelector('.brand-link');
     const toggle = document.querySelector('[data-theme-toggle]');
     const storageKey = 'fjordfix-theme';
+    const homeRefreshKey = 'fjordfix-home-refresh-top';
     const storedTheme = localStorage.getItem(storageKey);
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -631,13 +632,20 @@
       if (path.endsWith('/')) return `${path}index.html`;
       return path;
     };
+    if (sessionStorage.getItem(homeRefreshKey) === '1') {
+      sessionStorage.removeItem(homeRefreshKey);
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+      window.addEventListener('load', () => window.scrollTo(0, 0), { once: true });
+    }
     if (brandLink) {
       brandLink.addEventListener('click', (event) => {
         const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
         if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
         event.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
+        sessionStorage.setItem(homeRefreshKey, '1');
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.location.assign(targetUrl.pathname + targetUrl.search);
       });
     }
     if (toggle) {
