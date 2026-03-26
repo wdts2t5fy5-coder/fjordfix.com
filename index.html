@@ -107,7 +107,7 @@
     .brand{display:grid;grid-template-columns:1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
     .brand-left{display:flex;align-items:center;gap:16px}
     .brand-link{display:inline-flex;align-items:center;text-decoration:none}
-    .brand-link-button{padding:0;border:0;background:transparent;cursor:pointer}
+    .brand-link-button{padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
     .brand-title{display:flex;align-items:center;justify-content:flex-start;height:112px}
     .brand-title img{height:88px;width:auto;display:block}
     .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
@@ -662,6 +662,7 @@
           });
         });
       };
+      brandLink.addEventListener('touchend', jumpToTop, { passive: false });
       brandLink.addEventListener('pointerup', jumpToTop);
       brandLink.addEventListener('click', jumpToTop);
     }
