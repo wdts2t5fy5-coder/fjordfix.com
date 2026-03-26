@@ -95,7 +95,6 @@
     }
     *{box-sizing:border-box}
     html{scroll-snap-type:y mandatory;scroll-padding-top:140px}
-    html.snap-free-footer{scroll-snap-type:none}
     html,body{margin:0;padding:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--white); background:var(--bg);} 
     a{color:inherit}
     body{min-height:100vh;display:flex;flex-direction:column}
@@ -322,7 +321,8 @@
     #kontakt .wrap{transform:translateY(56px)}
     .hero,
     .service-spotlight,
-    #kontakt{scroll-snap-align:end;scroll-snap-stop:always}
+    #kontakt,
+    .footer{scroll-snap-align:end;scroll-snap-stop:always}
     #kontakt .section-title{justify-content:center;text-align:center}
     #kontakt .section-title h2{font-size:clamp(2rem,6vw,4rem);line-height:.96;letter-spacing:-1.2px}
 
@@ -377,7 +377,8 @@
       .service-spotlight:first-of-type{padding-top:20px}
       .hero,
       .service-spotlight,
-      #kontakt{scroll-snap-stop:normal}
+      #kontakt,
+      .footer{scroll-snap-stop:normal}
       .spotlight-inner{grid-template-columns:1fr;text-align:left;padding:32px 28px;gap:8px}
       .spotlight-icon{font-size:clamp(110px,28vw,190px);text-align:left;transform:none}
       .spotlight-logo img{width:min(56vw,220px)}
@@ -637,10 +638,6 @@
         const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
         if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
         event.preventDefault();
-        footerSnapDisabled = false;
-        footerSnapLockY = null;
-        lastScrollY = 0;
-        root.classList.remove('snap-free-footer');
         history.replaceState(null, '', window.location.pathname + window.location.search);
         window.scrollTo(0, 0);
         window.requestAnimationFrame(() => window.scrollTo(0, 0));
@@ -686,11 +683,6 @@
     const hero = document.querySelector('.hero');
     const heroTitle = document.querySelector('.hero-title-sticky');
     const heroMedia = document.querySelector('.hero-media');
-    const footer = document.querySelector('.footer');
-    let footerSnapDisabled = false;
-    let lastScrollY = window.scrollY;
-    let footerSnapLockY = null;
-
     const updateHeroLayout = () => {
       if (!hero || !heroTitle || !heroMedia) return;
       const heroStyles = window.getComputedStyle(hero);
@@ -705,39 +697,6 @@
     window.addEventListener('resize', () => {
       window.requestAnimationFrame(updateHeroLayout);
     });
-
-    const updateFooterSnapMode = () => {
-      if (!footer) return;
-      const footerTop = footer.getBoundingClientRect().top;
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
-      const currentScrollY = window.scrollY;
-      const scrollingDown = currentScrollY > lastScrollY;
-      const disableThreshold = viewportHeight - 96;
-      const enableThreshold = viewportHeight - 220;
-      if (!footerSnapDisabled && scrollingDown && footerTop <= disableThreshold) {
-        footerSnapDisabled = true;
-        footerSnapLockY = currentScrollY;
-      } else if (footerSnapDisabled) {
-        if (scrollingDown) {
-          footerSnapLockY = Math.max(footerSnapLockY ?? currentScrollY, currentScrollY);
-        } else if (
-          currentScrollY <= (footerSnapLockY ?? currentScrollY) - 8 &&
-          footerTop >= enableThreshold
-        ) {
-          footerSnapDisabled = false;
-          footerSnapLockY = null;
-        }
-      }
-      lastScrollY = currentScrollY;
-      root.classList.toggle('snap-free-footer', footerSnapDisabled);
-    };
-
-    updateFooterSnapMode();
-    window.addEventListener('load', updateFooterSnapMode);
-    window.addEventListener('resize', () => {
-      window.requestAnimationFrame(updateFooterSnapMode);
-    });
-    window.addEventListener('scroll', updateFooterSnapMode, { passive: true });
 
     const spotlightIcons = Array.from(document.querySelectorAll('.spotlight-icon'));
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
