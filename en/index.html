@@ -619,6 +619,34 @@
       return path;
     };
     if (brandLink) {
+      let brandJumpActive = false;
+      let brandJumpResetTimer = null;
+      const jumpToTop = (event) => {
+        event.preventDefault();
+        if (brandJumpActive) return;
+        brandJumpActive = true;
+        const scrollingElement = document.scrollingElement || document.documentElement;
+        brandLink.blur();
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+        root.classList.add('snap-paused');
+        void root.offsetHeight;
+        if (brandJumpResetTimer) window.clearTimeout(brandJumpResetTimer);
+        scrollingElement.scrollTop = 0;
+        window.scrollTo(0, 0);
+        window.requestAnimationFrame(() => {
+          scrollingElement.scrollTop = 0;
+          window.scrollTo(0, 0);
+          brandJumpResetTimer = window.setTimeout(() => {
+            root.classList.remove('snap-paused');
+            brandJumpActive = false;
+          }, 160);
+        });
+      };
+      brandLink.addEventListener('touchstart', jumpToTop, { passive: false });
+      brandLink.addEventListener('touchend', jumpToTop, { passive: false });
+      brandLink.addEventListener('click', jumpToTop);
+    }
+    if (brandLink) {
       brandLink.addEventListener('click', (event) => {
         const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
         if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
@@ -809,31 +837,3 @@
   </script>
 </body>
 </html>
-    if (brandLink) {
-      let brandJumpActive = false;
-      let brandJumpResetTimer = null;
-      const jumpToTop = (event) => {
-        event.preventDefault();
-        if (brandJumpActive) return;
-        brandJumpActive = true;
-        const scrollingElement = document.scrollingElement || document.documentElement;
-        brandLink.blur();
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-        root.classList.add('snap-paused');
-        void root.offsetHeight;
-        if (brandJumpResetTimer) window.clearTimeout(brandJumpResetTimer);
-        scrollingElement.scrollTop = 0;
-        window.scrollTo(0, 0);
-        window.requestAnimationFrame(() => {
-          scrollingElement.scrollTop = 0;
-          window.scrollTo(0, 0);
-          brandJumpResetTimer = window.setTimeout(() => {
-            root.classList.remove('snap-paused');
-            brandJumpActive = false;
-          }, 160);
-        });
-      };
-      brandLink.addEventListener('touchstart', jumpToTop, { passive: false });
-      brandLink.addEventListener('touchend', jumpToTop, { passive: false });
-      brandLink.addEventListener('click', jumpToTop);
-    }
