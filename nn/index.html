@@ -95,7 +95,7 @@
     }
     *{box-sizing:border-box}
     html{scroll-snap-type:y mandatory;scroll-padding-top:140px}
-    html.snap-free-footer{scroll-snap-type:none}
+    html.snap-paused{scroll-snap-type:none !important}
     html,body{margin:0;padding:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:var(--white); background:var(--bg);} 
     a{color:inherit}
     body{min-height:100vh;display:flex;flex-direction:column}
@@ -108,6 +108,7 @@
     .brand{display:grid;grid-template-columns:1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
     .brand-left{display:flex;align-items:center;gap:16px}
     .brand-link{display:inline-flex;align-items:center;text-decoration:none}
+    .brand-link-button{padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
     .brand-title{display:flex;align-items:center;justify-content:flex-start;height:112px}
     .brand-title img{height:88px;width:auto;display:block}
     .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:12px}
@@ -419,9 +420,9 @@
     <div class="wrap nav-inner">
       <div class="brand" aria-label="FjordFix">
         <div class="brand-title">
-          <a class="brand-link" href="/nn/" aria-label="Til forsiden">
+          <button class="brand-link brand-link-button" type="button" aria-label="Til forsiden">
             <img src="../logo_black.png" data-logo-light="../logo_black.png" data-logo-dark="../logo_white.png" alt="FjordFix" />
-          </a>
+          </button>
         </div>
         <div class="nav-menu">
           <div class="nav-menu-stack">
@@ -844,3 +845,31 @@
   </script>
 </body>
 </html>
+    if (brandLink) {
+      let brandJumpActive = false;
+      let brandJumpResetTimer = null;
+      const jumpToTop = (event) => {
+        event.preventDefault();
+        if (brandJumpActive) return;
+        brandJumpActive = true;
+        const scrollingElement = document.scrollingElement || document.documentElement;
+        brandLink.blur();
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+        root.classList.add('snap-paused');
+        void root.offsetHeight;
+        if (brandJumpResetTimer) window.clearTimeout(brandJumpResetTimer);
+        scrollingElement.scrollTop = 0;
+        window.scrollTo(0, 0);
+        window.requestAnimationFrame(() => {
+          scrollingElement.scrollTop = 0;
+          window.scrollTo(0, 0);
+          brandJumpResetTimer = window.setTimeout(() => {
+            root.classList.remove('snap-paused');
+            brandJumpActive = false;
+          }, 160);
+        });
+      };
+      brandLink.addEventListener('touchstart', jumpToTop, { passive: false });
+      brandLink.addEventListener('touchend', jumpToTop, { passive: false });
+      brandLink.addEventListener('click', jumpToTop);
+    }
