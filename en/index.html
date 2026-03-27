@@ -542,9 +542,9 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between">
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px;width:100%"><div style="display:grid;gap:4px"><div>© <span id="y"></span> FjordFix AS</div><div style="font-size:12px;opacity:.8">Property Services serving Knarvik and surrounding areas</div><div style="font-size:12px;opacity:.8"><a href="/personvern" style="text-decoration:none;color:inherit">Personvern og cookies</a></div></div><div style="display:grid;gap:4px;text-align:right"><div style="font-size:16px;opacity:.8">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div><div style="font-size:16px;opacity:.8">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
-      <div style="width:100%;text-align:center;font-size:12px;opacity:.7"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
+    <div class="wrap footer-wrap">
+      <div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Property services in Knarvik and surrounding areas</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
+      <div class="footer-credit"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div>
     </div>
   </footer>
 
@@ -645,15 +645,6 @@
       brandLink.addEventListener('touchstart', jumpToTop, { passive: false });
       brandLink.addEventListener('touchend', jumpToTop, { passive: false });
       brandLink.addEventListener('click', jumpToTop);
-    }
-    if (brandLink) {
-      brandLink.addEventListener('click', (event) => {
-        const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
-        if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
-        event.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
-      });
     }
     if (toggle) {
       toggle.addEventListener('click', () => {
