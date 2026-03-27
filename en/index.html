@@ -321,7 +321,8 @@
     #kontakt .wrap{transform:translateY(56px)}
     .hero,
     .service-spotlight,
-    #kontakt{scroll-snap-align:start;scroll-snap-stop:always}
+    #kontakt,
+    .footer{scroll-snap-align:end;scroll-snap-stop:always}
     #kontakt .section-title{justify-content:center;text-align:center}
     #kontakt .section-title h2{font-size:clamp(2rem,6vw,4rem);line-height:.96;letter-spacing:-1.2px}
 
@@ -339,9 +340,32 @@
     textarea{min-height:120px;resize:vertical}
     input::placeholder,textarea::placeholder{color:var(--text-45)}
 
-    .footer{padding:26px 0 36px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66);scroll-snap-align:end;scroll-snap-stop:always}
+    .footer{padding:26px 0 28px;border-top:1px solid var(--line);margin-top:28px;color:var(--text-66)}
+    .footer-wrap{display:grid;gap:10px}
+    .footer-main{display:grid;gap:4px;width:100%}
+    .footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}
+    .footer-row-top{grid-template-columns:1fr}
+    .footer-copy{font-size:12px;opacity:.8}
+    .footer-meta{font-size:12px;opacity:.8}
+    .footer-contact{font-size:14px;opacity:.8;text-align:right;white-space:nowrap}
+    .footer-credit{width:100%;text-align:center;font-size:12px;opacity:.7;margin-top:10px}
 
     @media (max-width: 920px){
+      html{scroll-snap-type:y mandatory;scroll-padding-top:112px}
+      .nav-inner{padding:16px 0 14px}
+      .brand{grid-template-columns:minmax(0,1fr) auto}
+      .brand-title{height:96px}
+      .brand-title img{height:80px}
+      .nav-menu{justify-self:end;margin-right:-6px}
+      .nav-menu-stack{gap:10px}
+      .theme-toggle{margin-left:-4px}
+      .theme-toggle[data-broken="true"] .bulb-broken{transform:translate(8px,22px) rotate(18deg)}
+      .footer{padding:24px 0 14px}
+      .footer-wrap{gap:8px}
+      .footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline}
+      .footer-copy,.footer-meta{font-size:11px}
+      .footer-contact{font-size:11px}
+      .footer-credit{margin-top:14px;font-size:11px}
       .hero-heading{max-width:10.8ch;gap:6px}
       .hero-heading-line:first-child{font-size:clamp(2.3rem,10.2vw,3.1rem);line-height:.96;letter-spacing:-.04em}
       .hero-heading-line:last-child{font-size:clamp(1.15rem,5.4vw,1.55rem);line-height:1.12;letter-spacing:-.02em}
@@ -356,13 +380,20 @@
       .focus-services{margin-top:clamp(56px,9vh,108px)}
       .service-spotlight{min-height:84svh}
       .service-spotlight + .service-spotlight{margin-top:clamp(56px,9vh,108px)}
+      .service-spotlight:first-of-type{padding-top:20px}
+      .hero,
+      .service-spotlight{scroll-snap-stop:normal}
+      #kontakt,
+      .footer{scroll-snap-stop:always}
       .spotlight-inner{grid-template-columns:1fr;text-align:left;padding:32px 28px;gap:8px}
       .spotlight-icon{font-size:clamp(110px,28vw,190px);text-align:left;transform:none}
       .spotlight-logo img{width:min(56vw,220px)}
       .spotlight-image img{width:min(64vw,250px)}
+      .spotlight-copy{display:flex;flex-direction:column}
       .spotlight-copy h2{margin:0 0 10px;font-size:clamp(2rem,6vw,4rem)}
-      .spotlight-copy p{margin:0 0 16px;font-size:clamp(18px,5.2vw,28px);line-height:1.2}
-      .spotlight-copy p.compact{font-size:clamp(17px,4.7vw,24px);line-height:1.25;max-width:30ch}
+      .spotlight-copy p{margin:0 0 16px;font-size:clamp(18px,5.2vw,28px);line-height:1.2;max-width:30ch}
+      .spotlight-copy p.compact{font-size:clamp(17px,4.7vw,24px);line-height:1.25}
+      .spotlight-copy .btn{align-self:flex-end}
       .service-spotlight:nth-of-type(1) .spotlight-icon{transform:translateY(-18px)}
       .service-spotlight:nth-of-type(1) .spotlight-copy{transform:translateY(-22px)}
       .service-spotlight:nth-of-type(1) .spotlight-copy h2{margin-bottom:8px}
