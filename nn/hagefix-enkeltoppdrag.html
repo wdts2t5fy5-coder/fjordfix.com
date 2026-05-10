@@ -53,11 +53,111 @@
     .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(15,23,42,.14);padding:14px 18px;border-radius:14px;text-decoration:none;font-weight:800;background:#fff}.btn-primary{background:linear-gradient(135deg,var(--orange),var(--orange));color:#fff;border:none}
     .footer{padding:26px 0 28px;border-top:1px solid var(--line);color:rgba(15,23,42,.66)}.footer-wrap{display:grid;gap:10px}.footer-main{display:grid;gap:4px;width:100%}.footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}.footer-row-top{grid-template-columns:1fr}.footer-copy,.footer-meta,.footer-contact,.footer-credit{font-size:12px;opacity:.8}.footer-contact{text-align:right;white-space:nowrap}.footer-credit{text-align:center;margin-top:10px}
     @media (max-width:920px){.wrap{padding:0 20px}.nav-inner{padding:14px 0}.brand-title img{height:76px}.page-card{padding:26px 20px;border-radius:22px}.lang-panel,.menu-panel{min-width:min(240px,calc(100vw - 40px));max-width:calc(100vw - 40px)}.footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px}.footer-copy,.footer-meta,.footer-contact,.footer-credit{font-size:11px}}
+
+    /* restored-subpage-content */
+
+    main{padding:36px 0 72px}
+    .section{padding:24px 0}
+    .section:first-child{padding-top:8px}
+    h1{margin:0 0 10px;font-size:clamp(2.4rem,5vw,4rem);line-height:.96;letter-spacing:-.045em}
+    h2{margin:0 0 10px;font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.08;letter-spacing:-.02em}
+    h3{margin:0 0 8px;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    p{margin:0 0 16px;color:var(--muted);line-height:1.65}
+    ul{margin:0;padding-left:18px;color:var(--ink)}
+    li{margin:6px 0;line-height:1.55}
+    .meta{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    .card{border:1px solid var(--line);border-radius:22px;padding:22px 24px;background:linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.02));box-shadow:var(--shadow)}
+    .intro-card{margin-top:18px}
+    .services-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
+    .service-card{display:grid;gap:12px;padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff;box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    .service-icon{font-size:28px}
+    .service-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+    .service-top h2{margin:0;font-size:1.25rem}
+    .service-tag{display:inline-flex;align-items:center;border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .service-lead{margin:0;color:var(--muted)}
+    .service-actions{margin-top:auto}
+    .service-detail{padding:22px 24px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.02));box-shadow:var(--shadow);scroll-margin-top:140px}
+    .service-detail + .service-detail{margin-top:18px}
+    .detail-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px}
+    .detail-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .detail-grid ul{margin:0;padding-left:18px}
+    .callout{margin-top:22px;padding:18px 20px;border-radius:18px;border:1px dashed var(--line);background:rgba(22,90,116,.06);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;font-weight:700}
+    .callout p{margin:0;color:var(--ink)}
+    .location-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    .location-note{margin-top:12px}
+    .price-grid{display:grid;gap:14px;margin:18px 0}
+    .month-card,.schedule-wrap,.month-wrap,.schedule-grid,.schedule-axis,.schedule-axis-days,.schedule-header,.schedule-nav,.month-header,.month-nav{display:none}
+    @media (max-width:920px){
+      main{padding:26px 0 56px}
+      .card,.service-detail{padding:18px}
+      .services-grid{grid-template-columns:1fr}
+    }
+
   </style>
 </head>
 <body>
   <div class="nav"><div class="wrap nav-inner"><div class="brand-title"><a class="brand-link" href="/nn/" aria-label="FjordFix home"><img src="../logo_white.png" alt="FjordFix" /></a></div><div class="nav-menu"><div class="nav-menu-stack"><button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Open menu"><span class="menu-icon"><span></span></span></button><button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Change language"><span class="flag-no" aria-hidden="true"></span></button><div class="lang-panel" id="lang-menu" data-lang-panel hidden><a href="/" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a><a href="/nn/" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a><a href="/en/" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Not norsk</span></a></div></div><div class="menu-panel" id="main-menu" data-menu-panel hidden><a href="/nn/om-fjordfix">Om FjordFix</a><a href="/nn/tjenester">Tjenester</a><a href="/nn/priser">Prisoversikt</a><a href="/nn/kontakt">Kontakt</a></div></div></div></div>
-  <main class="wrap"><section class="page-card"><span class="eyebrow">FjordFix</span><h1>HageFix enkeltoppdrag</h1><p class="lead">Bestill HageFix som enkeltoppdrag for rydding, lett stell og praktisk hjelp ute på eigedomen.</p><p class="note">Denne sida er bygd opp på nytt slik at undersidene fungerer igjen.</p><div class="actions"><a class="btn btn-primary" href="/nn/kontakt">Ta kontakt</a><a class="btn" href="/nn/tjenester">Tjenester</a><a class="btn" href="/nn/">Tilbake til framsida</a></div></section></main>
+  <main class="wrap">
+    <div class="section">
+      <h1>🌿 HageFix</h1>
+      <div class="card intro-card">
+        <p>HageFix er for deg som treng praktisk hjelp i hagen ved behov – utan fast avtale.</p>
+        <p>Når hagen har vakse litt frå deg, eller det trengst ein gjennomgang før sesong, sal eller besøk, tek FjordFix jobben.</p>
+        <p>Dette er ryddig, effektivt hagearbeid, med fokus på det som gjev mest synleg resultat.</p>
+      </div>
+    </div>
+    <div class="section">
+      <div class="card">
+        <div class="meta">Kva kan HageFix brukast til?</div>
+        <ul>
+          <li>Kantklipping langs plen, bed og kanter</li>
+          <li>Lett beskjering av buskar og hekkar</li>
+          <li>Opprydding i hage og uteområde</li>
+          <li>Fjerning av uønskt vegetasjon</li>
+          <li>Klargjering før sommar, haust eller visning</li>
+        </ul>
+        <p>Arbeidet blir tilpassa hagens storleik og behov – og blir utført innan avtalt tidsramme.</p>
+      </div>
+    </div>
+    <div class="section">
+      <div class="card">
+        <div class="meta">Når passar HageFix som enkeltoppdrag?</div>
+        <ul>
+          <li>Når hagen treng ein gjennomgang her og no</li>
+          <li>Før sal, visning eller besøk</li>
+          <li>Når vedlikehald har blitt utsett</li>
+          <li>Når du vil ha hjelp éin gong, utan binding</li>
+          <li>For eldre eller andre som ønskjer praktisk avlasting</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section">
+      <div class="card">
+        <div class="meta">Slik jobbar FjordFix</div>
+        <ul>
+          <li>Oppdrag blir avtala på førehand</li>
+          <li>Tydleg pris og forventa tidsbruk</li>
+          <li>Effektiv gjennomføring</li>
+          <li>Ryddig etterlate uteområde</li>
+        </ul>
+        <p>HageFix handlar om å få gjort det som ofte blir liggjande – på ein ordentleg måte.</p>
+      </div>
+    </div>
+    <div class="section">
+      <div class="card">
+        <div class="meta">Ønsker du jamn oppfølging?</div>
+        <p>HageFix kan også leverast som vedlikehaldsavtale for deg som vil halde hagen i orden gjennom sesongen.</p>
+        <p>👉 <a href="hagefix.html">Les meir om HageFix som vedlikehaldsavtale</a></p>
+      </div>
+    </div>
+    <div class="section">
+      <div class="card">
+        <div class="meta">Klar for å kome i gang?</div>
+        <p>Ta kontakt, så finn vi ei løysing som passar hagen din.</p>
+        <a class="btn btn-primary" href="kontakt.html">Gå til kontakt</a>
+      </div>
+    </div>
+  </main>
   <footer class="footer"><div class="wrap footer-wrap"><div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Eigedomsservice i Knarvik og omegn</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div><div class="footer-credit"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div></div></footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();
     const localizeSiteHref = (rawPath) => {

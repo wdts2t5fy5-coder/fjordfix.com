@@ -53,11 +53,109 @@
     .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(15,23,42,.14);padding:14px 18px;border-radius:14px;text-decoration:none;font-weight:800;background:#fff}.btn-primary{background:linear-gradient(135deg,var(--orange),var(--orange));color:#fff;border:none}
     .footer{padding:26px 0 28px;border-top:1px solid var(--line);color:rgba(15,23,42,.66)}.footer-wrap{display:grid;gap:10px}.footer-main{display:grid;gap:4px;width:100%}.footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}.footer-row-top{grid-template-columns:1fr}.footer-copy,.footer-meta,.footer-contact,.footer-credit{font-size:12px;opacity:.8}.footer-contact{text-align:right;white-space:nowrap}.footer-credit{text-align:center;margin-top:10px}
     @media (max-width:920px){.wrap{padding:0 20px}.nav-inner{padding:14px 0}.brand-title img{height:76px}.page-card{padding:26px 20px;border-radius:22px}.lang-panel,.menu-panel{min-width:min(240px,calc(100vw - 40px));max-width:calc(100vw - 40px)}.footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px}.footer-copy,.footer-meta,.footer-contact,.footer-credit{font-size:11px}}
+
+    /* restored-subpage-content */
+
+    main{padding:36px 0 72px}
+    .section{padding:24px 0}
+    .section:first-child{padding-top:8px}
+    h1{margin:0 0 10px;font-size:clamp(2.4rem,5vw,4rem);line-height:.96;letter-spacing:-.045em}
+    h2{margin:0 0 10px;font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.08;letter-spacing:-.02em}
+    h3{margin:0 0 8px;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    p{margin:0 0 16px;color:var(--muted);line-height:1.65}
+    ul{margin:0;padding-left:18px;color:var(--ink)}
+    li{margin:6px 0;line-height:1.55}
+    .meta{font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    .card{border:1px solid var(--line);border-radius:22px;padding:22px 24px;background:linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.02));box-shadow:var(--shadow)}
+    .intro-card{margin-top:18px}
+    .services-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
+    .service-card{display:grid;gap:12px;padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff;box-shadow:0 12px 32px rgba(15,23,42,.08)}
+    .service-icon{font-size:28px}
+    .service-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+    .service-top h2{margin:0;font-size:1.25rem}
+    .service-tag{display:inline-flex;align-items:center;border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .service-lead{margin:0;color:var(--muted)}
+    .service-actions{margin-top:auto}
+    .service-detail{padding:22px 24px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.02));box-shadow:var(--shadow);scroll-margin-top:140px}
+    .service-detail + .service-detail{margin-top:18px}
+    .detail-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px}
+    .detail-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .detail-grid ul{margin:0;padding-left:18px}
+    .callout{margin-top:22px;padding:18px 20px;border-radius:18px;border:1px dashed var(--line);background:rgba(22,90,116,.06);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;font-weight:700}
+    .callout p{margin:0;color:var(--ink)}
+    .location-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+    .location-note{margin-top:12px}
+    .price-grid{display:grid;gap:14px;margin:18px 0}
+    .month-card,.schedule-wrap,.month-wrap,.schedule-grid,.schedule-axis,.schedule-axis-days,.schedule-header,.schedule-nav,.month-header,.month-nav{display:none}
+    @media (max-width:920px){
+      main{padding:26px 0 56px}
+      .card,.service-detail{padding:18px}
+      .services-grid{grid-template-columns:1fr}
+    }
+
   </style>
 </head>
 <body>
   <div class="nav"><div class="wrap nav-inner"><div class="brand-title"><a class="brand-link" href="/" aria-label="FjordFix home"><img src="logo_white.png" alt="FjordFix" /></a></div><div class="nav-menu"><div class="nav-menu-stack"><button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Open menu"><span class="menu-icon"><span></span></span></button><button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Change language"><span class="flag-no" aria-hidden="true"></span></button><div class="lang-panel" id="lang-menu" data-lang-panel hidden><a href="/" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a><a href="/nn/" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a><a href="/en/" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Not norsk</span></a></div></div><div class="menu-panel" id="main-menu" data-menu-panel hidden><a href="/om-fjordfix">Om FjordFix</a><a href="/tjenester">Tjenester</a><a href="/priser">Prisoversikt</a><a href="/kontakt">Kontakt</a></div></div></div></div>
-  <main class="wrap"><section class="page-card"><span class="eyebrow">FjordFix</span><h1>SnøFix</h1><p class="lead">SnøFix gir fast oppfølging gjennom vinteren med snørydding ved behov for bolig og eiendom.</p><p class="note">Denne siden er bygget opp på nytt slik at undersidene fungerer igjen.</p><div class="actions"><a class="btn btn-primary" href="/kontakt">Ta kontakt</a><a class="btn" href="/tjenester">Tjenester</a><a class="btn" href="/">Tilbake til forsiden</a></div></section></main>
+  <main class="wrap">
+    <div class="section">
+      <div class="meta">Sesongavtale (november–mars)</div>
+      <h1>❄️ SnøFix – vinteravtale</h1>
+      <p>SnøFix er for deg som ønsker trygg og ryddig adkomst hele vinteren, uten å måtte håndtere snørydding selv når været slår om.</p>
+      <p>Med SnøFix sørger FjordFix for snørydding ved behov gjennom vintersesongen, slik at inngang, gangvei og definert gårdsplass holdes tilgjengelig når snøen kommer.</p>
+      <p>Snørydding utføres primært med ATV og brøyteskjær, fraktet på henger til avtalt adresse. Dette gir effektiv og skånsom brøyting, med mindre støy og mer presis manøvrering enn større maskiner.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Hva inngår i SnøFix vinteravtale?</div>
+      <ul>
+        <li>Brøyting av definert gårdsplass og adkomst med ATV</li>
+        <li>Rydding av gangvei og inngang</li>
+        <li>Lett manuell snørydding der maskin ikke kommer til</li>
+        <li>Prioritert utrykning ved snøfall</li>
+      </ul>
+      <p>Omfang og områder avklares på forhånd, slik at forventningene er tydelige for begge parter.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Når passer SnøFix?</div>
+      <ul>
+        <li>For privatpersoner som ønsker trygg adkomst hele vinteren</li>
+        <li>For sameier med felles uteområder og inngangspartier</li>
+        <li>For bedrifter som er avhengige av tilgjengelige adkomster</li>
+        <li>Når du vil ha en forutsigbar løsning uten å følge snøvarsler selv</li>
+      </ul>
+      <p>SnøFix gir en ryddig vinterhverdag, også når snøen kommer uventet.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Pris og vilkår</div>
+      <p>SnøFix tilbys som sesongavtale for privatkunder, sameier og mindre bedrifter.</p>
+      <p>Pris fra 3 500 kr per sesong</p>
+      <p>Endelig pris avhenger av:</p>
+      <ul>
+        <li>adkomst og areal</li>
+        <li>avstand og tilgjengelighet</li>
+        <li>behov for manuell rydding</li>
+      </ul>
+      <p>Avtalen gir forutsigbarhet både for kunde og leverandør, og sikrer at snørydding skjer når det er behov.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Begrenset kapasitet</div>
+      <p>For å sikre rask respons og god oppfølging gjennom vinteren, tilbys SnøFix som sesongavtale med et begrenset antall plasser. Dette gjør at hver kunde får prioritert oppfølging når snøen først kommer.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Ønsker du kun hjelp ved behov?</div>
+      <p>SnøFix kan også leveres som enkeltoppdrag ved kapasitet. Sesongkunder prioriteres.</p>
+    </div>
+    <hr>
+    <div class="section">
+      <div class="meta">Klar for en enklere vinter?</div>
+      <p>Ta kontakt, så finner vi en SnøFix-løsning som passer din eiendom.</p>
+    </div>
+  </main>
   <footer class="footer"><div class="wrap footer-wrap"><div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Eiendomsservice i Knarvik og omegn</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div><div class="footer-credit"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div></div></footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();
     const localizeSiteHref = (rawPath) => {
