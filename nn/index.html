@@ -87,12 +87,14 @@
     .brand-title img{height:110px;width:auto;display:block}
     .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:10px;padding-right:8px}
     .nav-menu-stack{display:flex;flex-direction:row;gap:8px;align-items:center}
-    .lang-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#f7fbfe;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}
+    .nav-backdrop{position:fixed;inset:0;z-index:8;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .nav-backdrop[hidden]{display:none}
+    .lang-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:12;width:min(560px,calc(100vw - 48px));min-width:0;background:rgba(247,251,254,.92);border:1px solid rgba(15,23,42,.12);border-radius:24px;padding:18px;box-shadow:0 30px 80px rgba(15,23,42,.18);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:grid;gap:10px}
     .lang-panel[hidden]{display:none}
-    .lang-panel a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .lang-panel a{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:18px;text-decoration:none;font-weight:800;font-size:clamp(1.15rem,2.4vw,1.45rem);color:#0f172a}
     .lang-panel a:hover{background:var(--surface-04)}
-    .lang-panel .flag-no{width:48px;height:48px;flex:0 0 48px;border-radius:12px}
-    .lang-panel .flag-uk{display:block;width:48px;height:48px;flex:0 0 48px;border-radius:12px}
+    .lang-panel .flag-no{width:56px;height:56px;flex:0 0 56px;border-radius:16px}
+    .lang-panel .flag-uk{display:block;width:56px;height:56px;flex:0 0 56px;border-radius:16px}
 
     .flag-uk{display:block;width:100%;height:100%;border:2px solid #ffffff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('flag-uk.svg');}
 
@@ -107,9 +109,9 @@
     .menu-icon::before{top:0}
     .menu-icon span{top:6px}
     .menu-icon::after{bottom:0}
-    .menu-panel{position:absolute;top:56px;right:calc(100% + 6px);min-width:220px;background:#f7fbfe;border:1px solid rgba(15,23,42,.12);border-radius:14px;padding:8px;box-shadow:var(--shadow);display:grid;gap:4px}
+    .menu-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:12;width:min(560px,calc(100vw - 48px));min-width:0;background:rgba(247,251,254,.92);border:1px solid rgba(15,23,42,.12);border-radius:24px;padding:18px;box-shadow:0 30px 80px rgba(15,23,42,.18);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:grid;gap:10px}
     .menu-panel[hidden]{display:none}
-    .menu-panel a{padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;color:#0f172a}
+    .menu-panel a{padding:18px 20px;border-radius:18px;text-decoration:none;font-weight:800;font-size:clamp(1.15rem,2.4vw,1.45rem);color:#0f172a;text-align:center}
     .menu-panel a:hover{background:var(--surface-04)}
     .services-actions{margin-top:18px;display:flex;justify-content:center}
     .services-actions .btn{font-size:16px;font-family:inherit}
@@ -268,7 +270,11 @@
       .brand-title img{height:100px}
       .nav-menu{justify-self:end;margin-right:0;padding-right:2px}
       .lang-panel,
-      .menu-panel{top:60px;right:0;min-width:min(220px,calc(100vw - 56px));max-width:calc(100vw - 56px)}
+      .menu-panel{width:calc(100vw - 32px);padding:14px;border-radius:22px}
+      .lang-panel a,
+      .menu-panel a{padding:16px 18px;font-size:1.1rem}
+      .lang-panel .flag-no,
+      .lang-panel .flag-uk{width:52px;height:52px;flex-basis:52px}
       .footer{padding:24px 0 14px}
       .footer-wrap{gap:8px}
       .footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline}
@@ -367,6 +373,7 @@
 
     </div>
   </div>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
 
   <!-- HERO -->
   <header class="hero">
@@ -480,6 +487,7 @@
     const brandLink = document.querySelector('.brand-link');
     const heroTop = document.getElementById('top');
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const navBackdrop = document.querySelector('[data-nav-backdrop]');
     const menuButton = document.querySelector('[data-menu-toggle]');
     const menuPanel = document.querySelector('[data-menu-panel]');
     let brandScrollResetTimer = null;
@@ -494,10 +502,17 @@
         }, reduceMotion ? 0 : 700);
       });
     }
+    const syncNavBackdrop = () => {
+      if (!navBackdrop) return;
+      const menuOpen = menuPanel && !menuPanel.hidden;
+      const langOpen = langPanel && !langPanel.hidden;
+      navBackdrop.hidden = !(menuOpen || langOpen);
+    };
     const closeMenu = () => {
       if (!menuButton || !menuPanel) return;
       menuButton.setAttribute('aria-expanded', 'false');
       menuPanel.hidden = true;
+      syncNavBackdrop();
     };
     if (menuButton && menuPanel) {
       menuButton.addEventListener('click', (event) => {
@@ -509,6 +524,7 @@
         const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
         menuButton.setAttribute('aria-expanded', String(!isOpen));
         menuPanel.hidden = isOpen;
+        syncNavBackdrop();
       });
       document.addEventListener('click', (event) => {
         if (menuPanel.contains(event.target) || menuButton.contains(event.target)) return;
@@ -653,6 +669,7 @@
       if (!langToggle || !langPanel) return;
       langToggle.setAttribute('aria-expanded', 'false');
       langPanel.hidden = true;
+      syncNavBackdrop();
     };
     if (langToggle && langPanel) {
       langToggle.addEventListener('click', (event) => {
@@ -664,6 +681,7 @@
         const isOpen = langToggle.getAttribute('aria-expanded') === 'true';
         langToggle.setAttribute('aria-expanded', String(!isOpen));
         langPanel.hidden = isOpen;
+        syncNavBackdrop();
       });
       langPanel.addEventListener('click', (event) => {
         const link = event.target.closest('[data-lang-choice]');
@@ -680,6 +698,12 @@
       });
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeLang();
+      });
+    }
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', () => {
+        closeMenu();
+        closeLang();
       });
     }
 
