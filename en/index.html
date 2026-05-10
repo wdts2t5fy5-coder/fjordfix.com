@@ -491,8 +491,22 @@
 
     const root = document.documentElement;
     const brandLink = document.querySelector('.brand-link');
+    const heroTop = document.getElementById('top');
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const menuButton = document.querySelector('[data-menu-toggle]');
     const menuPanel = document.querySelector('[data-menu-panel]');
+    let brandScrollResetTimer = null;
+    if (brandLink) {
+      brandLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (brandScrollResetTimer) window.clearTimeout(brandScrollResetTimer);
+        root.classList.add('snap-paused');
+        (heroTop || document.body).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        brandScrollResetTimer = window.setTimeout(() => {
+          root.classList.remove('snap-paused');
+        }, reduceMotion ? 0 : 700);
+      });
+    }
     const closeMenu = () => {
       if (!menuButton || !menuPanel) return;
       menuButton.setAttribute('aria-expanded', 'false');
@@ -541,7 +555,6 @@
     });
 
     const spotlightIcons = Array.from(document.querySelectorAll('.spotlight-icon'));
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let spotlightTicking = false;
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
     const updateSpotlightIcons = () => {
