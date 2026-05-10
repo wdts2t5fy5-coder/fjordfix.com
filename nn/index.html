@@ -35,7 +35,7 @@
     {"@context": "https://schema.org", "@type": "WebSite", "name": "FjordFix | Eiendomsservice", "description": "FjordFix hjelper med småjobbar, montering, vedlikehald og hagearbeid i Knarvik, Alver og omegn. Rask respons og tydelege prisar.", "inLanguage": "nn", "url": "https://fjordfix.com/nn/", "isPartOf": {"@type": "WebSite", "name": "FjordFix", "url": "https://fjordfix.com/"}, "about": {"@type": "LocalBusiness", "name": "FjordFix AS", "url": "https://fjordfix.com/"}}
   </script>
   <script type="application/ld+json">
-    {"@context": "https://schema.org", "@type": "LocalBusiness", "name": "FjordFix AS", "url": "https://fjordfix.com/", "logo": "https://fjordfix.com/logo_black.png", "image": "https://fjordfix.com/Knarvik.png?v=20260302", "email": "kris@fjordfix.com", "areaServed": ["Knarvik", "Alver", "Asane", "Lindas", "Frekhaug", "Manger"]}
+    {"@context": "https://schema.org", "@type": "LocalBusiness", "name": "FjordFix AS", "url": "https://fjordfix.com/", "logo": "https://fjordfix.com/logo_white.png", "image": "https://fjordfix.com/Knarvik.png?v=20260302", "email": "kris@fjordfix.com", "areaServed": ["Knarvik", "Alver", "Asane", "Lindas", "Frekhaug", "Manger"]}
   </script>
 <style>
     :root{
@@ -66,32 +66,6 @@
       --shadow:0 18px 60px rgba(15,23,42,.12);
       --input-bg:#ffffff;
       --input-text:var(--ink);
-    }
-    html[data-theme="dark"]{
-      color-scheme:dark;
-      --bg:#000000;
-      --card:#0a0a0a;
-      --line:rgba(255,255,255,.12);
-      --white:#ffffff;
-      --text-85:rgba(255,255,255,.85);
-      --text-82:rgba(255,255,255,.82);
-      --text-78:rgba(255,255,255,.78);
-      --text-72:rgba(255,255,255,.72);
-      --text-70:rgba(255,255,255,.70);
-      --text-68:rgba(255,255,255,.68);
-      --text-66:rgba(255,255,255,.66);
-      --text-45:rgba(255,255,255,.45);
-      --border-14:rgba(255,255,255,.14);
-      --surface-06:rgba(255,255,255,.06);
-      --surface-10:rgba(255,255,255,.10);
-      --surface-04:rgba(0,0,0,.14);
-      --card-hi:rgba(255,255,255,.08);
-      --card-lo:rgba(255,255,255,.05);
-      --nav-bg:rgba(11,18,32,.75);
-      --nav-link-hover:#ffffff;
-      --shadow:0 18px 60px rgba(0,0,0,.28);
-      --input-bg:rgba(0,0,0,.18);
-      --input-text:#ffffff;
     }
     *{box-sizing:border-box}
     html{scroll-snap-type:y mandatory;scroll-padding-top:140px}
@@ -153,64 +127,6 @@
     .btn-light{background:#f7fbfe;color:#0b1220;border-color:rgba(15,23,42,.14);box-shadow:0 0 0 1px rgba(15,23,42,.06)}
     .btn-light:hover{background:rgba(255,255,255,.92);border-color:rgba(15,23,42,.2)}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .theme-toggle{padding:10px 12px;border:none;border-radius:999px;min-width:48px;min-height:48px;background:transparent;color:#0f172a;transition:transform .2s ease}
-    .theme-toggle:hover{transform:translateY(-1px);background:transparent}
-    .theme-toggle .bulb-wrap{position:relative;width:38px;height:38px;transform:translateY(0)}
-    .theme-toggle svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity .2s ease, transform .2s ease}
-    html.theme-switching,
-    html.theme-switching body,
-    html.theme-switching .nav,
-    html.theme-switching .hero,
-    html.theme-switching .service-spotlight,
-    html.theme-switching .section-title h2,
-    html.theme-switching .sub,
-    html.theme-switching .note,
-    html.theme-switching .btn,
-    html.theme-switching .menu-button,
-    html.theme-switching .lang-button,
-    html.theme-switching .lang-panel,
-    html.theme-switching .menu-panel,
-    html.theme-switching .footer{transition:background-color .42s ease, color .42s ease, border-color .42s ease, box-shadow .42s ease, opacity .42s ease}
-
-    .theme-toggle .bulb-outline{stroke:var(--bulb-stroke);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
-    .theme-toggle .bulb-fill{fill:var(--bulb-fill)}
-    .theme-toggle .bulb-base{fill:var(--bulb-base)}
-    .theme-toggle .bulb-screw{fill:var(--bulb-base)}
-    .theme-toggle .bulb-tip{fill:var(--bulb-base)}
-    .theme-toggle .bulb-highlight{fill:none;stroke:rgba(255,255,255,.7);stroke-width:5;stroke-linecap:round}
-    .theme-toggle .filament{fill:none;stroke:var(--bulb-stroke);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
-    .theme-toggle .bulb-crack{fill:none;stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-    .theme-toggle .bulb-shard{fill:var(--bulb-fill);stroke:var(--bulb-stroke);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-    .theme-toggle[data-state="on"]{--bulb-fill:#ffd400;--bulb-stroke:#0f172a;--bulb-base:#7b8aa6}
-    .theme-toggle[data-state="on"] svg{filter:none}
-    .theme-toggle[data-state="off"]{--bulb-fill:rgba(15,23,42,.08);--bulb-stroke:rgba(15,23,42,.55);--bulb-base:#6f7d96}
-    .theme-toggle[data-state="off"] .bulb-highlight{stroke:rgba(15,23,42,.2)}
-    .theme-toggle[data-state="off"] svg{transform:scale(.96)}
-    .theme-toggle[data-state="off"][data-broken="true"]{--bulb-fill:rgba(255,255,255,.22);--bulb-stroke:#ffffff;--bulb-base:#7b8aa6}
-    .theme-toggle[data-state="off"][data-broken="true"] .bulb-highlight{stroke:rgba(255,255,255,.72)}
-    .theme-toggle[data-state="off"][data-broken="true"] .bulb-broken{filter:drop-shadow(0 2px 4px rgba(0,0,0,.35))}
-.theme-toggle[data-state="off"][data-broken="true"] .bulb-base,
-    .theme-toggle[data-state="off"][data-broken="true"] .bulb-tip{fill:#6f7d96;stroke:#6f7d96}
-    .theme-toggle[data-state="off"][data-broken="true"] .bulb-screw{fill:#6f7d96;stroke:#334155}
-    .theme-toggle .bulb-broken{opacity:0}
-    .theme-toggle[data-broken="true"] .bulb-full{opacity:0}
-    .theme-toggle[data-broken="true"] .bulb-broken{opacity:1;transform:translate(14px,22px) rotate(18deg)}
-
-    html[data-theme="dark"] .nav{background:rgba(0,0,0,.92);border-bottom:0}
-    html[data-theme="dark"] .nav::after{display:none}
-    html[data-theme="dark"] .lang-panel,
-    html[data-theme="dark"] .menu-panel{background:var(--card);border-color:var(--line)}
-    html[data-theme="dark"] .lang-panel a,
-    html[data-theme="dark"] .menu-panel a{color:#ffffff}
-    html[data-theme="dark"] .theme-toggle{color:var(--ink)}
-    html[data-theme="dark"] .menu-button{border-color:rgba(255,255,255,.78);background:transparent}
-    html[data-theme="dark"] .menu-icon::before,
-    html[data-theme="dark"] .menu-icon::after,
-    html[data-theme="dark"] .menu-icon span{background:#ffffff}
-    html[data-theme="dark"] .flag-no,
-    html[data-theme="dark"] .flag-uk{border-color:var(--bg)}
-    html[data-theme="dark"] .lang-panel .flag-no,
-    html[data-theme="dark"] .lang-panel .flag-uk{border-color:#ffffff;border-width:2px}
 
     .hero{--hero-image-height:360px;--hero-title-height:120px;--hero-title-gap:56px;--hero-title-travel:.5415;--hero-sticky-top:0px;padding:188px 0 34px}
     .hero-grid{display:grid;grid-template-columns: 1.3fr .9fr;gap:26px;align-items:start}
@@ -421,7 +337,7 @@
       <div class="brand" aria-label="FjordFix">
         <div class="brand-title">
           <button class="brand-link brand-link-button" type="button" aria-label="Til forsiden">
-            <img src="../logo_black.png" data-logo-light="../logo_black.png" data-logo-dark="../logo_white.png" alt="FjordFix" />
+            <img src="../logo_white.png" alt="FjordFix" />
           </button>
         </div>
         <div class="nav-menu">
@@ -436,28 +352,6 @@
   <a href="/en/" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Utenlandsk</span></a>
 </div>
           </div>
-          <button class="btn btn-ghost theme-toggle" type="button" data-theme-toggle data-state="on" aria-pressed="false" aria-label="Rolig no..." title="Rolig no...">
-            <span class="bulb-wrap" aria-hidden="true">
-              <svg class="bulb-full" viewBox="0 0 96 96" focusable="false">
-                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
-                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
-                <path class="filament" d="M36 50c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0M36 54c0-5 4-5 4 0s4 5 4 0 4-5 4 0 4 5 4 0 4-5 4 0 4 5 4 0"/>
-                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
-                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
-                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
-              </svg>
-              <svg class="bulb-broken" viewBox="0 0 96 96" focusable="false">
-                <path class="bulb-fill bulb-outline" d="M48 14c-16.6 0-30 13.4-30 30 0 11.6 6.3 18.6 13.1 25.6 2.4 2.4 4 5.8 4.4 9.1h25c.4-3.5 2-6.8 4.4-9.1C71.7 62.6 78 55.6 78 44c0-16.6-13.4-30-30-30z"/>
-                <path class="bulb-highlight" d="M64.5 28c-4.6-5-11.2-7-17.4-6.2"/>
-                <path class="bulb-crack" d="M46 30l-4 8 6 6-6 8 8 8"/>
-                <path class="bulb-base bulb-outline" d="M38 70h20v16c0 8.2-4.2 14.8-10 14.8h-0c-5.8 0-10-6.6-10-14.8z"/>
-                <path class="bulb-screw bulb-outline" d="M40 76c3-2 6-3 8-3s5 1 8 3M40 81.5c3-2 6-3 8-3s5 1 8 3M40 87c3-2 6-3 8-3s5 1 8 3M40 92.5c3-2 6-3 8-3s5 1 8 3"/>
-                <path class="bulb-tip bulb-outline" d="M42 104h12l-6-10z"/>
-                <path class="bulb-shard" d="M52 86l8 6-10 2z"/>
-              </svg>
-            </span>
-            <span class="sr-only" data-theme-status>Lysstatus</span>
-          </button>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="/nn/om-fjordfix">Om FjordFix</a>
             <a href="/nn/tjenester">Tjenester</a>
@@ -580,103 +474,6 @@
 
     const root = document.documentElement;
     const brandLink = document.querySelector('.brand-link');
-    const toggle = document.querySelector('[data-theme-toggle]');
-    const storageKey = 'fjordfix-theme';
-    const storedTheme = localStorage.getItem(storageKey);
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
-
-    let themeTransitionTimer = null;
-
-    const applyTheme = (theme) => {
-      root.classList.add('theme-switching');
-      if (themeTransitionTimer) window.clearTimeout(themeTransitionTimer);
-      themeTransitionTimer = window.setTimeout(() => root.classList.remove('theme-switching'), 460);
-      if (theme === 'dark') {
-        root.setAttribute('data-theme', 'dark');
-      } else {
-        root.removeAttribute('data-theme');
-      }
-      if (toggle) {
-        const isDark = theme === 'dark';
-      document.querySelectorAll('[data-logo-light][data-logo-dark]').forEach((logo) => {
-        logo.src = theme === 'dark' ? logo.getAttribute('data-logo-dark') : logo.getAttribute('data-logo-light');
-      });
-        toggle.setAttribute('aria-pressed', isDark);
-        toggle.setAttribute('data-state', isDark ? 'off' : 'on');
-        const isBroken = toggle.getAttribute('data-broken') === 'true';
-        const label = isDark ? 'La det bli lys' : 'Rolig no...';
-        toggle.setAttribute('aria-label', label);
-        toggle.setAttribute('title', label);
-        const status = toggle.querySelector('[data-theme-status]');
-        if (status) {
-          status.textContent = isDark ? (isBroken ? 'Pære knust' : 'Lys av') : 'Lys på';
-        }
-        if (isDark && !isBroken) {
-          toggle.setAttribute('data-broken', 'true');
-          if (status) {
-            status.textContent = 'Pære knust';
-          }
-        }
-        if (!isDark) {
-          toggle.removeAttribute('data-broken');
-        }
-      }
-      localStorage.setItem(storageKey, theme);
-    };
-
-    applyTheme(initialTheme);
-    const normalizeHomePath = (path) => {
-      if (!path || path === '/') return '/index.html';
-      if (path === '/nn' || path === '/nn/') return '/nn/index.html';
-      if (path === '/en' || path === '/en/') return '/en/index.html';
-      if (path.endsWith('/')) return `${path}index.html`;
-      return path;
-    };
-    if (brandLink) {
-      let brandJumpActive = false;
-      let brandJumpResetTimer = null;
-      const jumpToTop = (event) => {
-        event.preventDefault();
-        if (brandJumpActive) return;
-        brandJumpActive = true;
-        const scrollingElement = document.scrollingElement || document.documentElement;
-        brandLink.blur();
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-        root.classList.add('snap-paused');
-        void root.offsetHeight;
-        if (brandJumpResetTimer) window.clearTimeout(brandJumpResetTimer);
-        scrollingElement.scrollTop = 0;
-        window.scrollTo(0, 0);
-        window.requestAnimationFrame(() => {
-          scrollingElement.scrollTop = 0;
-          window.scrollTo(0, 0);
-          brandJumpResetTimer = window.setTimeout(() => {
-            root.classList.remove('snap-paused');
-            brandJumpActive = false;
-          }, 160);
-        });
-      };
-      brandLink.addEventListener('touchstart', jumpToTop, { passive: false });
-      brandLink.addEventListener('touchend', jumpToTop, { passive: false });
-      brandLink.addEventListener('click', jumpToTop);
-    }
-    if (brandLink) {
-      brandLink.addEventListener('click', (event) => {
-        const targetUrl = new URL(brandLink.getAttribute('href'), window.location.href);
-        if (normalizeHomePath(targetUrl.pathname) !== normalizeHomePath(window.location.pathname)) return;
-        event.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
-      });
-    }
-    if (toggle) {
-      toggle.addEventListener('click', () => {
-        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-      });
-    }
-
     const menuButton = document.querySelector('[data-menu-toggle]');
     const menuPanel = document.querySelector('[data-menu-panel]');
     const closeMenu = () => {
