@@ -38,356 +38,56 @@
     {"@context": "https://schema.org", "@type": "LocalBusiness", "name": "FjordFix AS", "url": "https://fjordfix.com/", "logo": "https://fjordfix.com/logo_white.png", "image": "https://fjordfix.com/Logo.png?v=20260302", "email": "kris@fjordfix.com", "areaServed": ["Knarvik", "Alver", "Asane", "Lindas", "Frekhaug", "Manger"]}
   </script>
 <style>
-    :root{--orange:#165A74;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff;--panel:#ffffff}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background:var(--bg)}
-
-    const root = document.documentElement;
-
-    const menuButton = document.querySelector('[data-menu-toggle]');
-    const menuPanel = document.querySelector('[data-menu-panel]');
-    const closeMenu = () => {
-      if (!menuButton || !menuPanel) return;
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuPanel.hidden = true;
+    :root{--orange:#165A74;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff}
+    *{box-sizing:border-box} body{margin:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background:var(--bg)} a{color:inherit}
+    .wrap{max-width:1160px;margin:0 auto;padding:0 28px}.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:18px}.brand-title img{height:88px;width:auto;display:block}.brand-link{display:inline-flex;align-items:center;text-decoration:none}
+    .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:10px;padding-right:4px}.nav-menu-stack{display:flex;gap:8px;align-items:center}
+    .menu-button{width:48px;height:48px;border-radius:12px;border:2px solid #000;background:#f7fbfe;display:grid;place-items:center;cursor:pointer}.menu-icon{position:relative;width:22px;height:14px}
+    .menu-icon::before,.menu-icon::after,.menu-icon span{content:"";position:absolute;left:0;width:100%;height:2px;background:#0f172a;border-radius:2px}.menu-icon::before{top:0}.menu-icon span{top:6px}.menu-icon::after{bottom:0}
+    .lang-button{padding:0;overflow:hidden}.flag-no{display:block;width:100%;height:100%;border:2px solid #fff;border-radius:inherit;background:linear-gradient(90deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(180deg, transparent 43%, #00205b 43% 57%, transparent 57%),linear-gradient(90deg, transparent 38%, #ffffff 38% 62%, transparent 62%),linear-gradient(180deg, transparent 38%, #ffffff 38% 62%, transparent 62%),#ba0c2f;}.flag-uk{display:block;width:100%;height:100%;border:2px solid #fff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('../flag-uk.svg');}
+    .lang-panel,.menu-panel{position:absolute;top:58px;right:0;min-width:240px;background:#f7fbfe;border:1px solid rgba(15,23,42,.12);border-radius:16px;padding:8px;box-shadow:var(--shadow);display:grid;gap:6px}.lang-panel[hidden],.menu-panel[hidden]{display:none}
+    .lang-panel a,.menu-panel a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;font-weight:700;color:#0f172a}.lang-panel a:hover,.menu-panel a:hover{background:var(--surface-04)}.lang-panel .flag-no,.lang-panel .flag-uk{width:40px;height:40px;flex:0 0 40px;border-radius:12px}
+    main{padding:48px 0 72px}.page-card{max-width:840px;margin:0 auto;background:linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.02));border:1px solid var(--line);border-radius:28px;padding:36px;box-shadow:var(--shadow)}
+    .eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(22,90,116,.12);color:var(--orange);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}h1{margin:18px 0 14px;font-size:clamp(2.2rem,5vw,3.6rem);line-height:.98;letter-spacing:-.04em}.lead{margin:0 0 18px;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.55;color:rgba(15,23,42,.82)}.note{margin:0 0 28px;color:var(--muted);line-height:1.6}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(15,23,42,.14);padding:14px 18px;border-radius:14px;text-decoration:none;font-weight:800;background:#fff}.btn-primary{background:linear-gradient(135deg,var(--orange),var(--orange));color:#fff;border:none}
+    .footer{padding:26px 0 28px;border-top:1px solid var(--line);color:rgba(15,23,42,.66)}.footer-wrap{display:grid;gap:10px}.footer-main{display:grid;gap:4px;width:100%}.footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}.footer-row-top{grid-template-columns:1fr}.footer-copy,.footer-meta,.footer-contact,.footer-credit{font-size:12px;opacity:.8}.footer-contact{text-align:right;white-space:nowrap}.footer-credit{text-align:center;margin-top:10px}
+    @media (max-width:920px){.wrap{padding:0 20px}.nav-inner{padding:14px 0}.brand-title img{height:76px}.page-card{padding:26px 20px;border-radius:22px}.lang-panel,.menu-panel{min-width:min(240px,calc(100vw - 40px));max-width:calc(100vw - 40px)}.footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px}.footer-copy,.footer-meta,.footer-contact,.footer-credit{font-size:11px}}
+  </style>
+</head>
+<body>
+  <div class="nav"><div class="wrap nav-inner"><div class="brand-title"><a class="brand-link" href="/nn/" aria-label="FjordFix home"><img src="../logo_white.png" alt="FjordFix" /></a></div><div class="nav-menu"><div class="nav-menu-stack"><button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Open menu"><span class="menu-icon"><span></span></span></button><button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Change language"><span class="flag-no" aria-hidden="true"></span></button><div class="lang-panel" id="lang-menu" data-lang-panel hidden><a href="/" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a><a href="/nn/" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a><a href="/en/" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Not norsk</span></a></div></div><div class="menu-panel" id="main-menu" data-menu-panel hidden><a href="/nn/om-fjordfix">Om FjordFix</a><a href="/nn/tjenester">Tjenester</a><a href="/nn/priser">Prisoversikt</a><a href="/nn/kontakt">Kontakt</a></div></div></div></div>
+  <main class="wrap"><section class="page-card"><span class="eyebrow">FjordFix</span><h1>Tidsplan</h1><p class="lead">Intern tidsplan for FjordFix.</p><p class="note">Denne sida er bygd opp på nytt slik at undersidene fungerer igjen.</p><div class="actions"><a class="btn btn-primary" href="/nn/kontakt">Ta kontakt</a><a class="btn" href="/nn/tjenester">Tjenester</a><a class="btn" href="/nn/">Tilbake til framsida</a></div></section></main>
+  <footer class="footer"><div class="wrap footer-wrap"><div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Eigedomsservice i Knarvik og omegn</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div><div class="footer-credit"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by fjordtind.studio</a></div></div></footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();
+    const localizeSiteHref = (rawPath) => {
+      if (!rawPath || !rawPath.startsWith('/') || rawPath.startsWith('//')) return rawPath;
+      const hashIndex = rawPath.indexOf('#');
+      const queryIndex = rawPath.indexOf('?');
+      const cutIndex = hashIndex === -1 ? (queryIndex === -1 ? rawPath.length : queryIndex) : (queryIndex === -1 ? hashIndex : Math.min(hashIndex, queryIndex));
+      const pathname = rawPath.slice(0, cutIndex);
+      const suffix = rawPath.slice(cutIndex);
+      let normalized = pathname;
+      if (normalized === '/') normalized = '/index.html';
+      else if (normalized === '/nn' || normalized === '/nn/') normalized = '/nn/index.html';
+      else if (normalized === '/en' || normalized === '/en/') normalized = '/en/index.html';
+      else if (!/\.[a-z0-9]+$/i.test(normalized)) normalized = normalized.endsWith('/') ? normalized + 'index.html' : normalized + '.html';
+      const currentFile = window.location.pathname;
+      const siteRoot = currentFile.includes('/en/') ? currentFile.split('/en/')[0] + '/' : currentFile.includes('/nn/') ? currentFile.split('/nn/')[0] + '/' : currentFile.slice(0, currentFile.lastIndexOf('/') + 1);
+      return 'file://' + siteRoot + normalized.replace(/^\//, '') + suffix;
     };
-    if (menuButton && menuPanel) {
-      menuButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        if (langPanel && langToggle) {
-          langToggle.setAttribute('aria-expanded', 'false');
-          langPanel.hidden = true;
-        }
-        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-        menuButton.setAttribute('aria-expanded', String(!isOpen));
-        menuPanel.hidden = isOpen;
+    if (window.location.protocol === 'file:') {
+      document.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach((el) => {
+        el.setAttribute('href', localizeSiteHref(el.getAttribute('href')));
       });
-      document.addEventListener('click', (event) => {
-        if (menuPanel.contains(event.target) || menuButton.contains(event.target)) return;
-        closeMenu();
+      document.querySelectorAll('form[action^="/"]').forEach((el) => {
+        el.setAttribute('action', localizeSiteHref(el.getAttribute('action')));
       });
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') closeMenu();
-      });
-      menuPanel.addEventListener('click', (event) => {
-        if (event.target && event.target.tagName === 'A') closeMenu();
-      });
-    }
-
-    const axisDays = document.querySelector('[data-axis-days]');
-    const scheduleRows = document.querySelector('[data-schedule-rows]');
-    const weekLabel = document.querySelector('[data-week-label]');
-    const weekPrev = document.querySelector('[data-week-prev]');
-    const weekNext = document.querySelector('[data-week-next]');
-    const monthLabel = document.querySelector('[data-month-label]');
-    const monthPrev = document.querySelector('[data-month-prev]');
-    const monthNext = document.querySelector('[data-month-next]');
-    const monthGrid = document.querySelector('[data-month-grid]');
-    const weekCard = document.querySelector('[data-week-card]');
-    const sheetsEndpoint = 'https://script.google.com/macros/s/AKfycbx990wNsgUbjKyHhbOnG8LkfSbqGIm4975GSf01yosZkAQUbi0tIFX2fr9PDT41VVTq/exec';
-
-    const loadRequests = async () => {
-      try {
-        const res = await fetch(sheetsEndpoint);
-        if (!res.ok) throw new Error('Bad response');
-        const data = await res.json();
-        const records = Array.isArray(data) ? data : (data.records || []);
-        localStorage.setItem('fjordfix-requests', JSON.stringify(records));
-        return records;
-      } catch (err) {
-        const stored = localStorage.getItem('fjordfix-requests');
-        return stored ? JSON.parse(stored) : [];
-      }
-    };
-    let requests = [];
-    let plannedRows = [];
-
-    const monthNames = [
-      'Januar',
-      'Februar',
-      'Mars',
-      'April',
-      'Mai',
-      'Juni',
-      'Juli',
-      'August',
-      'September',
-      'Oktober',
-      'November',
-      'Desember'
-    ];
-    const dayNames = ['Man', 'Tys', 'Ons', 'Tor', 'Fre', 'Lau', 'Sun'];
-
-    const startOfWeek = (date) => {
-      const d = new Date(date);
-      const day = (d.getDay() + 6) % 7;
-      d.setHours(0, 0, 0, 0);
-      d.setDate(d.getDate() - day);
-      return d;
-    };
-    let currentWeek = startOfWeek(new Date());
-    let currentMonth = new Date();
-    currentMonth.setDate(1);
-    currentMonth.setHours(0, 0, 0, 0);
-
-    const formatRange = (date) => {
-      const start = new Date(date);
-      const end = new Date(date);
-      end.setDate(end.getDate() + 6);
-      const opts = { day: '2-digit', month: 'short' };
-      return `${start.toLocaleDateString('no-NO', opts)} – ${end.toLocaleDateString('no-NO', opts)}`;
-    };
-
-    let selectedDayIndex = null;
-
-    const toDateOnly = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
-
-    const isoWeekNumber = (date) => {
-      const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-      const dayNum = d.getUTCDay() || 7;
-      d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-    };
-
-    const renderAxis = () => {
-      if (!axisDays) return;
-      axisDays.innerHTML = '';
-      for (let i = 0; i < 7; i += 1) {
-        const day = new Date(currentWeek);
-        day.setDate(day.getDate() + i);
-        const label = document.createElement('span');
-        label.textContent = day.toLocaleDateString('no-NO', { weekday: 'short', day: 'numeric' });
-        if (selectedDayIndex === i) label.classList.add('is-active');
-        label.addEventListener('click', () => {
-          selectedDayIndex = selectedDayIndex === i ? null : i;
-          renderAxis();
-          renderSchedule();
-        });
-        axisDays.appendChild(label);
-      }
-      if (weekLabel) weekLabel.textContent = formatRange(currentWeek);
-    };
-
-    const shortType = (value) => {
-      if (!value) return '';
-      if (value.toLowerCase().includes('vedlikeholdsavtale')) return 'Avtale';
-      if (value.toLowerCase().includes('enkeltoppdrag')) return 'Oppdrag';
-      if (value.toLowerCase().includes('maintenance')) return 'Avtale';
-      if (value.toLowerCase().includes('one')) return 'Oppdrag';
-      return value;
-    };
-    const shortTypeLetter = (value) => {
-      if (!value) return '';
-      const lower = value.toLowerCase();
-      if (lower.includes('vedlikeholdsavtale') || lower.includes('maintenance')) return 'A';
-      if (lower.includes('enkeltoppdrag') || lower.includes('one')) return 'O';
-      return '';
-    };
-    const displayName = (item) => item.navn || [item.fornavn, item.etternavn].filter(Boolean).join(' ');
-    const displayAddress = (item) => item.adresse || [item.gateadresse, item.postkode, item.sted].filter(Boolean).join(', ');
-    const firstName = (value) => {
-      if (!value) return '';
-      return String(value).trim().split(/\s+/)[0] || '';
-    };
-
-    const renderSchedule = () => {
-      if (!scheduleRows) return;
-      scheduleRows.innerHTML = '';
-      const startHour = 6;
-      const endHour = 20;
-      const minutesPerDay = (endHour - startHour) * 60;
-      const totalMinutes = minutesPerDay * 7;
-      const weekStart = new Date(currentWeek);
-      const weekEnd = new Date(currentWeek);
-      weekEnd.setDate(weekEnd.getDate() + 7);
-      const rows = plannedRows
-        .filter((item) => item.start && item.slutt)
-        .sort((a, b) => {
-          const dateDiff = a.startDate - b.startDate;
-          if (dateDiff) return dateDiff;
-          if (!a.start && !b.start) return 0;
-          if (!a.start) return 1;
-          if (!b.start) return -1;
-          const [ah, am] = a.start.split(':').map(Number);
-          const [bh, bm] = b.start.split(':').map(Number);
-          return (ah * 60 + am) - (bh * 60 + bm);
-        });
-      if (!rows.length) {
-        scheduleRows.innerHTML = '<div class=\"schedule-empty\">Ingen planlagte oppdrag for denne uken.</div>';
-        return;
-      }
-      rows.forEach((item) => {
-        const startDate = new Date(item.startDate);
-        const endDate = new Date(item.endDate);
-        if (endDate < weekStart || startDate >= weekEnd) return;
-        const [sh, sm] = item.start.split(':').map(Number);
-        const [eh, em] = item.slutt.split(':').map(Number);
-        const startDayIndex = Math.floor((startDate - weekStart) / 86400000);
-        const endDayIndex = Math.floor((endDate - weekStart) / 86400000);
-        if (selectedDayIndex !== null && (selectedDayIndex < startDayIndex || selectedDayIndex > endDayIndex)) return;
-        const clampDay = (value) => Math.max(0, Math.min(6, value));
-        const clampTime = (hours, minutes) => Math.min(minutesPerDay, Math.max(0, (hours - startHour) * 60 + minutes));
-        const startIndex = clampDay(startDayIndex);
-        const endIndex = clampDay(endDayIndex);
-        const startTimeMinutes = 0;
-        const endTimeMinutes = minutesPerDay;
-        const startMinutes = startIndex * minutesPerDay + startTimeMinutes;
-        const endMinutes = endIndex * minutesPerDay + endTimeMinutes;
-        const left = Math.max(0, startMinutes) / totalMinutes * 100;
-        const width = Math.max(0, endMinutes - startMinutes) / totalMinutes * 100;
-        if (width <= 0) return;
-        const row = document.createElement('div');
-        row.className = 'schedule-row';
-        row.innerHTML = `
-          <div class=\"schedule-meta\">
-            <strong>${displayName(item) || ''}</strong>
-            <small>${displayAddress(item) || ''}</small><br>
-            <small>${item.tjeneste || ''} · ${shortType(item.type) || ''}</small>
-          </div>
-          <div class=\"schedule-timeline\">
-            <div class=\"schedule-bar ${item.status === 'fakturert' || item.status === 'invoiced' ? 'is-invoiced' : ''}\" style=\"left:${left}%;width:${width}%\">
-              ${item.start}–${item.slutt}
-            </div>
-          </div>
-        `;
-        scheduleRows.appendChild(row);
-      });
-      if (!scheduleRows.children.length) {
-        scheduleRows.innerHTML = selectedDayIndex !== null
-          ? '<div class=\"schedule-empty\">Ingen planlagte oppdrag denne dagen.</div>'
-          : '<div class=\"schedule-empty\">Ingen planlagte oppdrag for denne uken.</div>';
-      }
-    };
-
-    const renderMonth = () => {
-      if (!monthGrid) return;
-      monthGrid.innerHTML = '';
-      const head = document.createElement('div');
-      head.className = 'month-row month-head';
-      head.innerHTML = `
-        <div>Veke</div>
-        ${dayNames.map((day) => `<div>${day}</div>`).join('')}
-      `;
-      monthGrid.appendChild(head);
-      const monthStart = new Date(currentMonth);
-      const gridStart = startOfWeek(monthStart);
-      for (let w = 0; w < 6; w += 1) {
-        const weekStart = new Date(gridStart);
-        weekStart.setDate(gridStart.getDate() + (w * 7));
-        const row = document.createElement('div');
-        row.className = 'month-row';
-        const weekButton = document.createElement('button');
-        weekButton.type = 'button';
-        weekButton.className = 'month-week-number';
-        weekButton.textContent = `Veke ${isoWeekNumber(weekStart)}`;
-        weekButton.addEventListener('click', () => {
-          currentWeek = startOfWeek(weekStart);
-          selectedDayIndex = null;
-          renderAxis();
-          renderSchedule();
-          if (weekCard) {
-            weekCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-        row.appendChild(weekButton);
-        for (let d = 0; d < 7; d += 1) {
-          const dayDate = new Date(weekStart);
-          dayDate.setDate(weekStart.getDate() + d);
-          const cell = document.createElement('div');
-          cell.className = 'month-day';
-          if (dayDate.getMonth() !== currentMonth.getMonth()) {
-            cell.classList.add('is-outside');
-          }
-          const dayNumber = document.createElement('div');
-          dayNumber.className = 'month-day-number';
-          dayNumber.textContent = String(dayDate.getDate());
-          const eventsWrap = document.createElement('div');
-          eventsWrap.className = 'month-events';
-          const dayOnly = toDateOnly(dayDate);
-          const dayTasks = plannedRows
-            .filter((item) => dayOnly >= item.startDate && dayOnly <= item.endDate)
-            .sort((a, b) => {
-              if (!a.start && !b.start) return 0;
-              if (!a.start) return 1;
-              if (!b.start) return -1;
-              const [ah, am] = a.start.split(':').map(Number);
-              const [bh, bm] = b.start.split(':').map(Number);
-              return (ah * 60 + am) - (bh * 60 + bm);
-            });
-          dayTasks.slice(0, 3).forEach((item) => {
-            const event = document.createElement('div');
-            event.className = 'month-event';
-            if (item.status === 'fakturert' || item.status === 'invoiced') event.classList.add('is-invoiced');
-            const nameLabel = firstName(displayName(item));
-            const taskLabel = item.tjeneste || '';
-            const typeLetter = shortTypeLetter(item.type);
-            const typeLabel = typeLetter ? `(${typeLetter})` : '';
-            event.textContent = [taskLabel, typeLabel, nameLabel].filter(Boolean).join(' · ');
-            eventsWrap.appendChild(event);
-          });
-          if (dayTasks.length > 3) {
-            const more = document.createElement('div');
-            more.className = 'month-event month-more';
-            more.textContent = `+${dayTasks.length - 3} fleire`;
-            eventsWrap.appendChild(more);
-          }
-          cell.appendChild(dayNumber);
-          cell.appendChild(eventsWrap);
-          row.appendChild(cell);
-        }
-        monthGrid.appendChild(row);
-      }
-      if (monthLabel) monthLabel.textContent = monthNames[currentMonth.getMonth()];
-    };
-
-    const init = async () => {
-      requests = await loadRequests();
-      plannedRows = requests.reduce((acc, item) => {
-        const status = String(item.status || '').toLowerCase();
-        const isPlanned = status === 'kontaktet' || status === 'avtalt' || status === 'fakturert';
-        const startDateValue = item.startdato || item.dato;
-        if (!isPlanned || !startDateValue) return acc;
-        const endDateValue = item.sluttdato || startDateValue;
-        const startDate = new Date(startDateValue);
-        const endDate = new Date(endDateValue);
-        startDate.setHours(0, 0, 0, 0);
-        endDate.setHours(0, 0, 0, 0);
-        acc.push({
-          ...item,
-          status,
-          startDate,
-          endDate
-        });
-        return acc;
-      }, []);
-      renderMonth();
-      renderAxis();
-      renderSchedule();
-    };
-    init();
-    if (monthPrev && monthNext) {
-      monthPrev.addEventListener('click', () => {
-        currentMonth.setMonth(currentMonth.getMonth() - 1);
-        renderMonth();
-      });
-      monthNext.addEventListener('click', () => {
-        currentMonth.setMonth(currentMonth.getMonth() + 1);
-        renderMonth();
+      document.querySelectorAll('img[src^="/"], script[src^="/"], source[src^="/"], link[href^="/"]').forEach((el) => {
+        const attr = el.hasAttribute('src') ? 'src' : 'href';
+        el.setAttribute(attr, localizeSiteHref(el.getAttribute(attr)));
       });
     }
-    if (weekPrev && weekNext) {
-      weekPrev.addEventListener('click', () => {
-        currentWeek.setDate(currentWeek.getDate() - 7);
-        renderAxis();
-        renderSchedule();
-      });
-      weekNext.addEventListener('click', () => {
-        currentWeek.setDate(currentWeek.getDate() + 7);
-        renderAxis();
-        renderSchedule();
-      });
-    }
-  </script>
+const menuButton=document.querySelector('[data-menu-toggle]');const menuPanel=document.querySelector('[data-menu-panel]');const langToggle=document.querySelector('[data-lang-toggle]');const langPanel=document.querySelector('[data-lang-panel]');const closeMenu=()=>{if(menuButton&&menuPanel){menuButton.setAttribute('aria-expanded','false');menuPanel.hidden=true;}};const closeLang=()=>{if(langToggle&&langPanel){langToggle.setAttribute('aria-expanded','false');langPanel.hidden=true;}};if(menuButton&&menuPanel){menuButton.addEventListener('click',(event)=>{event.stopPropagation();closeLang();const open=menuButton.getAttribute('aria-expanded')==='true';menuButton.setAttribute('aria-expanded',String(!open));menuPanel.hidden=open;});menuPanel.addEventListener('click',(event)=>{if(event.target.closest('a'))closeMenu();});}if(langToggle&&langPanel){langToggle.addEventListener('click',(event)=>{event.stopPropagation();closeMenu();const open=langToggle.getAttribute('aria-expanded')==='true';langToggle.setAttribute('aria-expanded',String(!open));langPanel.hidden=open;});langPanel.addEventListener('click',(event)=>{if(event.target.closest('a'))closeLang();});}document.addEventListener('click',(event)=>{if(menuPanel&&menuButton&&!menuPanel.contains(event.target)&&!menuButton.contains(event.target))closeMenu();if(langPanel&&langToggle&&!langPanel.contains(event.target)&&!langToggle.contains(event.target))closeLang();});document.addEventListener('keydown',(event)=>{if(event.key==='Escape'){closeMenu();closeLang();}});</script>
 </body>
 </html>

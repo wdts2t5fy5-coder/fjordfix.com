@@ -149,6 +149,35 @@
     const langToggle = document.querySelector('[data-lang-toggle]');
     const langPanel = document.querySelector('[data-lang-panel]');
     const langKey = 'fjordfix-lang';
+
+    const localizeSiteHref = (rawPath) => {
+      if (!rawPath || !rawPath.startsWith('/') || rawPath.startsWith('//')) return rawPath;
+      const hashIndex = rawPath.indexOf('#');
+      const queryIndex = rawPath.indexOf('?');
+      const cutIndex = hashIndex === -1 ? (queryIndex === -1 ? rawPath.length : queryIndex) : (queryIndex === -1 ? hashIndex : Math.min(hashIndex, queryIndex));
+      const pathname = rawPath.slice(0, cutIndex);
+      const suffix = rawPath.slice(cutIndex);
+      let normalized = pathname;
+      if (normalized === '/') normalized = '/index.html';
+      else if (normalized === '/nn' || normalized === '/nn/') normalized = '/nn/index.html';
+      else if (normalized === '/en' || normalized === '/en/') normalized = '/en/index.html';
+      else if (!/\.[a-z0-9]+$/i.test(normalized)) normalized = normalized.endsWith('/') ? normalized + 'index.html' : normalized + '.html';
+      const currentFile = window.location.pathname;
+      const siteRoot = currentFile.includes('/en/') ? currentFile.split('/en/')[0] + '/' : currentFile.includes('/nn/') ? currentFile.split('/nn/')[0] + '/' : currentFile.slice(0, currentFile.lastIndexOf('/') + 1);
+      return 'file://' + siteRoot + normalized.replace(/^\//, '') + suffix;
+    };
+    if (window.location.protocol === 'file:') {
+      document.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach((el) => {
+        el.setAttribute('href', localizeSiteHref(el.getAttribute('href')));
+      });
+      document.querySelectorAll('form[action^="/"]').forEach((el) => {
+        el.setAttribute('action', localizeSiteHref(el.getAttribute('action')));
+      });
+      document.querySelectorAll('img[src^="/"], script[src^="/"], source[src^="/"], link[href^="/"]').forEach((el) => {
+        const attr = el.hasAttribute('src') ? 'src' : 'href';
+        el.setAttribute(attr, localizeSiteHref(el.getAttribute(attr)));
+      });
+    }
     const currentPath = window.location.pathname;
     const normalizePath = (path) => {
       if (!path || path === '/') return '/index.html';
