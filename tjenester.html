@@ -70,7 +70,7 @@
     .intro-card{margin-top:18px}
     .services-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
     .service-card{display:grid;gap:12px;padding:18px;border-radius:18px;border:1px solid var(--line);background:#fff;box-shadow:0 12px 32px rgba(15,23,42,.08)}
-    .service-icon{font-size:28px}
+    .service-icon img{display:block;width:72px;height:72px;object-fit:contain}
     .service-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
     .service-top h2{margin:0;font-size:1.25rem}
     .service-tag{display:inline-flex;align-items:center;border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
@@ -100,28 +100,39 @@
   <main class="wrap">
     <div class="section">
       <h1>Tjenester</h1>
-      <p>Her er en rask oversikt over hva vi kan hjelpe med, fra småjobber inne til rydding ute.</p>
+      <p>Her er en rask oversikt over de viktigste tjenestene vi tilbyr for hus, hage og uteområde.</p>
       <div class="services-grid">
         <article class="service-card">
-          <div class="service-icon">🛠️</div>
+          <div class="service-icon"><img src="eiendomsservice.png?v=20260513" alt="" /></div>
           <div class="service-top">
-            <h2>SmåFix – praktisk hjelp inne og ute</h2>
-            <span class="service-tag">Enkeltoppdrag</span>
+            <h2>Eiendomsservice</h2>
+            <span class="service-tag">Tjeneste</span>
           </div>
-          <p class="service-lead">Små, praktiske jobber som gir stor forskjell når de blir gjort.</p>
+          <p class="service-lead">Tilsyn, vedlikehald og småjobbar for hus, hage og uteområde.</p>
           <div class="service-actions">
-            <a class="btn btn-primary" href="smafix.html">Les mer</a>
+            <a class="btn btn-primary" href="kontakt.html">Ta kontakt</a>
           </div>
         </article>
         <article class="service-card">
-          <div class="service-icon">🌿</div>
+          <div class="service-icon"><img src="hoytrykkspyling.png?v=20260513" alt="" /></div>
           <div class="service-top">
-            <h2>HageFix – holder uteområdet presentabelt</h2>
-            <span class="service-tag">Enkeltoppdrag</span>
+            <h2>Høytrykkspyling</h2>
+            <span class="service-tag">Tjeneste</span>
           </div>
-          <p class="service-lead">Kantklipping, lett beskjæring og opprydding når du trenger ekstra hjelp.</p>
+          <p class="service-lead">Vask av terrasse, mur, gjerder og uteområde med skånsom utførelse.</p>
           <div class="service-actions">
-            <a class="btn btn-primary" href="hagefix-enkeltoppdrag.html">Les mer</a>
+            <a class="btn btn-primary" href="kontakt.html">Ta kontakt</a>
+          </div>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><img src="trimming-hekk-kratt.png?v=20260513" alt="" /></div>
+          <div class="service-top">
+            <h2>Rydding og beskjæring</h2>
+            <span class="service-tag">Tjeneste</span>
+          </div>
+          <p class="service-lead">Trimming av hekk og kratt, lett beskjæring og opprydding ute.</p>
+          <div class="service-actions">
+            <a class="btn btn-primary" href="kontakt.html">Ta kontakt</a>
           </div>
         </article>
       </div>
