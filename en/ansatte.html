@@ -40,7 +40,7 @@
 <style>
     :root{--orange:#165A74;--ink:#0f172a;--muted:#475569;--line:rgba(15,23,42,.12);--surface-04:rgba(15,23,42,.06);--shadow:0 18px 60px rgba(15,23,42,.12);--bg:#ffffff;--card:#ffffff}
     *{box-sizing:border-box} body{margin:0;font-family:"Poppins",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;color:var(--ink);background:var(--bg)} a{color:inherit}
-    .wrap{max-width:1160px;margin:0 auto;padding:0 28px}.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .wrap{max-width:1160px;margin:0 auto;padding:0 28px}.nav{width:100%;position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:18px}.brand-title img{height:88px;width:auto;display:block}.brand-link{display:inline-flex;align-items:center;text-decoration:none}
     .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:10px;padding-right:4px}.nav-menu-stack{display:flex;gap:8px;align-items:center}
     .menu-button{width:48px;height:48px;border-radius:12px;border:2.5px solid #000;background:#f7fbfe;display:grid;place-items:center;cursor:pointer}.menu-icon{position:relative;width:22px;height:14px}
@@ -53,12 +53,65 @@
     .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid rgba(15,23,42,.14);padding:14px 18px;border-radius:14px;text-decoration:none;font-weight:800;background:#fff}.btn-primary{background:linear-gradient(135deg,var(--orange),var(--orange));color:#fff;border:none}
     .footer{padding:26px 0 28px;border-top:1px solid var(--line);color:rgba(15,23,42,.66)}.footer-wrap{display:grid;gap:10px}.footer-main{display:grid;gap:4px;width:100%}.footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}.footer-row-top{grid-template-columns:1fr}.footer-copy,.footer-meta,.footer-contact,.footer-credit{font-size:12px;opacity:.8}.footer-contact{text-align:right;white-space:nowrap}.footer-credit{text-align:center;margin-top:10px}
     @media (max-width:920px){.wrap{padding:0 20px}.nav-inner{padding:14px 0}.brand-title img{height:76px}.page-card{padding:26px 20px;border-radius:22px}.lang-panel,.menu-panel{min-width:min(240px,calc(100vw - 40px));max-width:calc(100vw - 40px)}.footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px}.footer-copy,.footer-meta,.footer-contact,.footer-credit{font-size:11px}}
+
+    /* header-footer-sync-start */
+    .nav .wrap,.footer .wrap{max-width:1320px;margin:0 auto;padding:0 28px}
+    .nav{width:100%;position:sticky;top:0;z-index:10;background:rgba(255,255,255,.85);border-bottom:0;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:none}
+    .nav::after{display:none}.nav-inner{display:flex;align-items:center;justify-content:flex-start;padding:18px 0;gap:14px}
+    .brand{display:grid;grid-template-columns:1fr 180px;align-items:center;font-weight:800;letter-spacing:.2px;width:100%}
+    .brand-link{display:inline-flex;align-items:center;text-decoration:none}.brand-title{display:flex;align-items:center;justify-content:flex-start;height:112px}.brand-title img{height:110px;width:auto;display:block}
+    .nav-menu{display:flex;align-items:center;justify-content:flex-end;position:relative;gap:10px;padding-right:8px}.nav-menu-stack{display:flex;flex-direction:row;gap:8px;align-items:center}
+    .nav-backdrop{position:fixed;inset:0;z-index:8;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.nav-backdrop[hidden]{display:none}
+    .menu-button{width:48px;height:48px;border-radius:12px;border:2.5px solid #000000;background:#f7fbfe;display:grid;place-items:center;cursor:pointer;padding:0;color:#0f172a}.menu-button:hover{background:var(--surface-04,rgba(15,23,42,.04))}
+    .menu-icon{position:relative;width:22px;height:14px;display:block}.menu-icon::before,.menu-icon::after,.menu-icon span{content:"";position:absolute;left:0;width:100%;height:2.5px;background:#0f172a;border-radius:2px}.menu-icon::before{top:0}.menu-icon span{top:6px}.menu-icon::after{bottom:0}
+    .lang-button{padding:0;overflow:hidden}.flag-no{display:block;width:100%;height:100%;border:2px solid #fff;border-radius:inherit;background:linear-gradient(to bottom,#ba0c2f 0 100%);position:relative}.flag-no::before{content:"";position:absolute;left:24%;top:0;width:16%;height:100%;background:#fff}.flag-no::after{content:"";position:absolute;left:0;top:40%;width:100%;height:20%;background:#fff}.flag-no span{display:none}.flag-uk{display:block;width:100%;height:100%;border:2px solid #fff;border-radius:inherit;background-size:100% 100%;background-repeat:no-repeat;background-position:center;background-image:url('../flag-uk.svg')}
+    .lang-panel,.menu-panel{position:fixed;top:52vh;left:50%;right:auto;transform:translate(-50%,-50%);z-index:12;width:min(560px,calc(100vw - 48px));min-width:0;max-width:none;margin-inline:auto;background:rgba(247,251,254,.92);border:1px solid rgba(15,23,42,.12);border-radius:24px;padding:18px;box-shadow:0 30px 80px rgba(15,23,42,.18);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:grid;gap:10px;justify-items:center}.lang-panel[hidden],.menu-panel[hidden]{display:none}
+    .lang-panel a{display:grid;grid-template-columns:56px auto;align-items:center;justify-content:center;column-gap:16px;width:100%;padding:18px 20px;border-radius:18px;text-decoration:none;font-weight:800;font-size:clamp(1.15rem,2.4vw,1.45rem);color:#0f172a}.menu-panel a{width:100%;padding:18px 20px;border-radius:18px;text-decoration:none;font-weight:800;font-size:clamp(1.15rem,2.4vw,1.45rem);color:#0f172a;text-align:center}.lang-panel a:hover,.menu-panel a:hover{background:var(--surface-04,rgba(15,23,42,.04))}.lang-panel .flag-no,.lang-panel .flag-uk{width:56px;height:56px;flex:0 0 56px;border-radius:16px}
+    .footer{padding:26px 0 28px;border-top:1px solid var(--line,rgba(15,23,42,.10));margin-top:28px;color:var(--text-66,rgba(15,23,42,.66))}.footer-wrap{display:grid;gap:10px}.footer-main{display:grid;gap:4px;width:100%}.footer-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:baseline}.footer-row-top{grid-template-columns:1fr}.footer-copy,.footer-meta{font-size:12px;opacity:.8}.footer-contact{font-size:14px;opacity:.8;text-align:right;white-space:nowrap}.footer-credit{width:100%;text-align:center;font-size:12px;opacity:.7;margin-top:10px}
+    @media (max-width:920px){.nav .wrap,.footer .wrap{padding:0 20px}.nav-inner{padding:16px 0 14px}.brand{grid-template-columns:minmax(0,1fr) auto}.brand-title{height:96px}.brand-title img{height:100px}.nav-menu{justify-self:end;margin-right:0;padding-right:2px}.nav-menu-stack{gap:10px}.lang-panel,.menu-panel{width:calc(100vw - 32px);padding:14px;border-radius:22px}.lang-panel a,.menu-panel a{padding:16px 18px;font-size:1.1rem}.lang-panel .flag-no,.lang-panel .flag-uk{width:52px;height:52px;flex-basis:52px}.footer{padding:24px 0 14px}.footer-wrap{gap:8px}.footer-row{grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline}.footer-copy,.footer-meta{font-size:11px}.footer-contact{font-size:11px}.footer-credit{margin-top:14px;font-size:11px}}
+    /* header-footer-sync-end */
   </style>
 </head>
 <body>
-  <div class="nav"><div class="wrap nav-inner"><div class="brand-title"><a class="brand-link" href="/en/" aria-label="FjordFix home"><img src="../FjordFix_logo.png" alt="FjordFix" /></a></div><div class="nav-menu"><div class="nav-menu-stack"><button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Open menu"><span class="menu-icon"><span></span></span></button><button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Change language"><span class="flag-uk" aria-hidden="true"></span></button><div class="lang-panel" id="lang-menu" data-lang-panel hidden><a href="/" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a><a href="/nn/" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a><a href="/en/" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Not norsk</span></a></div></div><div class="menu-panel" id="main-menu" data-menu-panel hidden><a href="/en/om-fjordfix">About FjordFix</a><a href="/en/tjenester">Services</a><a href="/en/kontakt">Contact</a></div></div></div></div>
-  <main class="wrap"><section class="page-card"><span class="eyebrow">FjordFix</span><h1>Staff access</h1><p class="lead">Internal page for FjordFix staff.</p><p class="note">This page has been rebuilt so the subpages work correctly again.</p><div class="actions"><a class="btn btn-primary" href="/en/kontakt">Get in touch</a><a class="btn" href="/en/tjenester">Services</a><a class="btn" href="/en/">Back to front page</a></div></section></main>
-  <footer class="footer"><div class="wrap footer-wrap"><div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Property services in Knarvik and surrounding areas</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div><div class="footer-credit"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by FjordFix</a></div></div></footer>
+    <!-- TOP NAV -->
+  <div class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand" aria-label="FjordFix">
+        <div class="brand-title">
+          <a class="brand-link" href="/en/" aria-label="To front page">
+            <img src="../FjordFix_logo.png" alt="FjordFix" />
+          </a>
+        </div>
+        <div class="nav-menu">
+          <div class="nav-menu-stack">
+            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Open menu">
+              <span class="menu-icon"><span></span></span>
+            </button>
+            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Change language"><span class="flag-no" aria-hidden="true"></span></button>
+            <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
+              <a href="/" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Urban</span></a>
+              <a href="/nn/" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Local</span></a>
+              <a href="/en/" data-lang-choice="en"><span class="flag-uk" aria-hidden="true"></span><span>Not norsk</span></a>
+            </div>
+          </div>
+          <div class="menu-panel" id="main-menu" data-menu-panel hidden>
+            <a href="/en/om-fjordfix">About FjordFix</a>
+            <a href="/en/tjenester">Services</a>
+            <a href="/en/kontakt">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+<main class="wrap"><section class="page-card"><span class="eyebrow">FjordFix</span><h1>Staff access</h1><p class="lead">Internal page for FjordFix staff.</p><p class="note">This page has been rebuilt so the subpages work correctly again.</p><div class="actions"><a class="btn btn-primary" href="/en/kontakt">Get in touch</a><a class="btn" href="/en/tjenester">Services</a><a class="btn" href="/en/">Back to front page</a></div></section></main>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer-wrap">
+      <div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Property services in Bergen and surrounding areas</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.com" style="text-decoration:none;color:inherit">kris@fjordfix.com</a></div></div></div>
+      <div class="footer-credit"><a href="https://fjordtind.studio" style="text-decoration:none;color:inherit">crafted by FjordFix</a></div>
+    </div>
+  </footer>
   <script>document.getElementById('y').textContent = new Date().getFullYear();
     const localizeSiteHref = (rawPath) => {
       if (!rawPath || !rawPath.startsWith('/') || rawPath.startsWith('//')) return rawPath;
