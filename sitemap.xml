@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fjordfix.com/en/hagefix-enkeltoppdrag</loc>
-  </url>
-  <url>
     <loc>https://fjordfix.com/en/hagefix</loc>
   </url>
   <url>
@@ -25,9 +22,6 @@
     <loc>https://fjordfix.com/en/vedlikeholdsavtaler</loc>
   </url>
   <url>
-    <loc>https://fjordfix.com/hagefix-enkeltoppdrag</loc>
-  </url>
-  <url>
     <loc>https://fjordfix.com/hagefix</loc>
   </url>
   <url>
@@ -35,9 +29,6 @@
   </url>
   <url>
     <loc>https://fjordfix.com/kontakt</loc>
-  </url>
-  <url>
-    <loc>https://fjordfix.com/nn/hagefix-enkeltoppdrag</loc>
   </url>
   <url>
     <loc>https://fjordfix.com/nn/hagefix</loc>
