@@ -131,6 +131,16 @@
     .btn-light{background:#ffffff;color:var(--orange);border:2.5px solid var(--orange)}
     .btn-light:hover{background:var(--surface-04,rgba(15,23,42,.06))}
     .spotlight-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  
+    /* knappene inverterer ved peker: fylt <-> omriss */
+    .btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease}
+    .btn-primary{background:var(--orange);background-image:none;color:#ffffff;border:2.5px solid var(--orange)}
+    .btn-primary:hover{background:#ffffff;color:var(--orange);border-color:var(--orange);filter:none}
+    .btn-light{background:#ffffff;color:var(--orange);border:2.5px solid var(--orange)}
+    .btn-light:hover{background:var(--orange);color:#ffffff;border-color:var(--orange)}
+    .btn:not(.btn-primary):not(.btn-light){background:#ffffff;color:var(--orange);border:2.5px solid var(--orange)}
+    .btn:not(.btn-primary):not(.btn-light):hover{background:var(--orange);color:#ffffff}
+    .form .btn-primary[type="submit"]{border:2.5px solid var(--orange);height:54px;min-height:54px;padding:0 16px}
   </style>
 </head>
 <body>
