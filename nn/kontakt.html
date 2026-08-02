@@ -458,6 +458,16 @@
     if (requestForm) {
       requestForm.addEventListener('submit', (event) => {
         event.preventDefault();
+        // hindre dobbel innsending ved gjentatte klikk
+        if (requestForm.dataset.sending === '1') return;
+        requestForm.dataset.sending = '1';
+        const sendBtn = requestForm.querySelector('[type="submit"]');
+        if (sendBtn) {
+          sendBtn.disabled = true;
+          sendBtn.textContent = 'Sender …';
+          sendBtn.style.opacity = '.65';
+          sendBtn.style.pointerEvents = 'none';
+        }
         const data = new FormData(requestForm);
         const first = data.get('Fornamn') || '';
         const last = data.get('Etternamn') || '';
