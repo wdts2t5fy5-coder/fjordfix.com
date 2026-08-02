@@ -171,17 +171,21 @@
     .gallery-section{margin-top:40px}
     .gallery-section h2{margin:0 0 4px}
     .gallery-section p{color:var(--muted);margin:0 0 18px}
-    .gallery-pairs{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));max-width:1100px}
+    .gallery-pairs{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
     .gallery-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--card,#fff);border:1px solid var(--line,rgba(15,23,42,.12));border-radius:18px;padding:12px}
     .gallery-figure{margin:0;display:grid;gap:8px}
     .gallery-figure img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:12px;display:block;background:var(--surface-04,rgba(15,23,42,.06))}
     .gallery-figure figcaption{font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange)}
-    .gallery-single{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;max-width:560px}
-    .gallery-single img{width:100%;height:auto;border-radius:18px;display:block;border:1px solid var(--line,rgba(15,23,42,.12))}
+    .gallery-single{display:grid;gap:24px;max-width:560px}
+    .gallery-duo{display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:start;margin-top:40px}
+    .gallery-duo .gallery-section{margin-top:0}
+    .gallery-duo .gallery-single{max-width:none}
+    .gallery-duo .gallery-section p{min-height:2.9em}
+    .gallery-single img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:18px;display:block;border:1px solid var(--line,rgba(15,23,42,.12))}
     @media (max-width:520px){.gallery-pair{grid-template-columns:1fr}}
   
     /* hvit knapp med temafarget tekst */
-    .btn-light{background:#ffffff;color:var(--orange);border:1px solid var(--line,rgba(15,23,42,.12))}
+    .btn-light{background:#ffffff;color:var(--orange);border:2.5px solid var(--orange)}
     .btn-light:hover{background:var(--surface-04,rgba(15,23,42,.06))}
     .spotlight-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
   </style>
@@ -271,6 +275,7 @@
         </div>
       </section>
 
+      <div class="gallery-duo">
       <section class="gallery-section">
         <h2>Høytrykkspyling</h2>
         <p>Heller og mur vasket rene for mose og grønske.</p>
@@ -281,11 +286,12 @@
 
       <section class="gallery-section">
         <h2>Hengertransport</h2>
-        <p>Vi tar med bil og henger, så avfall og materialer kommer dit de skal.</p>
+        <p>Vi tar med bil og henger, så avfall og materialer kommer dit de skal. Med opp til 1,5 tonn nyttelast.</p>
         <div class="gallery-single">
           <img src="/galleri/hengertransport-1.jpg" width="1050" height="1400" loading="lazy" alt="Hengertransport" />
         </div>
       </section>
+      </div>
     </div>
   </main>
   <!-- FOOTER -->
