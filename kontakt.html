@@ -162,6 +162,10 @@
     /* nav-inner må slå .nav .wrap, som har høyere spesifisitet */
     .nav .wrap.nav-inner{padding:18px 0}
     @media (max-width:920px){.nav .wrap.nav-inner{padding:16px 0 14px}}
+  
+    /* flagg på linje, tekst ut mot høyre */
+    .lang-panel{justify-items:stretch}
+    .lang-panel a{justify-content:start}
   </style>
 </head>
 <body>
@@ -658,5 +662,32 @@
 
   </script>
 
+
+  <script>
+    /* frost-bakteppe bak meny og språkmeny - observerer panelene, uavhengig av hvordan siden ellers toggler dem */
+    (function () {
+      var backdrop = document.querySelector('[data-nav-backdrop]');
+      if (!backdrop) return;
+      var menuPanel = document.querySelector('[data-menu-panel]');
+      var langPanel = document.querySelector('[data-lang-panel]');
+      var menuBtn = document.querySelector('[data-menu-toggle]');
+      var langBtn = document.querySelector('[data-lang-toggle]');
+      var sync = function () {
+        var open = (menuPanel && !menuPanel.hidden) || (langPanel && !langPanel.hidden);
+        backdrop.hidden = !open;
+      };
+      [menuPanel, langPanel].forEach(function (p) {
+        if (p) new MutationObserver(sync).observe(p, { attributes: true, attributeFilter: ['hidden'] });
+      });
+      backdrop.addEventListener('click', function () {
+        [[menuBtn, menuPanel], [langBtn, langPanel]].forEach(function (pair) {
+          if (pair[1]) pair[1].hidden = true;
+          if (pair[0]) pair[0].setAttribute('aria-expanded', 'false');
+        });
+        sync();
+      });
+      sync();
+    })();
+  </script>
 </body>
 </html>

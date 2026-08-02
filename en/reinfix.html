@@ -156,6 +156,10 @@
     /* nav-inner må slå .nav .wrap, som har høyere spesifisitet */
     .nav .wrap.nav-inner{padding:18px 0}
     @media (max-width:920px){.nav .wrap.nav-inner{padding:16px 0 14px}}
+  
+    /* flagg på linje, tekst ut mot høyre */
+    .lang-panel{justify-items:stretch}
+    .lang-panel a{justify-content:start}
   </style>
 </head>
 <body>
@@ -236,5 +240,32 @@
       });
     }
 const menuButton=document.querySelector('[data-menu-toggle]');const menuPanel=document.querySelector('[data-menu-panel]');const langToggle=document.querySelector('[data-lang-toggle]');const langPanel=document.querySelector('[data-lang-panel]');const closeMenu=()=>{if(menuButton&&menuPanel){menuButton.setAttribute('aria-expanded','false');menuPanel.hidden=true;}};const closeLang=()=>{if(langToggle&&langPanel){langToggle.setAttribute('aria-expanded','false');langPanel.hidden=true;}};if(menuButton&&menuPanel){menuButton.addEventListener('click',(event)=>{event.stopPropagation();closeLang();const open=menuButton.getAttribute('aria-expanded')==='true';menuButton.setAttribute('aria-expanded',String(!open));menuPanel.hidden=open;});menuPanel.addEventListener('click',(event)=>{if(event.target.closest('a'))closeMenu();});}if(langToggle&&langPanel){langToggle.addEventListener('click',(event)=>{event.stopPropagation();closeMenu();const open=langToggle.getAttribute('aria-expanded')==='true';langToggle.setAttribute('aria-expanded',String(!open));langPanel.hidden=open;});langPanel.addEventListener('click',(event)=>{if(event.target.closest('a'))closeLang();});}document.addEventListener('click',(event)=>{if(menuPanel&&menuButton&&!menuPanel.contains(event.target)&&!menuButton.contains(event.target))closeMenu();if(langPanel&&langToggle&&!langPanel.contains(event.target)&&!langToggle.contains(event.target))closeLang();});document.addEventListener('keydown',(event)=>{if(event.key==='Escape'){closeMenu();closeLang();}});</script>
+
+  <script>
+    /* frost-bakteppe bak meny og språkmeny - observerer panelene, uavhengig av hvordan siden ellers toggler dem */
+    (function () {
+      var backdrop = document.querySelector('[data-nav-backdrop]');
+      if (!backdrop) return;
+      var menuPanel = document.querySelector('[data-menu-panel]');
+      var langPanel = document.querySelector('[data-lang-panel]');
+      var menuBtn = document.querySelector('[data-menu-toggle]');
+      var langBtn = document.querySelector('[data-lang-toggle]');
+      var sync = function () {
+        var open = (menuPanel && !menuPanel.hidden) || (langPanel && !langPanel.hidden);
+        backdrop.hidden = !open;
+      };
+      [menuPanel, langPanel].forEach(function (p) {
+        if (p) new MutationObserver(sync).observe(p, { attributes: true, attributeFilter: ['hidden'] });
+      });
+      backdrop.addEventListener('click', function () {
+        [[menuBtn, menuPanel], [langBtn, langPanel]].forEach(function (pair) {
+          if (pair[1]) pair[1].hidden = true;
+          if (pair[0]) pair[0].setAttribute('aria-expanded', 'false');
+        });
+        sync();
+      });
+      sync();
+    })();
+  </script>
 </body>
 </html>
