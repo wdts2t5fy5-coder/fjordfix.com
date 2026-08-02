@@ -150,6 +150,10 @@
     .mark{width:110px;height:110px;display:grid;place-items:center}
     .mark img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
     .brand small{display:block;font-weight:600;letter-spacing:0}
+  
+    /* nav-inner må slå .nav .wrap, som har høyere spesifisitet */
+    .nav .wrap.nav-inner{padding:18px 0}
+    @media (max-width:920px){.nav .wrap.nav-inner{padding:16px 0 14px}}
   </style>
 </head>
 <body>
@@ -158,16 +162,16 @@
     <div class="wrap nav-inner">
       <div class="brand" aria-label="FjordFix">
         <div class="brand-title">
-          <a class="brand-link" href="/nn/" aria-label="Til forsiden">
+          <a class="brand-link" href="/nn/" aria-label="Til framsida">
             <img src="../FjordFix_logo.png" alt="FjordFix" />
           </a>
         </div>
         <div class="nav-menu">
           <div class="nav-menu-stack">
-            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Åpne meny">
+            <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="main-menu" aria-label="Opne meny">
               <span class="menu-icon"><span></span></span>
             </button>
-            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Bytt språk"><span class="flag-no" aria-hidden="true"></span></button>
+            <button class="menu-button lang-button" type="button" data-lang-toggle aria-expanded="false" aria-controls="lang-menu" aria-label="Byt språk"><span class="flag-no" aria-hidden="true"></span></button>
             <div class="lang-panel" id="lang-menu" data-lang-panel hidden>
               <a href="/" data-lang-choice="nb"><span class="flag-no" aria-hidden="true"></span><span>Bymål</span></a>
               <a href="/nn/" data-lang-choice="nn"><span class="flag-no" aria-hidden="true"></span><span>Strilamål</span></a>
@@ -176,7 +180,7 @@
           </div>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="/nn/om-fjordfix">Om FjordFix</a>
-            <a href="/nn/tjenester">Tjenester</a>
+            <a href="/nn/tjenester">Tenester</a>
             <a href="/nn/kontakt">Kontakt</a>
           </div>
         </div>
@@ -197,7 +201,7 @@
           </p>
           <div class="form-top">
             <div class="form-panel">
-              <h3>Hvem bestiller?</h3>
+              <h3>Kven bestiller?</h3>
               <div class="form-row form-row-equal">
                 <input name="Fornamn" placeholder="Fornamn" />
                 <input name="Etternamn" placeholder="Etternamn" />
@@ -208,7 +212,7 @@
               </div>
             </div>
             <div class="form-panel">
-              <h3>Hvor skal det fikses?</h3>
+              <h3>Kvar skal det fiksast?</h3>
               <div class="form-row form-row-equal">
                 <input name="Gateadresse" placeholder="Gateadresse" />
                 <input name="Husnummer" placeholder="Husnummer" />
@@ -221,7 +225,7 @@
           </div>
           <div class="job-block" data-job-block>
             <div class="job-section" data-job-section>
-              <h3 data-job-heading>Hva skal fikses?</h3>
+              <h3 data-job-heading>Kva skal fiksast?</h3>
               <div class="textarea-wrap">
                 <textarea name="Beskriving" placeholder="Kort beskriving. Legg gjerne til bilete eller vedlegg også." data-word-limit="200"></textarea>
                 <label class="attachment-label" aria-label="Legg ved filer">
@@ -420,7 +424,7 @@
     if (jobBlock) {
       const sections = jobBlock.querySelectorAll('[data-job-section]');
       const heading = sections[0]?.querySelector('[data-job-heading]');
-      if (heading) heading.textContent = 'Hva skal fikses?';
+      if (heading) heading.textContent = 'Kva skal fiksast?';
     }
 
     const requestForm = document.querySelector('form[name="foresporsel"]');

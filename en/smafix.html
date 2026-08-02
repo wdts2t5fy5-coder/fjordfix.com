@@ -152,6 +152,10 @@
     .mark{width:110px;height:110px;display:grid;place-items:center}
     .mark img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
     .brand small{display:block;font-weight:600;letter-spacing:0}
+  
+    /* nav-inner må slå .nav .wrap, som har høyere spesifisitet */
+    .nav .wrap.nav-inner{padding:18px 0}
+    @media (max-width:920px){.nav .wrap.nav-inner{padding:16px 0 14px}}
   </style>
 </head>
 <body>
