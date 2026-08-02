@@ -66,4 +66,19 @@
   <url>
     <loc>https://fjordfix.no/vedlikeholdsavtaler</loc>
   </url>
+  <url>
+    <loc>https://fjordfix.no/galleri</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fjordfix.no/nn/galleri</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fjordfix.no/en/galleri</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

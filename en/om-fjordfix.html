@@ -164,6 +164,14 @@
   
     /* blokka sentreres som helhet, bredden settes av det lengste valget */
     .lang-panel{grid-template-columns:max-content;justify-content:center}
+  
+    /* display:flex fra eldre regel nøytraliserer text-align */
+    .menu-panel a{display:block;text-align:center}
+  
+    /* hvit knapp med temafarget tekst */
+    .btn-light{background:#ffffff;color:var(--orange);border:1px solid var(--line,rgba(15,23,42,.12))}
+    .btn-light:hover{background:var(--surface-04,rgba(15,23,42,.06))}
+    .spotlight-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
   </style>
 </head>
 <body>
@@ -190,6 +198,7 @@
           </div>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="/en/om-fjordfix">About FjordFix</a>
+            <a href="/en/galleri">Gallery</a>
             <a href="/en/tjenester">Services</a>
             <a href="/en/kontakt">Contact</a>
           </div>

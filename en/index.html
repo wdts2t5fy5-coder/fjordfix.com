@@ -363,6 +363,14 @@
   
     /* blokka sentreres som helhet, bredden settes av det lengste valget */
     .lang-panel{grid-template-columns:max-content;justify-content:center}
+  
+    /* display:flex fra eldre regel nøytraliserer text-align */
+    .menu-panel a{display:block;text-align:center}
+  
+    /* hvit knapp med temafarget tekst */
+    .btn-light{background:#ffffff;color:var(--orange);border:1px solid var(--line,rgba(15,23,42,.12))}
+    .btn-light:hover{background:var(--surface-04,rgba(15,23,42,.06))}
+    .spotlight-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
   </style>
 </head>
 <body>
@@ -389,6 +397,7 @@
           </div>
           <div class="menu-panel" id="main-menu" data-menu-panel hidden>
             <a href="/en/om-fjordfix">About FjordFix</a>
+            <a href="/en/galleri">Gallery</a>
             <a href="/en/tjenester">Services</a>
             <a href="/en/kontakt">Contact</a>
 </div>
@@ -430,7 +439,7 @@
           <span class="spotlight-kicker">About FjordFix</span>
           <h2>Practical help. Properly done.</h2>
           <p class="compact">Whether you need help in a city apartment or maintenance around the house, you get a fast response, one fixed point of contact, and work done properly.</p>
-          <a class="btn btn-primary" href="/en/om-fjordfix">Read about FjordFix</a>
+          <div class="spotlight-actions"><a class="btn btn-primary" href="/en/om-fjordfix">Read about FjordFix</a><a class="btn btn-light" href="/en/galleri">Gallery</a></div>
         </div>
       </div>
     </article>
@@ -471,7 +480,7 @@
         <div class="spotlight-copy">
           <span class="spotlight-kicker">Pruning and Clearing</span>
           <h2>Hedge and Brush Trimming</h2>
-          <p>We keep outdoor areas neat with trimming, pruning, and simple garden help throughout the season.</p>
+          <p>Keep outdoor areas neat with trimming, pruning, and simple garden help throughout the season.</p>
           <a class="btn btn-primary" href="/en/kontakt">Book pruning and clearing</a>
         </div>
       </div>
