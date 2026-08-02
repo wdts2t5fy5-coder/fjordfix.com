@@ -183,15 +183,26 @@
     .btn:not(.btn-primary):not(.btn-light):hover{background:var(--orange);color:#ffffff}
     .form .btn-primary[type="submit"]{border:2.5px solid var(--orange);height:54px;min-height:54px;padding:0 16px}
   
-    /* om-siden: to spalter øverst, smalere kort under */
-    .about-top{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:stretch}
-    .about-top > .card{height:100%}
-    .about-top .intro-card > img{width:min(200px,46%);margin:0 auto 18px}
-    .about-narrow{max-width:820px}
-    .about-portrait{float:right;width:min(200px,40%);margin:2px 0 14px 20px}
-    .intro-card .about-portrait img{width:100%;max-width:none;height:auto;margin:0;border-radius:16px;display:block;border:1px solid var(--line)}
-    .about-portrait figcaption{margin-top:8px;font-size:12px;color:var(--muted);text-align:center;line-height:1.4}
-    @media (max-width:560px){.about-portrait{float:none;width:min(210px,60%);margin:16px auto}}
+    /* bolker i sikksakk, bilder utenfor kortene, god luft */
+    .about-row{display:flex;gap:36px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .about-zig{flex:0 1 820px;min-width:0}
+    .about-media{flex:0 0 auto;width:min(230px,100%);margin:0}
+    .about-media img{width:100%;height:auto;display:block;border-radius:18px}
+    .about-media.rund img{border-radius:50%}
+    .about-media figcaption{margin-top:10px;font-size:12px;color:var(--muted);text-align:center;line-height:1.4}
+    .section.about-left .about-row{justify-content:flex-start}
+    .section.about-left .about-media{order:2}
+    .section.about-right,.section.about-left{padding:34px 0}
+    @media (max-width:900px){
+      .about-row,.section.about-left .about-row{justify-content:center}
+      .section.about-left .about-media{order:0}
+    }
+  
+    /* de to venstrestilte boksene i temafarge */
+    .section.about-left .about-zig{background-color:var(--orange);background-image:none;border-color:var(--orange);color:#ffffff}
+    .section.about-left .about-zig h2{color:#ffffff}
+    .section.about-left .about-zig p{color:rgba(255,255,255,.92)}
+    .section.about-left .about-zig a:not(.btn){color:#ffffff;text-decoration:underline}
   </style>
 </head>
 <body>
@@ -230,59 +241,73 @@
 <main class="wrap">
     <div class="section">
       <h1>Om FjordFix</h1>
-      <div class="about-top">
-      <div class="card intro-card">
-        <img src="../Ikon.png?v=20260513" alt="FjordFix ikon" />
-        <h2>Eiendomsservice<br>i Bergen og omegn</h2>
-        <p>FjordFix er eit lokalt vaktmeisterfirma som tilbyr praktisk hjelp inne og ute for privatpersonar, utleigarar, sameige og mindre bedrifter.</p>
-        <figure class="about-portrait">
-          <img src="/galleri/krister.jpg" width="570" height="760" loading="lazy" alt="Krister, som driv FjordFix" />
-          <figcaption>Krister, som driv FjordFix</figcaption>
-        </figure>
+    </div>
 
-        <p>Bak FjordFix står eg, Krister. Eg likar praktisk arbeid og trivst best når ting er på stell. Eg er oppteken av at jobbar blir gjorde skikkeleg, at det ser ryddig ut undervegs, og at resultatet er pent og ordentleg når eg er ferdig.</p>
-        <p>FjordFix er etablert for å hjelpe med oppgåver som ofte blir utsette, men som betyr mykje for heilskapsinntrykk, funksjon og trivsel. Det kan vere småjobbar, vedlikehald eller jamn oppfølging over tid. Nokon treng hjelp ein gong, andre ønskjer ein fast avtale. Begge delar er heilt i orden.</p>
-      </div>
-      <div class="card">
-        <h2>Korleis eg jobbar</h2>
-        <p>Eg legg vekt på ansvarlegdom, tydeleg kommunikasjon og ryddig utføring. Når eg tek på meg eit oppdrag, skal kunden vite kva som skal gjerast, og korleis det blir løyst.</p>
-        <p>Eg tek ikkje arbeid som krev fagbrev innan faste installasjonar som elektrisk arbeid, røyr eller våtrom. Dersom ei oppgåve bør løysast av fagfolk, seier eg ifrå. Det er viktig for meg å vere ærleg og gi gode råd, også når det betyr å tilrå andre.</p>
+    <div class="section about-right">
+      <div class="about-row">
+        <figure class="about-media">
+      <img src="/galleri/krister.jpg" width="570" height="760" loading="lazy" alt="Krister Dyrkolbotn, dagleg leiar" />
+      <figcaption>Krister Dyrkolbotn, dagleg leiar</figcaption>
+      </figure>
+        <div class="about-zig card intro-card">
+      <h2>Eiendomsservice<br>i Bergen og omegn</h2>
+      <p>FjordFix er eit lokalt vaktmeisterfirma som tilbyr praktisk hjelp inne og ute for privatpersonar, utleigarar, sameige og mindre bedrifter.</p>
+
+      <p>Bak FjordFix står eg, Krister. Eg likar praktisk arbeid og trivst best når ting er på stell. Eg er oppteken av at jobbar blir gjorde skikkeleg, at det ser ryddig ut undervegs, og at resultatet er pent og ordentleg når eg er ferdig.</p>
+      <p>FjordFix er etablert for å hjelpe med oppgåver som ofte blir utsette, men som betyr mykje for heilskapsinntrykk, funksjon og trivsel. Det kan vere småjobbar, vedlikehald eller jamn oppfølging over tid. Nokon treng hjelp ein gong, andre ønskjer ein fast avtale. Begge delar er heilt i orden.</p>
       </div>
       </div>
     </div>
 
-    <div class="section about-narrow">
-<div class="card">
-        <h2>Herlig lokalt</h2>
-        <p>FjordFix held til på Kvammegardane like utanfor Knarvik. Eg tek oppdrag i desse kommunane:</p>
-        <ul class="location-list">
-          <li>🔧 Alver kommune</li>
-          <li>🔧 Bergen kommune</li>
-          <li>🔧 Osterøy kommune</li>
-        </ul>
-        <p class="location-note">Ved større eller meir omfattande oppdrag kan eg òg vere open for prosjekt utanfor dette området etter avtale.</p>
+    <div class="section about-left">
+      <div class="about-row">
+        <figure class="about-media rund"><img src="../Ikon.png?v=20260513" alt="FjordFix ikon" /></figure>
+        <div class="about-zig card">
+      <h2>Korleis eg jobbar</h2>
+      <p>Eg legg vekt på ansvarlegdom, tydeleg kommunikasjon og ryddig utføring. Når eg tek på meg eit oppdrag, skal kunden vite kva som skal gjerast, og korleis det blir løyst.</p>
+      <p>Eg tek ikkje arbeid som krev fagbrev innan faste installasjonar som elektrisk arbeid, røyr eller våtrom. Dersom ei oppgåve bør løysast av fagfolk, seier eg ifrå. Det er viktig for meg å vere ærleg og gi gode råd, også når det betyr å tilrå andre.</p>
+      </div>
       </div>
     </div>
 
-    <div class="section about-narrow">
-      <div class="card">
-        <h2>Bedrifter på nett</h2>
-        <p>FjordFix hjelper også små og mellomstore bedrifter med å kome seg på nett. Mange dyktige lokale handverkarar og småbedrifter har inga nettside, eller ei som ikkje har vore rørt på fleire år.</p>
-        <p>Eg lagar enkle og raske nettsider som fungerer på mobil, er lette å finne i søk, og som du slepp å tenkje på i etterkant. Same prinsipp som elles: tydeleg avtale, ryddig utført, og noko som verkar også når jobben er levert.</p>
-        <p>Har du ei bedrift som fortener å bli synleg, ta gjerne kontakt for ein uforpliktande prat.</p>
+    <div class="section about-right">
+      <div class="about-row">
+        <div class="about-zig card">
+      <h2>Herlig lokalt</h2>
+      <p>FjordFix held til på Kvammegardane like utanfor Knarvik. Eg tek oppdrag i desse kommunane:</p>
+      <ul class="location-list">
+      <li>🔧 Alver kommune</li>
+      <li>🔧 Bergen kommune</li>
+      <li>🔧 Osterøy kommune</li>
+      </ul>
+      <p class="location-note">Ved større eller meir omfattande oppdrag kan eg òg vere open for prosjekt utanfor dette området etter avtale.</p>
+      </div>
       </div>
     </div>
 
-    <div class="section about-narrow">
-<div class="card">
-        <h2>FjordFix i vekst</h2>
-        <p>Skuta blir i dag styrt av éin mann, noko som gir rom for personleg oppfølging, fleksibilitet og tilpassing til kvar einskild kunde. Ambisjonen er å byggje verksemda vidare på ein ryddig og berekraftig måte, med fokus på kvalitet og tillit.</p>
-        <p>Målet er enkelt. Å vere ein lokal og påliteleg aktør som folk kjenner seg trygge på å ta kontakt med, og som leverer praktisk hjelp på ein ordentleg måte.</p>
-        <p>Har du noko som burde vore gjort, anten éin gong eller jamleg, er du velkomen til å ta kontakt. Vi tek ein uforpliktande prat om kva du treng hjelp til, og finn ei løysing som passar.</p>
-        <div class="callout">
-          <p>👉 Ta kontakt for ein uforpliktande prat om ditt Fix-behov.</p>
-          <a class="btn btn-primary" href="kontakt.html">Ta kontakt</a>
-        </div>
+    <div class="section about-left">
+      <div class="about-row">
+        <div class="about-zig card">
+      <h2>Bedrifter på nett</h2>
+      <p>FjordFix hjelper også små og mellomstore bedrifter med å kome seg på nett. Mange dyktige lokale handverkarar og småbedrifter har inga nettside, eller ei som ikkje har vore rørt på fleire år.</p>
+      <p>Eg lagar enkle og raske nettsider som fungerer på mobil, er lette å finne i søk, og som du slepp å tenkje på i etterkant. Same prinsipp som elles: tydeleg avtale, ryddig utført, og noko som verkar også når jobben er levert.</p>
+      <p>Har du ei bedrift som fortener å bli synleg, ta gjerne kontakt for ein uforpliktande prat.</p>
+      </div>
+      </div>
+    </div>
+
+    <div class="section about-right">
+      <div class="about-row">
+        <div class="about-zig card">
+      <h2>FjordFix i vekst</h2>
+      <p>Skuta blir i dag styrt av éin mann, noko som gir rom for personleg oppfølging, fleksibilitet og tilpassing til kvar einskild kunde. Ambisjonen er å byggje verksemda vidare på ein ryddig og berekraftig måte, med fokus på kvalitet og tillit.</p>
+      <p>Målet er enkelt. Å vere ein lokal og påliteleg aktør som folk kjenner seg trygge på å ta kontakt med, og som leverer praktisk hjelp på ein ordentleg måte.</p>
+      <p>Har du noko som burde vore gjort, anten éin gong eller jamleg, er du velkomen til å ta kontakt. Vi tek ein uforpliktande prat om kva du treng hjelp til, og finn ei løysing som passar.</p>
+      <div class="callout">
+      <p>👉 Ta kontakt for ein uforpliktande prat om ditt Fix-behov.</p>
+      <a class="btn btn-primary" href="kontakt.html">Ta kontakt</a>
+      </div>
+      </div>
       </div>
     </div>
 </main>
