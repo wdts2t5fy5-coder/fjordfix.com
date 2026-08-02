@@ -203,6 +203,14 @@
     .section.about-left .about-zig h2{color:#ffffff}
     .section.about-left .about-zig p{color:rgba(255,255,255,.92)}
     .section.about-left .about-zig a:not(.btn){color:#ffffff;text-decoration:underline}
+  
+    /* nedtonet kontaktblokk nederst */
+    .about-contact{margin-top:22px;padding-top:18px;border-top:1px solid rgba(15,23,42,.12)}
+    .about-contact h3{margin:0 0 14px;font-size:1.25rem}
+    .about-contact .contact-actions{margin:0;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start}
+    .about-contact .btn{min-height:46px;padding:12px 20px;font-size:15px}
+    .about-media.logo{width:min(210px,100%)}
+    .about-media.logo img{border-radius:0}
   </style>
 </head>
 <body>
@@ -287,6 +295,7 @@
 
     <div class="section about-left">
       <div class="about-row">
+        <figure class="about-media logo"><img src="/galleri/fjordfix-studio.png" width="520" height="171" loading="lazy" alt="FjordFix Studio" /></figure>
         <div class="about-zig card">
       <h2>Businesses online</h2>
       <p>FjordFix also helps small and medium-sized businesses get online. Plenty of capable local tradespeople and small firms have no website at all, or one that has not been touched in years.</p>
@@ -303,10 +312,13 @@
       <p>The ship is currently steered by one person, which allows personal follow-up, flexibility, and adaptation to each customer. The ambition is to build the business further in a tidy and sustainable way, with a focus on quality and trust.</p>
       <p>The goal is simple: to be a local and reliable provider people feel safe contacting, delivering practical help in a proper way.</p>
       <p>If you have something that should have been done, whether once or regularly, feel free to get in touch. We can have a no‑obligation chat about what you need help with and find a solution that fits.</p>
-      <div class="callout">
-      <p>👉 Get in touch for a no‑obligation chat about your Fix needs.</p>
-      <a class="btn btn-primary" href="kontakt.html">Get in touch</a>
-      </div>
+        <div class="about-contact">
+          <h3>Contact</h3>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="/en/kontakt">Get a quote</a>
+            <a class="btn btn-light" href="tel:+4792966000">Call now</a>
+          </div>
+        </div>
       </div>
       </div>
     </div>

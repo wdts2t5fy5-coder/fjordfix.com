@@ -203,6 +203,14 @@
     .section.about-left .about-zig h2{color:#ffffff}
     .section.about-left .about-zig p{color:rgba(255,255,255,.92)}
     .section.about-left .about-zig a:not(.btn){color:#ffffff;text-decoration:underline}
+  
+    /* nedtonet kontaktblokk nederst */
+    .about-contact{margin-top:22px;padding-top:18px;border-top:1px solid rgba(15,23,42,.12)}
+    .about-contact h3{margin:0 0 14px;font-size:1.25rem}
+    .about-contact .contact-actions{margin:0;display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start}
+    .about-contact .btn{min-height:46px;padding:12px 20px;font-size:15px}
+    .about-media.logo{width:min(210px,100%)}
+    .about-media.logo img{border-radius:0}
   </style>
 </head>
 <body>
@@ -287,6 +295,7 @@
 
     <div class="section about-left">
       <div class="about-row">
+        <figure class="about-media logo"><img src="/galleri/fjordfix-studio.png" width="520" height="171" loading="lazy" alt="FjordFix Studio" /></figure>
         <div class="about-zig card">
       <h2>Bedrifter på nett</h2>
       <p>FjordFix hjelper også små og mellomstore bedrifter med å kome seg på nett. Mange dyktige lokale handverkarar og småbedrifter har inga nettside, eller ei som ikkje har vore rørt på fleire år.</p>
@@ -303,10 +312,13 @@
       <p>Skuta blir i dag styrt av éin mann, noko som gir rom for personleg oppfølging, fleksibilitet og tilpassing til kvar einskild kunde. Ambisjonen er å byggje verksemda vidare på ein ryddig og berekraftig måte, med fokus på kvalitet og tillit.</p>
       <p>Målet er enkelt. Å vere ein lokal og påliteleg aktør som folk kjenner seg trygge på å ta kontakt med, og som leverer praktisk hjelp på ein ordentleg måte.</p>
       <p>Har du noko som burde vore gjort, anten éin gong eller jamleg, er du velkomen til å ta kontakt. Vi tek ein uforpliktande prat om kva du treng hjelp til, og finn ei løysing som passar.</p>
-      <div class="callout">
-      <p>👉 Ta kontakt for ein uforpliktande prat om ditt Fix-behov.</p>
-      <a class="btn btn-primary" href="kontakt.html">Ta kontakt</a>
-      </div>
+        <div class="about-contact">
+          <h3>Kontakt</h3>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="/nn/kontakt">Få tilbod</a>
+            <a class="btn btn-light" href="tel:+4792966000">Ring no</a>
+          </div>
+        </div>
       </div>
       </div>
     </div>
