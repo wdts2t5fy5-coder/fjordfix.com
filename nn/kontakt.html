@@ -179,6 +179,10 @@
     .btn:not(.btn-primary):not(.btn-light){background:#ffffff;color:var(--orange);border:2.5px solid var(--orange)}
     .btn:not(.btn-primary):not(.btn-light):hover{background:var(--orange);color:#ffffff}
     .form .btn-primary[type="submit"]{border:2.5px solid var(--orange);height:54px;min-height:54px;padding:0 16px}
+  
+    .studio-merke{display:block;width:56px;margin:0 auto 8px;opacity:.55;transition:opacity .18s ease}
+    .studio-merke:hover{opacity:1}
+    .studio-merke img{width:100%;height:auto;display:block}
   </style>
 </head>
 <body>
@@ -273,7 +277,7 @@
   <footer class="footer">
     <div class="wrap footer-wrap">
       <div class="footer-main"><div class="footer-row footer-row-top"><div class="footer-copy">© <span id="y"></span> FjordFix AS</div></div><div class="footer-row"><div class="footer-meta">Eigedomsservice i Bergen og omegn</div><div class="footer-contact">mobil: <a href="tel:+4792966000" style="text-decoration:none;color:inherit">929 66 000</a></div></div><div class="footer-row"><div class="footer-meta"><a href="/personvern" style="text-decoration:none;color:inherit">Personvern og cookies</a></div><div class="footer-contact">mail: <a href="mailto:kris@fjordfix.no" style="text-decoration:none;color:inherit">kris@fjordfix.no</a></div></div></div>
-      <div class="footer-credit"><a href="https://fjordfix.no" style="text-decoration:none;color:inherit">Snekret av FjordFix</a></div>
+      <div class="footer-credit"><a class="studio-merke" href="https://fjordfix.no" target="_blank" rel="noopener" aria-label="FjordFix"><img src="/galleri/fjordfix-studio.png" width="520" height="171" loading="lazy" alt="" /></a><a href="https://fjordfix.no" style="text-decoration:none;color:inherit">Snekret av FjordFix</a></div>
     </div>
   </footer>
 
@@ -524,9 +528,28 @@
           status: 'ny',
           created: record.created,
         });
-        fetch(sheetsEndpoint, { method: 'POST', body: payload, mode: 'no-cors', keepalive: true })
-          .finally(() => {
+        fetch(sheetsEndpoint, { method: 'POST', body: payload, mode: 'cors', keepalive: true })
+          .then((res) => {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
             window.location.href = requestForm.action;
+          })
+          .catch(() => {
+            // innsendingen nådde ikke fram - si fra i stedet for å vise takkesiden
+            requestForm.dataset.sending = '';
+            if (sendBtn) {
+              sendBtn.disabled = false;
+              sendBtn.textContent = 'Send';
+              sendBtn.style.opacity = '';
+              sendBtn.style.pointerEvents = '';
+            }
+            let boks = requestForm.querySelector('[data-send-feil]');
+            if (!boks) {
+              boks = document.createElement('p');
+              boks.setAttribute('data-send-feil', '');
+              boks.style.cssText = 'margin:14px 0 0;color:#b00020;font-weight:700';
+              requestForm.appendChild(boks);
+            }
+            boks.textContent = 'Noko gjekk gale under sendinga. Prøv igjen, eller ring 929 66 000.';
           });
       });
     }
