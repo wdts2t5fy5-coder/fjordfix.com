@@ -182,6 +182,16 @@
     .btn:not(.btn-primary):not(.btn-light){background:#ffffff;color:var(--orange);border:2.5px solid var(--orange)}
     .btn:not(.btn-primary):not(.btn-light):hover{background:var(--orange);color:#ffffff}
     .form .btn-primary[type="submit"]{border:2.5px solid var(--orange);height:54px;min-height:54px;padding:0 16px}
+  
+    /* om-siden: to spalter øverst, smalere kort under */
+    .about-top{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));align-items:stretch}
+    .about-top > .card{height:100%}
+    .about-top .intro-card > img{width:min(200px,46%);margin:0 auto 18px}
+    .about-narrow{max-width:820px}
+    .about-portrait{float:right;width:min(200px,40%);margin:2px 0 14px 20px}
+    .intro-card .about-portrait img{width:100%;max-width:none;height:auto;margin:0;border-radius:16px;display:block;border:1px solid var(--line)}
+    .about-portrait figcaption{margin-top:8px;font-size:12px;color:var(--muted);text-align:center;line-height:1.4}
+    @media (max-width:560px){.about-portrait{float:none;width:min(210px,60%);margin:16px auto}}
   </style>
 </head>
 <body>
@@ -220,25 +230,29 @@
 <main class="wrap">
     <div class="section">
       <h1>About FjordFix</h1>
+      <div class="about-top">
       <div class="card intro-card">
         <img src="../Ikon.png?v=20260513" alt="FjordFix icon" />
         <h2>Practical help for home and garden<br>– done the local way.</h2>
         <p>FjordFix is a local caretaker company offering practical help indoors and outdoors for private homeowners, landlords, housing associations, and small businesses.</p>
+        <figure class="about-portrait">
+          <img src="/galleri/krister.jpg" width="570" height="760" loading="lazy" alt="Krister, who runs FjordFix" />
+          <figcaption>Krister, who runs FjordFix</figcaption>
+        </figure>
+
         <p>FjordFix is run by me, Krister. I enjoy practical work and thrive when things are in order. I care about doing jobs properly, keeping things tidy along the way, and delivering a neat, clean result.</p>
         <p>FjordFix was created to help with tasks that are often postponed but matter a lot for overall impression, function, and well‑being. It can be small jobs, maintenance, or steady follow‑up over time. Some need help once, others want a regular plan. Both are completely fine.</p>
       </div>
-    </div>
-
-    <div class="section">
       <div class="card">
         <h2>How I work</h2>
         <p>I focus on responsibility, clear communication, and tidy execution. When I take on a job, the customer should know what will be done and how it will be handled.</p>
         <p>I do not take work that requires certified trades in fixed installations such as electrical work, plumbing, or wet rooms. If a task should be handled by specialists, I say so. It is important to be honest and give good advice, even when that means recommending others.</p>
       </div>
+      </div>
     </div>
 
-    <div class="section">
-      <div class="card">
+    <div class="section about-narrow">
+<div class="card">
         <h2>Wonderfully local</h2>
         <p>FjordFix is based at Kvammegardene just outside Knarvik. I take jobs in these municipalities:</p>
         <ul class="location-list">
@@ -250,9 +264,18 @@
       </div>
     </div>
 
-    <div class="section">
+    <div class="section about-narrow">
       <div class="card">
-        <h2>FjordFix is growing.</h2>
+        <h2>Businesses online</h2>
+        <p>FjordFix also helps small and medium-sized businesses get online. Plenty of capable local tradespeople and small firms have no website at all, or one that has not been touched in years.</p>
+        <p>I build simple, fast websites that work on mobile, are easy to find in search, and that you do not have to think about afterwards. Same principle as everything else: a clear agreement, tidy execution, and something that still works once the job is delivered.</p>
+        <p>If your business deserves to be seen, get in touch for a no-obligation chat.</p>
+      </div>
+    </div>
+
+    <div class="section about-narrow">
+<div class="card">
+        <h2>FjordFix is growing</h2>
         <p>The ship is currently steered by one person, which allows personal follow-up, flexibility, and adaptation to each customer. The ambition is to build the business further in a tidy and sustainable way, with a focus on quality and trust.</p>
         <p>The goal is simple: to be a local and reliable provider people feel safe contacting, delivering practical help in a proper way.</p>
         <p>If you have something that should have been done, whether once or regularly, feel free to get in touch. We can have a no‑obligation chat about what you need help with and find a solution that fits.</p>
@@ -262,7 +285,7 @@
         </div>
       </div>
     </div>
-  </main>
+</main>
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap footer-wrap">
