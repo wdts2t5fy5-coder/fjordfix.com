@@ -1,30 +1,46 @@
-/abonnementer.html /vedlikeholdsavtaler.html 301
-/nn/abonnementer.html /nn/vedlikeholdsavtaler.html 301
-/en/abonnementer.html /en/vedlikeholdsavtaler.html 301
-/priser.html /kontakt.html 301
-/nn/priser.html /nn/kontakt.html 301
-/en/priser.html /en/kontakt.html 301
+# www -> apex, slik at fjordfix.no er eneste indekserbare vert
+https://www.fjordfix.no/* https://fjordfix.no/:splat 301
+
+# Gamle URL-er -> ren URL i ett hopp (unngår 301 -> 308-kjede)
+/abonnementer.html /vedlikeholdsavtaler 301
+/nn/abonnementer.html /nn/vedlikeholdsavtaler 301
+/en/abonnementer.html /en/vedlikeholdsavtaler 301
 /abonnementer /vedlikeholdsavtaler 301
 /nn/abonnementer /nn/vedlikeholdsavtaler 301
 /en/abonnementer /en/vedlikeholdsavtaler 301
+
+/priser.html /kontakt 301
+/nn/priser.html /nn/kontakt 301
+/en/priser.html /en/kontakt 301
 /priser /kontakt 301
 /nn/priser /nn/kontakt 301
 /en/priser /en/kontakt 301
-/hagefix-enkeltoppdrag.html /hagefix.html 301
+
+/hagefix-enkeltoppdrag.html /hagefix 301
 /hagefix-enkeltoppdrag /hagefix 301
-/nn/hagefix-enkeltoppdrag.html /nn/hagefix.html 301
+/nn/hagefix-enkeltoppdrag.html /nn/hagefix 301
 /nn/hagefix-enkeltoppdrag /nn/hagefix 301
-/en/hagefix-enkeltoppdrag.html /en/hagefix.html 301
+/en/hagefix-enkeltoppdrag.html /en/hagefix 301
 /en/hagefix-enkeltoppdrag /en/hagefix 301
-/reinfix-enkeltoppdrag.html /reinfix.html 301
+
+/reinfix-enkeltoppdrag.html /reinfix 301
 /reinfix-enkeltoppdrag /reinfix 301
-/nn/reinfix-enkeltoppdrag.html /nn/reinfix.html 301
+/nn/reinfix-enkeltoppdrag.html /nn/reinfix 301
 /nn/reinfix-enkeltoppdrag /nn/reinfix 301
-/en/reinfix-enkeltoppdrag.html /en/reinfix.html 301
+/en/reinfix-enkeltoppdrag.html /en/reinfix 301
 /en/reinfix-enkeltoppdrag /en/reinfix 301
-/snofix-enkeltoppdrag.html /snofix.html 301
+
+/snofix-enkeltoppdrag.html /snofix 301
 /snofix-enkeltoppdrag /snofix 301
-/nn/snofix-enkeltoppdrag.html /nn/snofix.html 301
+/nn/snofix-enkeltoppdrag.html /nn/snofix 301
 /nn/snofix-enkeltoppdrag /nn/snofix 301
-/en/snofix-enkeltoppdrag.html /en/snofix.html 301
+/en/snofix-enkeltoppdrag.html /en/snofix 301
 /en/snofix-enkeltoppdrag /en/snofix 301
+
+# SteinFix er utgått - peker til tjenesteoversikten
+/steinfix.html /tjenester 301
+/steinfix /tjenester 301
+/nn/steinfix.html /nn/tjenester 301
+/nn/steinfix /nn/tjenester 301
+/en/steinfix.html /en/tjenester 301
+/en/steinfix /en/tjenester 301
