@@ -13,8 +13,16 @@ HOST="fjordfix.no"
 KEY="a98a3ff94a3072ebddaf3314e6e87636"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-# URL-ene hentes fra sitemapet, så lista holder seg selv oppdatert
-mapfile -t URLS < <(grep -oE '<loc>[^<]+</loc>' "$ROOT/sitemap.xml" | sed 's|</\?loc>||g')
+# URL-ene hentes fra sitemapet, så lista holder seg selv oppdatert.
+# macOS har bash 3.2 uten mapfile, derfor while/read.
+URLS=()
+while IFS= read -r u; do URLS+=("$u"); done < <(
+  grep -oE '<loc>[^<]+</loc>' "$ROOT/sitemap.xml" | sed -E 's|</?loc>||g'
+)
+case "${URLS[0]}" in
+  https://*) ;;
+  *) echo "uttrekk fra sitemapet ga ugyldig URL: ${URLS[0]}" >&2; exit 1 ;;
+esac
 [ ${#URLS[@]} -gt 0 ] || { echo "fant ingen URL-er i sitemap.xml" >&2; exit 1; }
 
 # Nøkkelfila må ligge ute før innsending
