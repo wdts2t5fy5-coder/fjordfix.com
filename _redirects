@@ -1,5 +1,9 @@
-# www -> apex, slik at fjordfix.no er eneste indekserbare vert
-https://www.fjordfix.no/* https://fjordfix.no/:splat 301
+# MERK: www -> apex kan ikke gjøres her. Cloudflare Pages matcher _redirects
+# på sti, ikke på vert, så en regel med full URL som kilde blir aldri truffet.
+# Må settes opp som Redirect Rule i Cloudflare-dashbordet:
+#   Rules -> Redirect Rules -> Create rule
+#   When: hostname equals www.fjordfix.no
+#   Then: Dynamic -> concat("https://fjordfix.no", http.request.uri.path), 301
 
 # Priser er slått sammen med kontaktsiden
 /priser.html /kontakt 301
