@@ -1,84 +1,87 @@
 # www -> apex, slik at fjordfix.no er eneste indekserbare vert
 https://www.fjordfix.no/* https://fjordfix.no/:splat 301
 
-# Gamle URL-er -> ren URL i ett hopp (unngår 301 -> 308-kjede)
-/abonnementer.html /vedlikeholdsavtaler 301
-/nn/abonnementer.html /nn/vedlikeholdsavtaler 301
-/en/abonnementer.html /en/vedlikeholdsavtaler 301
-/abonnementer /vedlikeholdsavtaler 301
-/nn/abonnementer /nn/vedlikeholdsavtaler 301
-/en/abonnementer /en/vedlikeholdsavtaler 301
-
+# Priser er slått sammen med kontaktsiden
 /priser.html /kontakt 301
-/nn/priser.html /nn/kontakt 301
-/en/priser.html /en/kontakt 301
 /priser /kontakt 301
+/nn/priser.html /nn/kontakt 301
 /nn/priser /nn/kontakt 301
+/en/priser.html /en/kontakt 301
 /en/priser /en/kontakt 301
 
-/hagefix-enkeltoppdrag.html /hagefix 301
-/hagefix-enkeltoppdrag /hagefix 301
-/nn/hagefix-enkeltoppdrag.html /nn/hagefix 301
-/nn/hagefix-enkeltoppdrag /nn/hagefix 301
-/en/hagefix-enkeltoppdrag.html /en/hagefix 301
-/en/hagefix-enkeltoppdrag /en/hagefix 301
-
-/reinfix-enkeltoppdrag.html /reinfix 301
-/reinfix-enkeltoppdrag /reinfix 301
-/nn/reinfix-enkeltoppdrag.html /nn/reinfix 301
-/nn/reinfix-enkeltoppdrag /nn/reinfix 301
-/en/reinfix-enkeltoppdrag.html /en/reinfix 301
-/en/reinfix-enkeltoppdrag /en/reinfix 301
-
-/snofix-enkeltoppdrag.html /snofix 301
-/snofix-enkeltoppdrag /snofix 301
-/nn/snofix-enkeltoppdrag.html /nn/snofix 301
-/nn/snofix-enkeltoppdrag /nn/snofix 301
-/en/snofix-enkeltoppdrag.html /en/snofix 301
-/en/snofix-enkeltoppdrag /en/snofix 301
-
-# SteinFix er utgått - peker til tjenesteoversikten
-/steinfix.html /tjenester 301
-/steinfix /tjenester 301
-/nn/steinfix.html /nn/tjenester 301
-/nn/steinfix /nn/tjenester 301
-/en/steinfix.html /en/tjenester 301
-/en/steinfix /en/tjenester 301
-
-# Utgåtte -Fix-produktsider - peker til tjenesteoversikten
+# Utgåtte -Fix-produktsider og avtalesider -> tjenesteoversikten.
+# Alle går i ett hopp; ingen peker på hverandre.
 /hagefix.html /tjenester 301
 /hagefix /tjenester 301
-/nn/hagefix.html /nn/tjenester 301
-/nn/hagefix /nn/tjenester 301
-/en/hagefix.html /en/tjenester 301
-/en/hagefix /en/tjenester 301
+/hagefix-enkeltoppdrag.html /tjenester 301
+/hagefix-enkeltoppdrag /tjenester 301
 /reinfix.html /tjenester 301
 /reinfix /tjenester 301
-/nn/reinfix.html /nn/tjenester 301
-/nn/reinfix /nn/tjenester 301
-/en/reinfix.html /en/tjenester 301
-/en/reinfix /en/tjenester 301
+/reinfix-enkeltoppdrag.html /tjenester 301
+/reinfix-enkeltoppdrag /tjenester 301
 /skogfix.html /tjenester 301
 /skogfix /tjenester 301
-/nn/skogfix.html /nn/tjenester 301
-/nn/skogfix /nn/tjenester 301
-/en/skogfix.html /en/tjenester 301
-/en/skogfix /en/tjenester 301
 /smafix.html /tjenester 301
 /smafix /tjenester 301
-/nn/smafix.html /nn/tjenester 301
-/nn/smafix /nn/tjenester 301
-/en/smafix.html /en/tjenester 301
-/en/smafix /en/tjenester 301
 /snofix.html /tjenester 301
 /snofix /tjenester 301
-/nn/snofix.html /nn/tjenester 301
-/nn/snofix /nn/tjenester 301
-/en/snofix.html /en/tjenester 301
-/en/snofix /en/tjenester 301
+/snofix-enkeltoppdrag.html /tjenester 301
+/snofix-enkeltoppdrag /tjenester 301
+/steinfix.html /tjenester 301
+/steinfix /tjenester 301
 /tryggfix.html /tjenester 301
 /tryggfix /tjenester 301
+/vedlikeholdsavtaler.html /tjenester 301
+/vedlikeholdsavtaler /tjenester 301
+/abonnementer.html /tjenester 301
+/abonnementer /tjenester 301
+
+/nn/hagefix.html /nn/tjenester 301
+/nn/hagefix /nn/tjenester 301
+/nn/hagefix-enkeltoppdrag.html /nn/tjenester 301
+/nn/hagefix-enkeltoppdrag /nn/tjenester 301
+/nn/reinfix.html /nn/tjenester 301
+/nn/reinfix /nn/tjenester 301
+/nn/reinfix-enkeltoppdrag.html /nn/tjenester 301
+/nn/reinfix-enkeltoppdrag /nn/tjenester 301
+/nn/skogfix.html /nn/tjenester 301
+/nn/skogfix /nn/tjenester 301
+/nn/smafix.html /nn/tjenester 301
+/nn/smafix /nn/tjenester 301
+/nn/snofix.html /nn/tjenester 301
+/nn/snofix /nn/tjenester 301
+/nn/snofix-enkeltoppdrag.html /nn/tjenester 301
+/nn/snofix-enkeltoppdrag /nn/tjenester 301
+/nn/steinfix.html /nn/tjenester 301
+/nn/steinfix /nn/tjenester 301
 /nn/tryggfix.html /nn/tjenester 301
 /nn/tryggfix /nn/tjenester 301
+/nn/vedlikeholdsavtaler.html /nn/tjenester 301
+/nn/vedlikeholdsavtaler /nn/tjenester 301
+/nn/abonnementer.html /nn/tjenester 301
+/nn/abonnementer /nn/tjenester 301
+
+/en/hagefix.html /en/tjenester 301
+/en/hagefix /en/tjenester 301
+/en/hagefix-enkeltoppdrag.html /en/tjenester 301
+/en/hagefix-enkeltoppdrag /en/tjenester 301
+/en/reinfix.html /en/tjenester 301
+/en/reinfix /en/tjenester 301
+/en/reinfix-enkeltoppdrag.html /en/tjenester 301
+/en/reinfix-enkeltoppdrag /en/tjenester 301
+/en/skogfix.html /en/tjenester 301
+/en/skogfix /en/tjenester 301
+/en/smafix.html /en/tjenester 301
+/en/smafix /en/tjenester 301
+/en/snofix.html /en/tjenester 301
+/en/snofix /en/tjenester 301
+/en/snofix-enkeltoppdrag.html /en/tjenester 301
+/en/snofix-enkeltoppdrag /en/tjenester 301
+/en/steinfix.html /en/tjenester 301
+/en/steinfix /en/tjenester 301
 /en/tryggfix.html /en/tjenester 301
 /en/tryggfix /en/tjenester 301
+/en/vedlikeholdsavtaler.html /en/tjenester 301
+/en/vedlikeholdsavtaler /en/tjenester 301
+/en/abonnementer.html /en/tjenester 301
+/en/abonnementer /en/tjenester 301
